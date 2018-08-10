@@ -13,3 +13,17 @@ Une fois à la racine du projet,
 L'exécutable `ReachabilityGame` est produit dans le dossier.
 
 Il est possible que certains IDE gèrent les projets CMake.
+
+## Comment construire la documentation
+Il faut mettre le paramètre `BUILD_DOC` à `TRUE`
+  - Ligne de commande : `cmake -DBUILD_DOC=TRUE ..`
+  - Interface graphique : cocher la case
+
+Ensuite, `make documentation` la génère dans le dossier `documentation` (à la racine du projet).
+
+## Comment constuire les tests
+Il faut mettre le paramètre `BUILD_TESTS` à `TRUE`
+  - Ligne de commande : `cmake -DBUILD_TESTS=TRUE ..`
+  - Interface graphique : cocher la case
+
+Ensuite, `make ReachabilityGame-tests` génère l'exécutable des tests.
