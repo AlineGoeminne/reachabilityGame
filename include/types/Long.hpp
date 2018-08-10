@@ -5,13 +5,38 @@
  */
 class Long final {
 public:
+    /**
+     * \brief Construit un +infini
+     */
     static Long infinity();
 
-public:
+public: 
+    /**
+     * \brief Construit un Long avec comme 0
+     */
+    Long();
+    /**
+     * \brief Construit un Long avec la valeur donnée
+     * \param value La valeur
+     */
     Long(long value);
+    /**
+     * \brief Copie un Long
+     * \param value L'autre Long
+     */
     Long(const Long& value);
 
+    /**
+     * \brief Est-ce que le Long représente l'infini
+     * \return Vrai si c'est un infini, faux sinon
+     */
     bool isInfinity() const;
+
+    /**
+     * \brief Donne la valeur du Long.
+     * N'a de sens que si le Long n'est pas l'infini
+     * \return La valeur du long
+     */
     long getValue() const;
 
     Long operator-() const;

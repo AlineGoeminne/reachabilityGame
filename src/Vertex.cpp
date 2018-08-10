@@ -36,6 +36,16 @@ Vertex::Edge Vertex::getPredecessor(unsigned int id) const {
     }
 }
 
+Long Vertex::getWeight(unsigned int id) const {
+    auto e = getSuccessor(id);
+    if (e.first) {
+        return e.second;
+    }
+    else {
+        return Long::infinity();
+    }
+}
+
 unsigned int Vertex::getID() const {
     return m_id;
 }

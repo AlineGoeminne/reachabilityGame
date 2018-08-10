@@ -3,6 +3,8 @@
 #include <memory>
 #include <map>
 
+#include "types/Long.hpp"
+
 /**
  * \brief Un noeud du graphe
  */
@@ -55,6 +57,13 @@ public:
      * \return Un tuple (prédecesseur, poids)
      */
     Edge getPredecessor(unsigned int id) const;
+
+    /**
+     * \brief Donne le coût pour aller du noeud courant à son prédecesseur id.
+     * \param id L'ID du prédecesseur
+     * \return Le coût de l'arc, ou +infini si id n'est pas successeur du sommet
+     */
+    Long getWeight(unsigned int id) const;
 
     /**
      * \brief Donne l'ID du noeud

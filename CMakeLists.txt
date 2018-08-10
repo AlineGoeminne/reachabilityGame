@@ -13,6 +13,7 @@ set(LIBRARY_NAME ${TARGET_NAME}-lib)
 
 set(SOURCES
     src/Vertex.cpp
+    src/Graph.cpp
 
     src/types/Long.cpp
 )

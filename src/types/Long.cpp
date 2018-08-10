@@ -10,6 +10,13 @@ Long Long::infinity() {
     return l;
 }
 
+Long::Long() :
+    m_value(0),
+    m_infinity(false)
+    {
+
+}
+
 Long::Long(long value) :
     m_value(value),
     m_infinity(false)
