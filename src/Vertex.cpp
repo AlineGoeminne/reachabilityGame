@@ -11,7 +11,7 @@ Vertex::~Vertex() {
 
 }
 
-void Vertex::addSuccessor(Ptr vertex, int weight) {
+void Vertex::addSuccessor(Ptr vertex, long weight) {
     m_successors[vertex->getID()] = std::make_pair(vertex, weight);
     vertex->addPredecessor(shared_from_this(), weight);
 }
@@ -40,6 +40,30 @@ unsigned int Vertex::getID() const {
     return m_id;
 }
 
-void Vertex::addPredecessor(Vertex::Ptr vertex, int weight) {
+std::size_t Vertex::getNumberSuccessors() const {
+    return m_successors.size();
+}
+
+std::size_t Vertex::getNumberPredecessors() const {
+    return m_predecessors.size();
+}
+
+Vertex::StoreEdge::iterator Vertex::begin() {
+    return m_successors.begin();
+}
+
+Vertex::StoreEdge::iterator Vertex::end() {
+    return m_successors.end();
+}
+
+Vertex::StoreEdge::iterator Vertex::beginPredecessors() {
+    return m_predecessors.begin();
+}
+
+Vertex::StoreEdge::iterator Vertex::endPredecessors() {
+    return m_predecessors.end();
+}
+
+void Vertex::addPredecessor(Vertex::Ptr vertex, long weight) {
     m_predecessors[vertex->getID()] = std::make_pair(vertex, weight);
 }

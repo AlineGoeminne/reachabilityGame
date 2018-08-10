@@ -15,7 +15,13 @@ public:
     /**
      * \brief Représente un arc qui va de ce noeud vers un autre, avec un poids
      */
-    typedef std::pair<Ptr, int> Edge;
+    typedef std::pair<Ptr, long> Edge;
+
+    /**
+     * \brief Type de la map servant à stocker les arcs.
+     * On associe à l'ID de l'autre noeud de l'arc, un pointeur vers cet autre noeud et le poids de l'arc
+     */
+    typedef std::map<unsigned int, Edge> StoreEdge;
 
 public:
     /**
@@ -32,7 +38,7 @@ public:
      * \param vertex Le successeur
      * \param weight Le poids de l'arc
      */
-    void addSuccessor(Ptr vertex, int weight);
+    void addSuccessor(Ptr vertex, long weight);
 
     /**
      * \brief Donne le successeur qui a le même ID et le poids pour y aller.
@@ -68,13 +74,33 @@ public:
      */
     std::size_t getNumberPredecessors() const;
 
-private:
-    // On associe (v, weight) à v.id
-    typedef std::map<unsigned int, Edge> StoreEdge;
+    /**
+     * \brief Retourne un itérateur sur le début des successeurs
+     * \return Un itérateur sur le début des successeurs
+     */
+    StoreEdge::iterator begin();
+
+    /**
+     * \brief Retourne un itérateur sur la fin des successeurs
+     * \return Un itérateur sur la fin des successeurs
+     */
+    StoreEdge::iterator end();
+
+    /**
+     * \brief Retourne un itérateur sur le début des prédecesseurs
+     * \return Un itérateur sur le début des prédecesseurs
+     */
+    StoreEdge::iterator beginPredecessors();
+
+    /**
+     * \brief Retourne un itérateur sur la fin des prédecesseurs
+     * \return Un itérateur sur la fin des prédecesseurs
+     */
+    StoreEdge::iterator endPredecessors();
 
 private:
     // Ajoute un prédecesseur. Similaire à addSuccessor
-    void addPredecessor(Ptr vertex, int weight);
+    void addPredecessor(Ptr vertex, long weight);
 
 private:
     const unsigned int m_id;
