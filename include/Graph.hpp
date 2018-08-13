@@ -33,6 +33,20 @@ public:
      */
     std::vector<Long> getWeights(unsigned int u, unsigned int v) const;
 
+    /**
+     * \brief Donne les poids maximaux
+     * \return Pour chaque joueur, le poids maximal
+     */
+    const std::vector<long>& getMaxWeights() const;
+
+    /**
+     * \brief Donne le nombre de sommets du graphe
+     * \return Le nombre de sommets du graphe
+     */
+    std::size_t size() const;
+
+    const std::vector<Vertex::Ptr>& getVertices() const;
+
 private:
     /**
      * \brief Cherche, pour chaque joueur, le poids maximal parmi les arcs

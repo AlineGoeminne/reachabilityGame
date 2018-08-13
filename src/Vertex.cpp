@@ -1,10 +1,10 @@
 #include "Vertex.hpp"
+#include <iostream>
 
 Vertex::Vertex(unsigned int id, unsigned int player, std::size_t nPlayers) :
+    m_nPlayers(nPlayers),
     m_id(id),
-    m_player(player),
-    m_isTarget(false),
-    m_target(nPlayers, false)
+    m_player(player)
     {
 }
 
@@ -13,7 +13,9 @@ Vertex::~Vertex() {
 }
 
 void Vertex::addSuccessor(Ptr vertex, Long weight) {
-    addSuccessor(vertex, {weight});
+    // On crée un tableau de taille nPlayers rempli avec weight
+    std::vector<Long> weights(m_nPlayers, weight);
+    addSuccessor(vertex, weights);
 }
 
 void Vertex::addSuccessor(Ptr vertex, std::vector<Long> weights) {
@@ -24,7 +26,7 @@ void Vertex::addSuccessor(Ptr vertex, std::vector<Long> weights) {
 Vertex::Edge Vertex::getSuccessor(unsigned int id) const {
     auto itr = m_successors.find(id);
     if (itr == m_successors.end()) {
-        return std::make_pair(nullptr, std::vector(m_target.size(), Long::infinity));
+        return std::make_pair(nullptr, std::vector(m_nPlayers, Long::infinity));
     }
     else {
         return itr->second;
@@ -34,7 +36,7 @@ Vertex::Edge Vertex::getSuccessor(unsigned int id) const {
 Vertex::Edge Vertex::getPredecessor(unsigned int id) const {
     auto itr = m_predecessors.find(id);
     if (itr == m_predecessors.end()) {
-        return std::make_pair(nullptr, std::vector(m_target.size(), Long::infinity));
+        return std::make_pair(nullptr, std::vector(m_nPlayers, Long::infinity));
     }
     else {
         return itr->second;
@@ -47,7 +49,7 @@ std::vector<Long> Vertex::getWeights(unsigned int id) const {
         return e.second;
     }
     else {
-        return std::vector<Long>(m_target.size(), Long::infinity);
+        return std::vector<Long>(m_nPlayers, Long::infinity);
     }
 }
 
@@ -84,15 +86,21 @@ Vertex::StoreEdge::iterator Vertex::endPredecessors() {
 }
 
 bool Vertex::isTarget() const {
-    return m_isTarget;
+    return m_target.size() > 0;
 }
 
 bool Vertex::isTargetFor(unsigned int player) const {
-    return m_target[player];
+    return m_target.find(player) != m_target.end();
+}
+
+const std::unordered_set<unsigned int>& Vertex::getTargetPlayers() const {
+    return m_target;
 }
 
 void Vertex::addTargetFor(unsigned int player) {
-    m_target[player] = true;
+    if (!isTargetFor(player)) {
+        m_target.insert(player);
+    }
 }
 
 void Vertex::addPredecessor(Vertex::Ptr vertex, std::vector<Long> weights) {

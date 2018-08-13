@@ -14,6 +14,10 @@ set(LIBRARY_NAME ${TARGET_NAME}-lib)
 set(SOURCES
     src/Vertex.cpp
     src/Graph.cpp
+    src/Player.cpp
+    src/Path.cpp
+    src/Game.cpp
+    src/MinMaxGame.cpp
 
     src/types/Long.cpp
 )

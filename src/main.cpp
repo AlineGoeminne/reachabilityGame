@@ -2,6 +2,7 @@
 
 #include "Vertex.hpp"
 #include "Graph.hpp"
+#include "Player.hpp"
 
 using namespace std;
 
@@ -16,5 +17,9 @@ int main() {
     vertices[1] = v1;
 
     Graph g(vertices, 2);
+
+    std::cout << sizeof(char) << '\n';
+    std::cout << sizeof(Player*) << '\n';
+    std::cout << sizeof(std::unique_ptr<Player>) << '\n';
     return 0;
 }

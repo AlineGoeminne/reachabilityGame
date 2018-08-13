@@ -3,11 +3,13 @@
 #include <memory>
 #include <unordered_map>
 #include <vector>
+#include <unordered_set>
 
 #include "types/Long.hpp"
 
 /**
  * \brief Un noeud du graphe.
+ * 
  * Un noeud est décrit par son ID, ses successeurs, ses prédecesseurs, son joueur et pour quel(s) joueur(s) il est une cible
  */
 class Vertex final : public std::enable_shared_from_this<Vertex> {
@@ -23,6 +25,7 @@ public:
 
     /**
      * \brief Type de la map servant à stocker les arcs.
+     * 
      * On associe à l'ID de l'autre noeud de l'arc, un pointeur vers cet autre noeud et les poids de l'arc
      */
     typedef std::unordered_map<unsigned int, Edge> StoreEdge;
@@ -38,6 +41,7 @@ public:
 
     /**
      * \brief Ajoute un successeur à ce noeud avec un poids commun à tous les joueurs.
+     * 
      * On ajoute également le noeud actuel au successeur comme prédecesseur.
      * \param vertex Le successeur
      * \param weight Le poids de l'arc
@@ -46,6 +50,7 @@ public:
 
     /**
      * \brief Ajoute un successeur à ce noeud avec un poids par joueur.
+     * 
      * On ajoute également le noeud actuel au successeur comme prédecesseur.
      * \param vertex Le successeur
      * \param weights Les poids de l'arc
@@ -54,6 +59,7 @@ public:
 
     /**
      * \brief Donne le successeur qui a le même ID et le poids pour y aller.
+     * 
      * Si l'ID n'est pas un successeur, retourne (nullptr, 0)
      * \param id L'ID du successeur
      * \return Un tuple (successeur, poids)
@@ -62,6 +68,7 @@ public:
 
     /**
      * \brief Donne le prédecesseur qui a le même ID et le poids pour y aller.
+     * 
      * Si l'ID n'est pas un prédecesseur, retourne (nullptr, 0)
      * \param id L'ID du prédecesseur
      * \return Un tuple (prédecesseur, poids)
@@ -137,6 +144,12 @@ public:
     bool isTargetFor(unsigned int player) const;
 
     /**
+     * \brief Donne l'ensemble des joueurs qui ont ce sommet comme cible
+     * \return L'ensemble des joueurs qui ont ce sommet comme cible
+     */
+    const std::unordered_set<unsigned int>& getTargetPlayers() const;
+
+    /**
      * \brief Enregistre le sommet comme une cible pour le joueur donné
      * \param player Le joueur
      */
@@ -147,10 +160,10 @@ private:
     void addPredecessor(Ptr vertex, std::vector<Long> weight);
 
 private:
+    const std::size_t m_nPlayers;
     const unsigned int m_id;
     const unsigned int m_player;
     StoreEdge m_successors;
     StoreEdge m_predecessors;
-    bool m_isTarget; // Devient vrai dès que le sommet est un goal
-    std::vector<bool> m_target; // Un booléen par joueur
+    std::unordered_set<unsigned int> m_target; // On stocke les IDs des joueurs
 };
