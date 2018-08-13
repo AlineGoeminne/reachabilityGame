@@ -9,7 +9,7 @@ public:
     /**
      * \brief Construit un +infini
      */
-    static Long infinity();
+    static const Long infinity;
 
 public: 
     /**
@@ -56,6 +56,9 @@ public:
 
     friend bool operator<=(const Long &a, const Long& b);
     friend bool operator>=(const Long &a, const Long& b);
+
+private:
+    static Long make_infinity();
 
 private:
     long m_value; // Si infinity, 1 -> +infini, -1 -> -infini

@@ -5,17 +5,17 @@
 
 SCENARIO("Long", "[types]") {
     GIVEN("One long is the +infinity") {
-        Long l = Long::infinity();
+        Long l = Long::infinity;
 
         WHEN("The other long is +infinity") {
-            Long o = Long::infinity();
+            Long o = Long::infinity;
 
             THEN("The sum is OK") {
-                REQUIRE(l+o == Long::infinity());
+                REQUIRE(l+o == Long::infinity);
             }
 
             THEN("The difference is NOK") {
-                REQUIRE_THROWS_AS(l-o == Long::infinity(), InfinityError);
+                REQUIRE_THROWS_AS(l-o == Long::infinity, InfinityError);
             }
 
             THEN("No one is > or <") {
@@ -35,14 +35,14 @@ SCENARIO("Long", "[types]") {
         }
 
         WHEN("The other long is -infinity") {
-            Long o = -Long::infinity();
+            Long o = -Long::infinity;
 
             THEN("The sum is NOK") {
-                REQUIRE_THROWS_AS(l+o == Long::infinity(), InfinityError);
+                REQUIRE_THROWS_AS(l+o == Long::infinity, InfinityError);
             }
 
             THEN("The difference is OK") {
-                REQUIRE(l-o == Long::infinity());
+                REQUIRE(l-o == Long::infinity);
             }
 
             THEN("+inf > -inf") {
@@ -62,8 +62,8 @@ SCENARIO("Long", "[types]") {
             Long o = 18;
 
             THEN("The sum/difference is +inf") {
-                REQUIRE(l+o == Long::infinity());
-                REQUIRE(l-o == Long::infinity());
+                REQUIRE(l+o == Long::infinity);
+                REQUIRE(l-o == Long::infinity);
             }
 
             THEN("+inf > number") {
@@ -78,17 +78,17 @@ SCENARIO("Long", "[types]") {
     }
 
     GIVEN("One long is -infinity") {
-        Long l = -Long::infinity();
+        Long l = -Long::infinity;
 
         WHEN("The other long is +infinity") {
-            Long o = Long::infinity();
+            Long o = Long::infinity;
 
             THEN("The sum is NOK") {
-                REQUIRE_THROWS_AS(l+o == -Long::infinity(), InfinityError);
+                REQUIRE_THROWS_AS(l+o == -Long::infinity, InfinityError);
             }
 
             THEN("The difference is OK") {
-                REQUIRE(l-o == -Long::infinity());
+                REQUIRE(l-o == -Long::infinity);
             }
 
             THEN("-inf < +inf") {
@@ -102,14 +102,14 @@ SCENARIO("Long", "[types]") {
         }
 
         WHEN("The other long is -infinity") {
-            Long o = -Long::infinity();
+            Long o = -Long::infinity;
 
             THEN("The sum is OK") {
-                REQUIRE(l+o == -Long::infinity());
+                REQUIRE(l+o == -Long::infinity);
             }
 
             THEN("The difference is NOK") {
-                REQUIRE_THROWS_AS(l-o == -Long::infinity(), InfinityError);
+                REQUIRE_THROWS_AS(l-o == -Long::infinity, InfinityError);
             }
 
             THEN("-inf <= -inf") {
@@ -126,8 +126,8 @@ SCENARIO("Long", "[types]") {
             Long o = 18;
 
             THEN("The sum/difference is -inf") {
-                REQUIRE(l+o == -Long::infinity());
-                REQUIRE(l-o == -Long::infinity());
+                REQUIRE(l+o == -Long::infinity);
+                REQUIRE(l-o == -Long::infinity);
             }
 
             THEN("-inf < number") {
@@ -145,10 +145,10 @@ SCENARIO("Long", "[types]") {
         Long l = 18;
 
         WHEN("The other long is +inf") {
-            Long o = Long::infinity();
+            Long o = Long::infinity;
             THEN("The sum (difference) is +inf (-inf)") {
-                REQUIRE(l + o == Long::infinity());
-                REQUIRE(l - o == -Long::infinity());
+                REQUIRE(l + o == Long::infinity);
+                REQUIRE(l - o == -Long::infinity);
             }
 
             THEN("number < +inf") {
@@ -162,10 +162,10 @@ SCENARIO("Long", "[types]") {
         }
 
         WHEN("The other long is -inf") {
-            Long o = -Long::infinity();
+            Long o = -Long::infinity;
             THEN("The sum (difference) is -inf (+inf)") {
-                REQUIRE(l + o == -Long::infinity());
-                REQUIRE(l - o == Long::infinity());
+                REQUIRE(l + o == -Long::infinity);
+                REQUIRE(l - o == Long::infinity);
             }
 
             THEN("number > -inf") {

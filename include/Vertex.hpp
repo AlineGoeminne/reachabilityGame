@@ -17,13 +17,13 @@ public:
      */
     typedef std::shared_ptr<Vertex> Ptr;
     /**
-     * \brief Représente un arc qui va de ce noeud vers un autre, avec un poids
+     * \brief Représente un arc qui va de ce noeud vers un autre, avec un poids par joueur
      */
-    typedef std::pair<Ptr, long> Edge;
+    typedef std::pair<Ptr, std::vector<Long>> Edge;
 
     /**
      * \brief Type de la map servant à stocker les arcs.
-     * On associe à l'ID de l'autre noeud de l'arc, un pointeur vers cet autre noeud et le poids de l'arc
+     * On associe à l'ID de l'autre noeud de l'arc, un pointeur vers cet autre noeud et les poids de l'arc
      */
     typedef std::unordered_map<unsigned int, Edge> StoreEdge;
 
@@ -37,12 +37,20 @@ public:
     ~Vertex();
 
     /**
-     * \brief Ajoute un successeur à ce noeud.
+     * \brief Ajoute un successeur à ce noeud avec un poids commun à tous les joueurs.
      * On ajoute également le noeud actuel au successeur comme prédecesseur.
      * \param vertex Le successeur
      * \param weight Le poids de l'arc
      */
-    void addSuccessor(Ptr vertex, long weight);
+    void addSuccessor(Ptr vertex, Long weight);
+
+    /**
+     * \brief Ajoute un successeur à ce noeud avec un poids par joueur.
+     * On ajoute également le noeud actuel au successeur comme prédecesseur.
+     * \param vertex Le successeur
+     * \param weights Les poids de l'arc
+     */
+    void addSuccessor(Ptr vertex, std::vector<Long> weights);
 
     /**
      * \brief Donne le successeur qui a le même ID et le poids pour y aller.
@@ -61,11 +69,11 @@ public:
     Edge getPredecessor(unsigned int id) const;
 
     /**
-     * \brief Donne le coût pour aller du noeud courant à son prédecesseur id.
+     * \brief Donne les coûts pour aller du noeud courant à son prédecesseur id.
      * \param id L'ID du prédecesseur
-     * \return Le coût de l'arc, ou +infini si id n'est pas successeur du sommet
+     * \return Les coûts de l'arc, ou +infini si id n'est pas successeur du sommet
      */
-    Long getWeight(unsigned int id) const;
+    std::vector<Long> getWeights(unsigned int id) const;
 
     /**
      * \brief Donne l'ID du noeud
@@ -73,6 +81,10 @@ public:
      */
     unsigned int getID() const;
 
+    /**
+     * \brief Donne l'ID du joueur qui possède ce sommet
+     * \return L'ID du joueur
+     */
     unsigned int getPlayer() const;
 
     /**
@@ -119,19 +131,20 @@ public:
 
     /**
      * \brief Regarde si le sommet une cible pour le joueur donné
+     * \param player Le joueur
      * \return Vrai ssi le sommet une cible pour le joueur donné
      */
     bool isTargetFor(unsigned int player) const;
 
     /**
      * \brief Enregistre le sommet comme une cible pour le joueur donné
-     * \param Le joueur
+     * \param player Le joueur
      */
     void addTargetFor(unsigned int player);
 
 private:
     // Ajoute un prédecesseur. Similaire à addSuccessor
-    void addPredecessor(Ptr vertex, long weight);
+    void addPredecessor(Ptr vertex, std::vector<Long> weight);
 
 private:
     const unsigned int m_id;

@@ -12,15 +12,19 @@ Vertex::~Vertex() {
 
 }
 
-void Vertex::addSuccessor(Ptr vertex, long weight) {
-    m_successors[vertex->getID()] = std::make_pair(vertex, weight);
-    vertex->addPredecessor(shared_from_this(), weight);
+void Vertex::addSuccessor(Ptr vertex, Long weight) {
+    addSuccessor(vertex, {weight});
+}
+
+void Vertex::addSuccessor(Ptr vertex, std::vector<Long> weights) {
+    m_successors[vertex->getID()] = std::make_pair(vertex, weights);
+    vertex->addPredecessor(shared_from_this(), weights);
 }
 
 Vertex::Edge Vertex::getSuccessor(unsigned int id) const {
     auto itr = m_successors.find(id);
     if (itr == m_successors.end()) {
-        return std::make_pair(nullptr, 0);
+        return std::make_pair(nullptr, std::vector(m_target.size(), Long::infinity));
     }
     else {
         return itr->second;
@@ -30,20 +34,20 @@ Vertex::Edge Vertex::getSuccessor(unsigned int id) const {
 Vertex::Edge Vertex::getPredecessor(unsigned int id) const {
     auto itr = m_predecessors.find(id);
     if (itr == m_predecessors.end()) {
-        return std::make_pair(nullptr, 0);
+        return std::make_pair(nullptr, std::vector(m_target.size(), Long::infinity));
     }
     else {
         return itr->second;
     }
 }
 
-Long Vertex::getWeight(unsigned int id) const {
+std::vector<Long> Vertex::getWeights(unsigned int id) const {
     auto e = getSuccessor(id);
     if (e.first) {
         return e.second;
     }
     else {
-        return Long::infinity();
+        return std::vector<Long>(m_target.size(), Long::infinity);
     }
 }
 
@@ -91,6 +95,6 @@ void Vertex::addTargetFor(unsigned int player) {
     m_target[player] = true;
 }
 
-void Vertex::addPredecessor(Vertex::Ptr vertex, long weight) {
-    m_predecessors[vertex->getID()] = std::make_pair(vertex, weight);
+void Vertex::addPredecessor(Vertex::Ptr vertex, std::vector<Long> weights) {
+    m_predecessors[vertex->getID()] = std::make_pair(vertex, weights);
 }

@@ -2,30 +2,32 @@
 
 #include <iostream>
 
-Graph::Graph(std::vector<Vertex::Ptr>& vertices) :
+Graph::Graph(std::vector<Vertex::Ptr>& vertices, std::size_t nPlayers) :
     m_vertices(vertices)
     {
-    computeMaxWeight();
+    computeMaxWeights(nPlayers);
 }
 
-Graph::Graph(std::vector<Vertex::Ptr>& vertices, long maxWeight) :
+Graph::Graph(std::vector<Vertex::Ptr>& vertices, std::vector<long> maxWeight) :
     m_vertices(vertices),
-    m_maxWeight(maxWeight)
+    m_maxWeights(maxWeight)
     {
 
 }
 
-Long Graph::getWeight(unsigned int u, unsigned int v) const {
+std::vector<Long> Graph::getWeights(unsigned int u, unsigned int v) const {
     Vertex::Ptr vertex = m_vertices.at(u);
-    return vertex->getWeight(v);
+    return vertex->getWeights(v);
 }
 
-void Graph::computeMaxWeight() {
-    Long mini = -Long::infinity();
+void Graph::computeMaxWeights(std::size_t nPlayers) {
+    std::vector<Long> mini(nPlayers, Long::infinity);
     for (auto &vertex : m_vertices) {
         for (auto &succ : *vertex) {
-            if (succ.second.second < mini.getValue()) {
-                mini = succ.second.second;
+            for (std::size_t i = 0 ; i < nPlayers ; i++) {
+                if (succ.second.second[i] < mini[i].getValue()) {
+                    mini[i] = succ.second.second[i];
+                }
             }
         }
     }

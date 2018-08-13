@@ -4,11 +4,7 @@
 
 #include <iostream>
 
-Long Long::infinity() {
-    Long l(1);
-    l.m_infinity = true;
-    return l;
-}
+const Long Long::infinity = Long::make_infinity();
 
 Long::Long() :
     m_value(0),
@@ -57,7 +53,7 @@ Long Long::operator+(const Long& other) const {
         else {
             return other;
         }
-        return Long::infinity();
+        return Long::infinity;
     }
     else {
         Long l(m_value + other.m_value);
@@ -112,6 +108,12 @@ Long& Long::operator-=(const Long& other) {
         m_value -= other.m_value;
     }
     return *this;
+}
+
+Long Long::make_infinity() {
+    Long l(1);
+    l.m_infinity = true;
+    return l;
 }
 
 bool operator==(const Long& a, const Long& b) {

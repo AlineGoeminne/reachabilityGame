@@ -15,6 +15,6 @@ int main() {
     vertices[0] = v0;
     vertices[1] = v1;
 
-    Graph g(vertices);
+    Graph g(vertices, 2);
     return 0;
 }
