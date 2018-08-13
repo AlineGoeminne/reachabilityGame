@@ -12,7 +12,8 @@
 class Graph final {
 public:
     /**
-     * \brief Construit le graphe
+     * \brief Construit le graphe.
+     * Ce constructeur cherche le poids maximal parmi les arcs
      * \param vertices Les sommets du graphe
      */
     explicit Graph(std::vector<Vertex::Ptr>& vertices);

@@ -1,10 +1,11 @@
 #include "Vertex.hpp"
 
-Vertex::Vertex(unsigned int id, unsigned int player) :
+Vertex::Vertex(unsigned int id, unsigned int player, std::size_t nPlayers) :
     m_id(id),
-    m_player(player)
+    m_player(player),
+    m_isTarget(false),
+    m_target(nPlayers, false)
     {
-
 }
 
 Vertex::~Vertex() {
@@ -50,6 +51,10 @@ unsigned int Vertex::getID() const {
     return m_id;
 }
 
+unsigned int Vertex::getPlayer() const {
+    return m_player;
+}
+
 std::size_t Vertex::getNumberSuccessors() const {
     return m_successors.size();
 }
@@ -72,6 +77,18 @@ Vertex::StoreEdge::iterator Vertex::beginPredecessors() {
 
 Vertex::StoreEdge::iterator Vertex::endPredecessors() {
     return m_predecessors.end();
+}
+
+bool Vertex::isTarget() const {
+    return m_isTarget;
+}
+
+bool Vertex::isTargetFor(unsigned int player) const {
+    return m_target[player];
+}
+
+void Vertex::addTargetFor(unsigned int player) {
+    m_target[player] = true;
 }
 
 void Vertex::addPredecessor(Vertex::Ptr vertex, long weight) {
