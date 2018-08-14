@@ -62,4 +62,85 @@ TEST_CASE("DijkstraMinMax", "[dijkstra]") {
         REQUIRE(values[7] == Long::infinity);
     }
 
+    SECTION("Petite boucle en triangle") {
+        Vertex::Ptr v0 = std::make_shared<Vertex>(0, 1, 2);
+        Vertex::Ptr v1 = std::make_shared<Vertex>(1, 1, 2);
+        Vertex::Ptr v2 = std::make_shared<Vertex>(2, 1, 2);
+
+        v0->addSuccessor(v1, 1);
+        v1->addSuccessor(v2, 1);
+        v2->addSuccessor(v0, 1);
+
+        std::vector<Vertex::Ptr> vertices{v0, v1, v2};
+
+        Graph g(vertices, 2);
+
+        Player min(0, {}, {v0}), max(1, {v0, v1, v2}, {});
+        v0->addTargetFor(0);
+
+        ReachabilityGame game(g, v0, {min, max});
+
+        MinMaxGame minmax = MinMaxGame::convert(game, 0);
+
+        auto values = minmax.getValues();
+
+        REQUIRE(values[0] == 0);
+        REQUIRE(values[1] == 2);
+        REQUIRE(values[2] == 1);
+    }
+
+    SECTION("Pas de prédecesseurs au goal") {
+        Vertex::Ptr v0 = std::make_shared<Vertex>(0, 0, 2);
+        Vertex::Ptr v1 = std::make_shared<Vertex>(1, 1, 2);
+        Vertex::Ptr v2 = std::make_shared<Vertex>(2, 1, 2);
+
+        v0->addSuccessor(v1, 1);
+        v0->addSuccessor(v2, 1);
+
+        std::vector<Vertex::Ptr> vertices{v0, v1, v2};
+
+        Graph g(vertices, 2);
+
+        Player min(0, {v0}, {v0}), max(1, {v1, v2}, {});
+        v0->addTargetFor(0);
+
+        ReachabilityGame game(g, v0, {min, max});
+
+        MinMaxGame minmax = MinMaxGame::convert(game, 0);
+
+        auto values = minmax.getValues();
+
+        REQUIRE(values[0] == 0);
+        REQUIRE(values[1] == Long::infinity);
+        REQUIRE(values[2] == Long::infinity);
+    }
+
+    SECTION("Petit arbre") {
+        Vertex::Ptr v0 = std::make_shared<Vertex>(0, 0, 2);
+        Vertex::Ptr v1 = std::make_shared<Vertex>(1, 1, 2);
+        Vertex::Ptr v2 = std::make_shared<Vertex>(2, 0, 2);
+        Vertex::Ptr v3 = std::make_shared<Vertex>(3, 0, 2);
+
+        v1->addSuccessor(v2, 2);
+        v2->addSuccessor(v3, 1);
+        v2->addSuccessor(v0, 3);
+
+        std::vector<Vertex::Ptr> vertices{v0, v1, v2, v3};
+
+        Graph g(vertices, 2);
+
+        Player min(0, {v0, v1, v3}, {v0}), max(1, {v2}, {});
+        v0->addTargetFor(0);
+
+        ReachabilityGame game(g, v0, {min, max});
+
+        MinMaxGame minmax = MinMaxGame::convert(game, 0);
+
+        auto values = minmax.getValues();
+
+        REQUIRE(values[0] == 0);
+        REQUIRE(values[1] == 5);
+        REQUIRE(values[2] == 3);
+        REQUIRE(values[3] == Long::infinity);
+    }
 }

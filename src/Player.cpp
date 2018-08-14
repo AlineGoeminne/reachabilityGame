@@ -11,7 +11,7 @@ Player::Player(unsigned int id, const std::unordered_set<Vertex::Ptr>& vertices,
     m_vertices(vertices),
     m_goals(goals)
     {
-
+    
 }
 
 Player::~Player() {

@@ -9,7 +9,7 @@
 
 class ReachabilityGame : public Game {
 public:
-    ReachabilityGame(Graph graph, Vertex::Ptr init, std::vector<Player> players);
+    ReachabilityGame(Graph graph, Vertex::Ptr init, const std::vector<Player>& players);
 
 private:
     std::vector<Player> m_players;

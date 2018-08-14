@@ -11,13 +11,6 @@ MinMaxGame::DijVertex::DijVertex(unsigned int ID, unsigned int player, std::size
 
 }
 
-void MinMaxGame::DijVertex::addSuccessor(Vertex::Ptr vertex, std::vector<Long> weights) {
-    Vertex::addSuccessor(vertex, weights);
-
-    DijVertex::Ptr v = std::dynamic_pointer_cast<DijVertex>(vertex);
-    v->nSuccessors++;
-}
-
 std::vector<Long> MinMaxGame::getValues() {
     dijkstraMinMax();
 
@@ -131,6 +124,7 @@ void MinMaxGame::initS() {
     auto &vertices = getGraph().getVertices();
     for (std::size_t i = 0 ; i < vertices.size() ; i++) {
         DijVertex::Ptr v = std::static_pointer_cast<DijVertex>(vertices[i]);
+        v->nSuccessors = v->getNumberSuccessors();
         auto S = std::priority_queue<Successor, std::vector<Successor>, Successor>();
         Successor node;
         if (vertices[i]->isTarget()) {

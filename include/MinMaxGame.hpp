@@ -40,8 +40,6 @@ private:
 
         DijVertex(unsigned int ID, unsigned int player, std::size_t nPlayers);
 
-        void addSuccessor(Vertex::Ptr vertex, std::vector<Long> weights) override;
-
         void updateKey(Long d) {
             this->d = d;
         }

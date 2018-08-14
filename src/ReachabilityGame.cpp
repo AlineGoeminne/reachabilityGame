@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-ReachabilityGame::ReachabilityGame(Graph graph, Vertex::Ptr init, std::vector<Player> players) :
+ReachabilityGame::ReachabilityGame(Graph graph, Vertex::Ptr init, const std::vector<Player>& players) :
     Game(graph, init),
     m_players(players),
     m_maxWeightsPath(players.size())
