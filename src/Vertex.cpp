@@ -106,3 +106,7 @@ void Vertex::addTargetFor(unsigned int player) {
 void Vertex::addPredecessor(Vertex::Ptr vertex, std::vector<Long> weights) {
     m_predecessors[vertex->getID()] = std::make_pair(vertex, weights);
 }
+
+bool operator==(const Vertex &a, const Vertex &b) {
+    return a.getID() == b.getID();
+}

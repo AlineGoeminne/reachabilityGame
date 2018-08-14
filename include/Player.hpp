@@ -8,8 +8,8 @@
  */
 class Player {
 public:
-    Player();
-    explicit Player(const std::unordered_set<Vertex::Ptr>& vertices, const std::unordered_set<Vertex::Ptr>& goals);
+    Player(unsigned int id);
+    explicit Player(unsigned int id, const std::unordered_set<Vertex::Ptr>& vertices, const std::unordered_set<Vertex::Ptr>& goals);
     ~Player();
 
     /**
@@ -27,6 +27,8 @@ public:
 
     /**
      * \brief Ajoute un goal appartenant au joueur.
+     * 
+     * Le joueur est également enregistré dans le sommet.
      * Le sommet NE peut PLUS être modifié après l'insertion sous peine de briser l'ensemble. En effet, les éléments sont stockés selon leur hash key et modifier un sommet modifie son hash key.
      * \param vertex Le goal
      */
@@ -39,6 +41,7 @@ public:
     const std::unordered_set<Vertex::Ptr>& getGoals() const;
 
 private:
+    unsigned int m_id;
     std::unordered_set<Vertex::Ptr> m_vertices;
     std::unordered_set<Vertex::Ptr> m_goals;
 };

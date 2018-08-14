@@ -2,41 +2,67 @@
 
 #include <vector>
 #include <queue>
+#include <iostream>
 
 #include "Game.hpp"
 #include "Player.hpp"
 #include "ReachabilityGame.hpp"
 #include "types/Long.hpp"
+#include "types/DynamicPriorityQueue.hpp"
 
 class MinMaxGame : public Game {
 public:
-    MinMaxGame(Graph &graph, Vertex::Ptr init, const Player& min, const Player& max);
-
     std::vector<Long> getValues();
 
     static MinMaxGame convert(ReachabilityGame& game, unsigned int minPlayer);
 
 private:
+    struct DijVertex;
     // Structure pour S
-    struct Sucessor {
+    struct Successor {
         Long cost;
-        std::shared_ptr<Sucessor> pred;
+        std::shared_ptr<DijVertex> pred;
 
         // Servira pour l'ordre dans la priority_queue
-        bool operator()(const Sucessor &a, const Sucessor &b) {
+        bool operator()(const Successor &a, const Successor &b) {
             // On veut la plus petite valeur en haut de la pile
             return a.cost > b.cost;
         }
     };
 
+    // Structure pour Q
+    struct DijVertex : public Vertex {
+        typedef std::shared_ptr<DijVertex> Ptr;
+
+        Long d;
+        std::size_t nSuccessors;
+        std::priority_queue<Successor, std::vector<Successor>, Successor> S;
+
+        DijVertex(unsigned int ID, unsigned int player, std::size_t nPlayers);
+
+        void addSuccessor(Vertex::Ptr vertex, std::vector<Long> weights) override;
+
+        void updateKey(Long d) {
+            this->d = d;
+        }
+    };
+
+    struct CompareDijVertex {
+        bool operator()(const DijVertex::Ptr &a, const DijVertex::Ptr &b) {
+            return a->d > b->d;
+        }
+    };
+
 private:
-    void DijkstraMinMax();
+    MinMaxGame(Graph &graph, Vertex::Ptr init, const Player& min, const Player& max);
+
+    void dijkstraMinMax();
 
     void initQ();
     void initS();
+    void relax(DijVertex::Ptr s, const Vertex::Edge &edge);
 
 private:
     Player m_min, m_max;
-    const std::unordered_set<Vertex::Ptr> &m_goals; // Référence vers les goals de Min
-    std::vector<std::priority_queue<Sucessor, std::vector<Sucessor>, Sucessor>> m_S; // S
+    DynamicPriorityQueue<DijVertex::Ptr, CompareDijVertex> m_Q; // Q
 };

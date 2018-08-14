@@ -1,8 +1,9 @@
 #include "types/Long.hpp"
 
-#include "types/InfinityError.hpp"
-
 #include <iostream>
+#include <cmath>
+
+#include "types/InfinityError.hpp"
 
 const Long Long::infinity = Long::make_infinity();
 
@@ -77,6 +78,34 @@ Long Long::operator-(const Long& other) const {
     else {
         Long l(m_value - other.m_value);
         return l;
+    }
+}
+
+Long Long::operator*(const Long& other) const {
+    if (isInfinity() && other.isInfinity()) {
+        if (m_value == other.m_value) {
+            // +inf * +inf = +inf
+            // -inf * -inf = +inf
+            return Long::infinity;
+        }
+        else {
+            // +inf * -inf = -inf
+            // -inf * +inf = -inf
+            return -Long::infinity;
+        }
+    }
+    else if (isInfinity() || other.isInfinity()) {
+        if (std::signbit(m_value) == std::signbit(other.m_value)) {
+            // Même signe => +inf
+            return Long::infinity;
+        }
+        else {
+            return -Long::infinity;
+        }
+    }
+    else {
+        // Pas d'infini => simple multiplication de deux nombres
+        return m_value * other.m_value;
     }
 }
 

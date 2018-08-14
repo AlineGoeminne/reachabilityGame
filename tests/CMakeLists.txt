@@ -1,5 +1,6 @@
 set(TESTS_SOURCES
     main.cpp
+    DijkstraMinMax.cpp
 
     types/Long.cpp
     types/DynamicPriorityQueue.cpp

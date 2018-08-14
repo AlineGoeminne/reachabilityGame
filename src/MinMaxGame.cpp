@@ -3,17 +3,32 @@
 #define MIN 0
 #define MAX 1
 
-MinMaxGame::MinMaxGame(Graph &graph, Vertex::Ptr init, const Player& min, const Player& max) :
-    Game(graph, init),
-    m_min(min),
-    m_max(max),
-    m_goals(min.getGoals())
+MinMaxGame::DijVertex::DijVertex(unsigned int ID, unsigned int player, std::size_t nPlayers) :
+    Vertex(ID, player, nPlayers),
+    d(0),
+    nSuccessors(0)
     {
 
 }
 
-std::vector<Long> MinMaxGame::getValues() {
+void MinMaxGame::DijVertex::addSuccessor(Vertex::Ptr vertex, std::vector<Long> weights) {
+    Vertex::addSuccessor(vertex, weights);
 
+    DijVertex::Ptr v = std::dynamic_pointer_cast<DijVertex>(vertex);
+    v->nSuccessors++;
+}
+
+std::vector<Long> MinMaxGame::getValues() {
+    dijkstraMinMax();
+
+    std::vector<Long> values(getGraph().size());
+
+    for (std::size_t i = 0 ; i < getGraph().size() ; i++) {
+        DijVertex::Ptr vertex = std::dynamic_pointer_cast<DijVertex>(getGraph().getVertices()[i]);
+        values[i] = vertex->S.top().cost;
+    }
+
+    return values;
 }
 
 MinMaxGame MinMaxGame::convert(ReachabilityGame &game, unsigned int minPlayer) {
@@ -26,13 +41,13 @@ MinMaxGame MinMaxGame::convert(ReachabilityGame &game, unsigned int minPlayer) {
     for (auto &vertex : graph.getVertices()) {
         // Même ID
         // On répartit entre Min et Max
-        Vertex::Ptr newV;
+        DijVertex::Ptr newV;
         if (vertex->getPlayer() == minPlayer) {
-            newV = std::make_shared<Vertex>(vertex->getID(), MIN, 2);
+            newV = std::make_shared<DijVertex>(vertex->getID(), MIN, 2);
             minVertices.insert(newV);
         }
         else {
-            newV = std::make_shared<Vertex>(vertex->getID(), MAX, 2);
+            newV = std::make_shared<DijVertex>(vertex->getID(), MAX, 2);
             maxVertices.insert(newV);
         }
 
@@ -42,41 +57,82 @@ MinMaxGame MinMaxGame::convert(ReachabilityGame &game, unsigned int minPlayer) {
             minGoals.insert(newV);
         }
 
-        newVertices.push_back(newV);
+        newVertices.push_back(std::move(newV));
     }
 
     // On copie les successeurs et prédecesseurs
-    for (auto &vertex : graph.getVertices()) {
-        for (auto &e : *vertex) {
+    for (std::size_t i = 0 ; i < graph.size() ; i++) {
+        for (auto &e : *graph.getVertices()[i]) {
             // e.first = ID du vertex
-            // e.second.second = poids sur l'arc
-            vertex->addSuccessor(newVertices[e.first], e.second.second);
+            // e.second.second = poids sur l'arc; on ne garde que le poids pour MIN
+            newVertices[i]->addSuccessor(newVertices[e.first], e.second.second[minPlayer]);
         }
     }
 
     // Pour finir, on crée les deux nouveaux joueurs
-    Player min(minVertices, minGoals), max(maxVertices, {});
+    Player min(MIN, minVertices, minGoals), max(MAX, maxVertices, {});
 
     // Les poids sur les arcs sont les mêmes
     Graph g(newVertices, graph.getMaxWeights());
 
-    return MinMaxGame(graph, game.getInit(), min, max);
+    return MinMaxGame(g, game.getInit(), min, max);
+}
+
+MinMaxGame::MinMaxGame(Graph &graph, Vertex::Ptr init, const Player& min, const Player& max) :
+    Game(graph, init),
+    m_min(min),
+    m_max(max)
+    {
+
+}
+
+void MinMaxGame::dijkstraMinMax() {
+    initQ();
+    initS();
+
+    while (!m_Q.empty()) {
+        auto s = m_Q.top();
+        Successor successor = s->S.top();
+
+        if (successor.cost == Long::infinity) {
+            m_Q.pop();
+        }
+        else if (s->isTarget() || s->getPlayer() == MIN || s->nSuccessors == 1) {
+            m_Q.pop();
+            for (auto itr = s->beginPredecessors() ; itr != s->endPredecessors() ; itr++) {
+                relax(s, itr->second);
+            }
+        }
+        else {
+            s->S.pop();
+            Successor newSucc = s->S.top();
+            m_Q.updateKeyPointer<Long>(s, newSucc.cost);
+            s->nSuccessors--;
+        }
+    }
 }
 
 void MinMaxGame::initQ() {
-    //m_Q = std::priority_queue<DijkstraNode, std::vector<DijkstraNode>, DijkstraNode>();
-    const auto &vertices = getGraph().getVertices();
+    m_Q = DynamicPriorityQueue<DijVertex::Ptr, CompareDijVertex>();
+    auto &vertices = getGraph().getVertices();
     for (std::size_t i = 0 ; i < vertices.size() ; i++) {
-
+        DijVertex::Ptr v = std::static_pointer_cast<DijVertex>(vertices[i]);
+        if (v->isTarget()) {
+            v->d = 0;
+        }
+        else {
+            v->d = Long::infinity;
+        }
+        m_Q.push(v);
     }
 }
 
 void MinMaxGame::initS() {
-    const auto &vertices = getGraph().getVertices();
-    m_S.resize(vertices.size());
+    auto &vertices = getGraph().getVertices();
     for (std::size_t i = 0 ; i < vertices.size() ; i++) {
-        m_S[i] = std::priority_queue<Sucessor, std::vector<Sucessor>, Sucessor>();
-        Sucessor node;
+        DijVertex::Ptr v = std::static_pointer_cast<DijVertex>(vertices[i]);
+        auto S = std::priority_queue<Successor, std::vector<Successor>, Successor>();
+        Successor node;
         if (vertices[i]->isTarget()) {
             node.cost = 0;
             node.pred = nullptr;
@@ -85,6 +141,31 @@ void MinMaxGame::initS() {
             node.cost = Long::infinity;
             node.pred = nullptr;
         }
-        m_S[i].push(node);
+        v->S.push(node);
+    }
+}
+
+void MinMaxGame::relax(DijVertex::Ptr s, const Vertex::Edge& edge) {
+    DijVertex::Ptr p = std::dynamic_pointer_cast<DijVertex>(edge.first);
+    const Successor &succ = s->S.top();
+    Long pVal = edge.second[MIN] + succ.cost;
+    const Successor &old = p->S.top();
+
+    if (pVal < old.cost) {
+        m_Q.updateKeyPointer(p, pVal);
+        if (p->getPlayer() == MIN) {
+            Successor newSucc;
+            newSucc.cost = pVal;
+            newSucc.pred = s;
+            p->S = std::priority_queue<Successor, std::vector<Successor>, Successor>();
+            p->S.push(newSucc);
+        }
+    }
+
+    if (p->getPlayer() == MAX) {
+        Successor succ;
+        succ.cost = pVal;
+        succ.pred = s;
+        p->S.push(succ);
     }
 }

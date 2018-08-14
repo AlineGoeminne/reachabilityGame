@@ -9,7 +9,7 @@
 /**
  * \brief Un graphe
  */
-class Graph final {
+class Graph {
 public:
     /**
      * \brief Construit le graphe.
@@ -23,7 +23,9 @@ public:
      * \param vertices Les sommets du graphe
      * \param maxWeight Le poids maximal parmi les arcs
      */
-    explicit Graph(std::vector<Vertex::Ptr>& vertices, std::vector<long> maxWeight);
+    explicit Graph(std::vector<Vertex::Ptr>& vertices, std::vector<Long> maxWeight);
+
+    virtual ~Graph();
 
     /**
      * \brief Donne les poids de l'arc entre u et v
@@ -37,7 +39,7 @@ public:
      * \brief Donne les poids maximaux
      * \return Pour chaque joueur, le poids maximal
      */
-    const std::vector<long>& getMaxWeights() const;
+    const std::vector<Long>& getMaxWeights() const;
 
     /**
      * \brief Donne le nombre de sommets du graphe
@@ -45,15 +47,15 @@ public:
      */
     std::size_t size() const;
 
-    const std::vector<Vertex::Ptr>& getVertices() const;
+    std::vector<Vertex::Ptr>& getVertices();
+
+protected:
+    std::vector<Vertex::Ptr> m_vertices;
+    std::vector<Long> m_maxWeights;
 
 private:
     /**
      * \brief Cherche, pour chaque joueur, le poids maximal parmi les arcs
      */
     void computeMaxWeights(std::size_t nPlayers);
-
-private:
-    std::vector<Vertex::Ptr> m_vertices;
-    std::vector<long> m_maxWeights;
 };

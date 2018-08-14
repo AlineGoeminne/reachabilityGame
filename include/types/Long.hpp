@@ -44,6 +44,7 @@ public:
 
     Long operator+(const Long& other) const;
     Long operator-(const Long& other) const;
+    Long operator*(const Long& other) const;
 
     Long& operator+=(const Long& other);
     Long& operator-=(const Long& other);

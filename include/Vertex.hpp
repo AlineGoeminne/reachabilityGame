@@ -12,7 +12,7 @@
  * 
  * Un noeud est décrit par son ID, ses successeurs, ses prédecesseurs, son joueur et pour quel(s) joueur(s) il est une cible
  */
-class Vertex final : public std::enable_shared_from_this<Vertex> {
+class Vertex : public std::enable_shared_from_this<Vertex> {
 public:
     /**
      * \brief Le pointeur à utiliser sur un noeud
@@ -46,7 +46,7 @@ public:
      * \param vertex Le successeur
      * \param weight Le poids de l'arc
      */
-    void addSuccessor(Ptr vertex, Long weight);
+    virtual void addSuccessor(Ptr vertex, Long weight);
 
     /**
      * \brief Ajoute un successeur à ce noeud avec un poids par joueur.
@@ -55,7 +55,7 @@ public:
      * \param vertex Le successeur
      * \param weights Les poids de l'arc
      */
-    void addSuccessor(Ptr vertex, std::vector<Long> weights);
+    virtual void addSuccessor(Ptr vertex, std::vector<Long> weights);
 
     /**
      * \brief Donne le successeur qui a le même ID et le poids pour y aller.
@@ -155,6 +155,8 @@ public:
      */
     void addTargetFor(unsigned int player);
 
+    friend bool operator==(const Vertex &a, const Vertex &b);
+
 private:
     // Ajoute un prédecesseur. Similaire à addSuccessor
     void addPredecessor(Ptr vertex, std::vector<Long> weight);
@@ -167,3 +169,5 @@ private:
     StoreEdge m_predecessors;
     std::unordered_set<unsigned int> m_target; // On stocke les IDs des joueurs
 };
+
+bool operator==(const Vertex &a, const Vertex &b);

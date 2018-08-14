@@ -183,6 +183,7 @@ SCENARIO("Long", "[types]") {
             THEN("The sum (difference) is a number") {
                 REQUIRE(l + o == 23);
                 REQUIRE(l - o == 13);
+                REQUIRE(l + 5 == 23);
             }
 
             THEN("18 > 5") {

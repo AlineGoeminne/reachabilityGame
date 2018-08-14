@@ -17,6 +17,7 @@ set(SOURCES
     src/Player.cpp
     src/Path.cpp
     src/Game.cpp
+    src/ReachabilityGame.cpp
     src/MinMaxGame.cpp
 
     src/types/Long.cpp

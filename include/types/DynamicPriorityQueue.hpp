@@ -13,7 +13,7 @@
  * \tparam Compare Le type du comparateur à utiliser. Par défaut, il s'agit de std::less qui fait en sorte que la plus grande valeur se retrouve en top de la file.
  */
 template<
-    typename T,
+    class T,
     class Compare=std::less<T>
 >
 class DynamicPriorityQueue {
@@ -58,6 +58,42 @@ public:
     }
 
     /**
+     * \brief Met à jour la clé de object si le type de T est un pointeur
+     * 
+     * T doit définir la fonction de signature 'void updateKey(const S&)'
+     * \param object L'object à mettre à jour
+     * \param newKey La nouvelle clé de object
+     * \tparam S Le type de la clé
+     */
+    template<typename S>
+    void updateKeyPointer(const T& object, const S& newKey) {
+        for (std::size_t i = 0 ; i < m_vector.size() ; i++) {
+            if (m_vector[i] == object) {
+                m_vector[i]->updateKey(newKey);
+                std::make_heap(m_vector.begin(), m_vector.end(), m_compare);
+            }
+        }
+    }
+
+    /**
+     * \brief Met à jour la clé de object si le type de T n'est pas un pointeur.
+     * 
+     * T doit définir la fonction de signature 'void updateKey(const S&)'
+     * \param object L'object à mettre à jour
+     * \param newKey La nouvelle clé de object
+     * \tparam S Le type de la clé
+     */
+    template<typename S>
+    void updateKeyObject(const T& object, const S& newKey) {
+        for (std::size_t i = 0 ; i < m_vector.size() ; i++) {
+            if (m_vector[i] == object) {
+                m_vector[i].updateKey(newKey);
+                std::make_heap(m_vector.begin(), m_vector.end(), m_compare);
+            }
+        }
+    }
+
+    /**
      * \brief Est-ce que la file est vide ?
      * \return Vrai ssi la file est vide
      */
@@ -87,6 +123,15 @@ public:
         }
         std::pop_heap(m_vector.begin(), m_vector.end(), m_compare);
         m_vector.pop_back();
+    }
+
+    /**
+     * \brief Vide la pile
+     */
+    void clear() {
+        while (!empty()) {
+            pop();
+        }
     }
 
 private:

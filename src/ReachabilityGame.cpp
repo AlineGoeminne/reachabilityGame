@@ -1,5 +1,7 @@
 #include "ReachabilityGame.hpp"
 
+#include <iostream>
+
 ReachabilityGame::ReachabilityGame(Graph graph, Vertex::Ptr init, std::vector<Player> players) :
     Game(graph, init),
     m_players(players),
@@ -7,6 +9,6 @@ ReachabilityGame::ReachabilityGame(Graph graph, Vertex::Ptr init, std::vector<Pl
     {
     for (std::size_t i = 0 ; i < players.size() ; i++) {
         // Le poids maximal pour un chemin est (|Pi| + 1) * |V| * max(|w_i|)
-        m_maxWeightsPath[i] = (players.size() + 1) * graph.size() * graph.getMaxWeights()[i];
+        m_maxWeightsPath[i] = Long((m_players.size() + 1) * getGraph().size()) * getGraph().getMaxWeights()[i];
     }
 }
