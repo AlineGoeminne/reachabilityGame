@@ -21,6 +21,8 @@ set(SOURCES
     src/MinMaxGame.cpp
 
     src/types/Long.cpp
+
+    src/exploration/BestFirstSearch.cpp
 )
 
 add_library(${LIBRARY_NAME} ${SOURCES})

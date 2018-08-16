@@ -20,6 +20,14 @@ Path::Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps, std::si
     }
 }
 
+Path::Path(const Path &path) :
+    m_game(path.m_game),
+    m_path(path.m_path.begin(), path.m_path.end()),
+    m_costs(path.m_costs.begin(), path.m_costs.end())
+    {
+
+}
+
 void Path::addStep(Vertex::Ptr step) {
     // On vérifie d'abord que l'arc entre last et step existe
     Vertex::Ptr last = m_path.back();

@@ -59,6 +59,8 @@ public:
     std::vector<Vertex::Ptr>::const_iterator cbegin() const;
     std::vector<Vertex::Ptr>::const_iterator cend() const;
 
+    std::size_t getNumberPlayers() const;
+
 protected:
     std::vector<Vertex::Ptr> m_vertices;
     std::vector<Long> m_maxWeights;

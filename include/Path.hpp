@@ -31,6 +31,7 @@ public:
 public:
     Path(const ReachabilityGame& game, Vertex::Ptr start, std::size_t nPlayers);
     Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps, std::size_t nPlayers);
+    Path(const Path& path);
 
     void addStep(Vertex::Ptr step);
 
