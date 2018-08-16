@@ -8,9 +8,11 @@ public:
     Game(Graph& graph, Vertex::Ptr init);
 
     Graph &getGraph();
+    const Graph &getGraph() const;
     Vertex::Ptr getInit();
+    const Vertex::Ptr getInit() const;
 
-private:
+protected:
     Graph m_graph;
     Vertex::Ptr m_init;
 };

@@ -1,9 +1,23 @@
 #include "Path.hpp"
 
-Path::Path(Vertex::Ptr start, std::size_t nPlayers) :
+#include "MinMaxGame.hpp"
+
+Path::Path(const ReachabilityGame &game, Vertex::Ptr start, std::size_t nPlayers) :
+    m_game(game),
     m_path{start},
-    m_costs(nPlayers, 0)
+    m_costs(nPlayers, std::make_pair(false, 0))
     {
+    for (auto &player : start->getTargetPlayers()) {
+        m_costs[player].first = true;
+    }
+}
+
+Path::Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps, std::size_t nPlayers) :
+    Path(game, steps[0], nPlayers)
+    {
+    for (std::size_t i = 1 ; i < steps.size() ; i++) {
+        addStep(steps[i]);
+    }
 }
 
 void Path::addStep(Vertex::Ptr step) {
@@ -16,8 +30,78 @@ void Path::addStep(Vertex::Ptr step) {
     // S'il existe, on ajoute les coûts sur l'arc aux coûts déjà calculés
     const std::vector<Long>& costs = e.second;
     for (std::size_t i = 0 ; i < m_costs.size() ; i++) {
-        m_costs[i] += costs[i];
+        // On vérifie que le joueur i n'a pas déjà atteint une cible
+        if (!m_costs[i].first) {
+            m_costs[i].second += costs[i];
+        }
+    }
+    // On met à jour les joueurs qui ont atteint une cible
+    for (const unsigned int &player : step->getTargetPlayers()) {
+        m_costs[player].first = true;
     }
     // Finalement, on enregistre le pas
     m_path.push_back(step);
+}
+
+const std::vector<std::pair<bool, Long>>& Path::getCosts() const {
+    return m_costs;
+}
+
+std::pair<bool, Path::Coalitions> Path::isANashEquilibrium(std::unordered_set<unsigned int> playersAlreadyTested) const {
+    std::size_t nPlayers = m_costs.size();
+    std::vector<Long> epsilon(nPlayers, 0); // Poids du chemin jusqu'au noeud courant
+    bool nash = true;
+
+    // unordered_...::find a une complexité de O(1) en moyenne
+    std::unordered_set<unsigned int> visitedPlayers; // Ensemble des joueurs ayant déjà atteint une de leurs cibles
+    std::unordered_map<unsigned int, std::vector<Long>> coalitions; // A un joueur, on associe les valeurs de la coalition contre lui
+
+    for (auto itr = m_path.begin() ; nash && itr != m_path.end() ; ++itr) {
+        const Vertex::Ptr current = *itr;
+
+        auto& players = current->getTargetPlayers();
+        visitedPlayers.insert(players.begin(), players.end()); // Equivalent de l'union
+
+        if (itr != m_path.begin()) {
+            // Si on n'est pas au premier sommet, on incrémente epsilon
+            const Vertex::Ptr prev = *std::prev(itr); // On récupère le vertex précédent
+            std::vector<Long> weights = prev->getWeights(current->getID());
+
+            for (std::size_t i = 0 ; i < epsilon.size() ; i++) {
+                epsilon[i] += weights[i];
+            }
+        }
+
+        unsigned int player = current->getPlayer();
+
+        if (playersAlreadyTested.find(player) == playersAlreadyTested.end() && visitedPlayers.find(player) == visitedPlayers.end()) {
+            //  Si le joueur actuel n'a pas déjà atteint une cible (et qu'il n'a pas déjà été testé), on vérifie si c'est bien un EN
+
+            Long val(0);
+            
+            if (coalitions.find(player) == coalitions.end()) {
+                // On ne connait pas encore les valeurs
+                MinMaxGame minmax = MinMaxGame::convert(m_game, player);
+
+                std::vector<Long> values = minmax.getValues();
+                coalitions[player] = values;
+
+                val = values[current->getID()];
+            }
+            else {
+                // On connait déjà les valeurs
+                val = coalitions[player][current->getID()];
+            }
+
+            if (!respectProperty(val, epsilon, player)) {
+                nash = false;
+            }
+        }
+    }
+
+    return std::make_pair(nash, coalitions);
+}
+
+bool Path::respectProperty(const Long &val, const std::vector<Long>& epsilon, unsigned int player) const {
+    return val + epsilon[player] >= m_costs[player].second;
 }

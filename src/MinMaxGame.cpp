@@ -17,21 +17,22 @@ std::vector<Long> MinMaxGame::getValues() {
     std::vector<Long> values(getGraph().size());
 
     for (std::size_t i = 0 ; i < getGraph().size() ; i++) {
-        DijVertex::Ptr vertex = std::dynamic_pointer_cast<DijVertex>(getGraph().getVertices()[i]);
+        DijVertex::Ptr vertex = std::dynamic_pointer_cast<DijVertex>(m_graph.getVertices()[i]);
         values[i] = vertex->S.top().cost;
     }
 
     return values;
 }
 
-MinMaxGame MinMaxGame::convert(ReachabilityGame &game, unsigned int minPlayer) {
+MinMaxGame MinMaxGame::convert(const ReachabilityGame &game, unsigned int minPlayer) {
     // TODO : si trop lent, trouver autre moyen
     std::vector<Vertex::Ptr> newVertices;
     std::unordered_set<Vertex::Ptr> minVertices, maxVertices;
     std::unordered_set<Vertex::Ptr> minGoals;
-    Graph &graph = game.getGraph();
+    const Graph &graph = game.getGraph();
     // On commence par créer les nouveaux sommets
-    for (auto &vertex : graph.getVertices()) {
+    for (auto itr = graph.cbegin() ; itr != graph.cend() ; ++itr) {
+        const Vertex::Ptr vertex = *itr;
         // Même ID
         // On répartit entre Min et Max
         DijVertex::Ptr newV;

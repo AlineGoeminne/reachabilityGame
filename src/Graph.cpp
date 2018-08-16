@@ -36,6 +36,18 @@ std::vector<Vertex::Ptr>& Graph::getVertices() {
     return m_vertices;
 }
 
+const std::vector<Vertex::Ptr>& Graph::getVertices() const {
+    return m_vertices;
+}
+
+std::vector<Vertex::Ptr>::const_iterator Graph::cbegin() const {
+    return m_vertices.cbegin();
+}
+
+std::vector<Vertex::Ptr>::const_iterator Graph::cend() const {
+    return m_vertices.cend();
+}
+
 void Graph::computeMaxWeights(std::size_t nPlayers) {
     m_maxWeights = std::vector<Long>(nPlayers, Long::infinity);
 

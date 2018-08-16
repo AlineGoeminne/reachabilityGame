@@ -47,7 +47,17 @@ public:
      */
     std::size_t size() const;
 
+    /**
+     * \brief Donne les sommets du graphe
+     */
     std::vector<Vertex::Ptr>& getVertices();
+    /**
+     * \brief Donne les sommets du graphe mais ils sont immuables
+     */
+    const std::vector<Vertex::Ptr>& getVertices() const;
+
+    std::vector<Vertex::Ptr>::const_iterator cbegin() const;
+    std::vector<Vertex::Ptr>::const_iterator cend() const;
 
 protected:
     std::vector<Vertex::Ptr> m_vertices;

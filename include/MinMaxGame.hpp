@@ -14,7 +14,7 @@ class MinMaxGame : public Game {
 public:
     std::vector<Long> getValues();
 
-    static MinMaxGame convert(ReachabilityGame& game, unsigned int minPlayer);
+    static MinMaxGame convert(const ReachabilityGame& game, unsigned int minPlayer);
 
 private:
     struct DijVertex;

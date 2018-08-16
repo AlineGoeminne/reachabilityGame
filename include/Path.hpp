@@ -4,6 +4,7 @@
 #include <stdexcept>
 
 #include "Vertex.hpp"
+#include "ReachabilityGame.hpp"
 
 /**
  * \brief L'exception à lancer si le chemin construit est invalide.
@@ -20,15 +21,28 @@ public:
     }
 };
 
+/**
+ * \brief Représente un chemin dans le graphe (ou une histoire dans un jeu)
+ */
 class Path final {
 public:
-    Path(Vertex::Ptr start, std::size_t nPlayers);
+    typedef std::unordered_map<unsigned int, std::vector<Long>> Coalitions;
+
+public:
+    Path(const ReachabilityGame& game, Vertex::Ptr start, std::size_t nPlayers);
+    Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps, std::size_t nPlayers);
 
     void addStep(Vertex::Ptr step);
 
-    const std::vector<Long>& getCosts() const;
+    const std::vector<std::pair<bool, Long>>& getCosts() const;
+
+    std::pair<bool, Coalitions> isANashEquilibrium(std::unordered_set<unsigned int> playersAlreadyTested = {}) const;
 
 private:
+    bool respectProperty(const Long& val, const std::vector<Long>& epsilon, unsigned int player) const;
+
+private:
+    const ReachabilityGame& m_game;
     std::list<Vertex::Ptr> m_path;
-    std::vector<Long> m_costs;
+    std::vector<std::pair<bool, Long>> m_costs;
 };
