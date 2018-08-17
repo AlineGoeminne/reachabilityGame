@@ -10,7 +10,7 @@
 
 struct CompareNodes {
     bool operator()(const Node::Ptr& a, const Node::Ptr &b) const {
-        return a->pathCost < b->pathCost;
+        return a->pathCost > b->pathCost;
     }
 };
 
