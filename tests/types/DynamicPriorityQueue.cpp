@@ -2,6 +2,8 @@
 
 #include "types/DynamicPriorityQueue.hpp"
 
+using namespace types;
+
 SCENARIO("On stocke des simples entiers", "[types]") {
     GIVEN("Le comparateur par défaut") {
         DynamicPriorityQueue<int> queue;

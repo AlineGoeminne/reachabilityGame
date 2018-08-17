@@ -7,7 +7,8 @@
 #include "MinMaxGame.hpp"
 #include "exploration/BestFirstSearch.hpp"
 
-using namespace std;
+using namespace exploration;
+using namespace types;
 
 int main() {
     Vertex::Ptr v0 = std::make_shared<Vertex>(0, 1, 2);
@@ -42,17 +43,20 @@ int main() {
     players[0].addVertex(v4);
     players[0].addVertex(v6);
     players[0].addGoal(v0);
+    v0->addTargetFor(0);
 
     players.emplace_back(1);
     players[1].addVertex(v2);
     players[1].addVertex(v5);
     players[1].addVertex(v7);
+    players[1].addGoal(v0);
+    v0->addTargetFor(1);
 
     ReachabilityGame game(g, v0, players);
 
     using namespace std::placeholders;
 
-    heuristicSignature fun = std::bind(&ReachabilityGame::AStartPositive, &game, _1, _2, _3, _4);
+    heuristicSignature fun = std::bind(&ReachabilityGame::AStartPositive, &game, _1, _2, _3);
 
     Path p = bestFirstSearch(game, fun);
     std::cout << p << '\n';

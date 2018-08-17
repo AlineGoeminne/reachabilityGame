@@ -7,8 +7,10 @@
 #include "Vertex.hpp"
 
 using namespace std::placeholders;
+using namespace exploration;
+using namespace types;
 
-#define HEURISTIC_BIND std::bind(&ReachabilityGame::AStartPositive, &game, _1, _2, _3, _4)
+#define HEURISTIC_BIND std::bind(&ReachabilityGame::AStartPositive, &game, _1, _2, _3)
 
 TEST_CASE("A* positif", "[exploration]") {
     SECTION("Petit exemple") {
@@ -44,8 +46,13 @@ TEST_CASE("A* positif", "[exploration]") {
 
         heuristicSignature heuristic = HEURISTIC_BIND;
 
-        Path path = bestFirstSearch(game, heuristic);
+        Path path = bestFirstSearch(game, heuristic, 1);
 
+        REQUIRE(path.isANashEquilibrium());
+        REQUIRE(path.getCosts()[0].first);
+        REQUIRE(path.getCosts()[0].second == 2);
+        REQUIRE(path.getCosts()[1].first);
+        REQUIRE(path.getCosts()[1].second == 3);
         REQUIRE(path == Path(game, {v1, v2, v3, v0}, 2));
     }
 
@@ -77,16 +84,47 @@ TEST_CASE("A* positif", "[exploration]") {
 
         Graph g(vertices, 2);
 
-        Player j1(0, {v1, v3, v4, v6}, {v6});
-        v6->addTargetFor(0);
+        std::unordered_set<Vertex::Ptr> vertices1{v1, v3, v4, v6};
+        std::unordered_set<Vertex::Ptr> vertices2{v0, v2, v5, v7};
 
-        Player j2(1, {v0, v2, v5, v7}, {v0});
-        v0->addTargetFor(1);
+        SECTION("Goal1={v6}, Goal2={v0}, init=v3") {
+            Player j1(0, vertices1, {v6});
+            v6->addTargetFor(0);
 
-        ReachabilityGame game(g, v3, {j1, j2});
+            Player j2(1, vertices2, {v0});
+            v0->addTargetFor(1);
 
-        Path path = bestFirstSearch(game, HEURISTIC_BIND);
+            ReachabilityGame game(g, v3, {j1, j2});
 
-        std::cout << path << '\n';
+            Path path = bestFirstSearch(game, HEURISTIC_BIND);
+
+            REQUIRE(path.isANashEquilibrium());
+            REQUIRE_FALSE(path.getCosts()[0].first);
+            REQUIRE(path.getCosts()[1].first);
+            REQUIRE(path.getCosts()[1].second == 2);
+
+            REQUIRE(path == Path(game, {v3, v2, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0}, 2));
+        }
+
+        SECTION("Goal1={v4, v7}, Goal2={v6}, init=v5") {
+            Player j1(0, vertices1, {v4, v7});
+            v4->addTargetFor(0);
+            v7->addTargetFor(0);
+
+            Player j2(1, vertices2, {v6});
+            v6->addTargetFor(1);
+
+            ReachabilityGame game(g, v5, {j1, j2});
+
+            Path path = bestFirstSearch(game, HEURISTIC_BIND);
+
+            REQUIRE(path.isANashEquilibrium());
+            REQUIRE(path.getCosts()[0].first);
+            REQUIRE(path.getCosts()[0].second == 2);
+            REQUIRE(path.getCosts()[1].first);
+            REQUIRE(path.getCosts()[1].second == 1);
+
+            REQUIRE(path == Path(game, {v5, v6, v7}, 2));
+        }
     }
 }

@@ -23,7 +23,7 @@ public:
      * Une valeur par sommet.
      * \return Un tableau avec les résultats de DijkstraMinMax
      */
-    std::vector<Long> getValues(const std::unordered_set<Vertex::Ptr>& goals);
+    std::vector<types::Long> getValues(const std::unordered_set<Vertex::Ptr>& goals);
 
     /**
      * \brief Convertit un jeu d'atteignabilité en un jeu Min-Max avec le joueur donné en tant que Min.
@@ -40,7 +40,7 @@ public:
      * 
      * Permet de pouvoir faire un simple Dijkstra
      * \param game Le jeu d'atteignabilité
-     * \retrun Le jeu Min-Max
+     * \return Le jeu Min-Max
      */
     static MinMaxGame convert(const ReachabilityGame& game);
 
@@ -48,7 +48,7 @@ private:
     struct DijVertex;
     // Structure pour S
     struct Successor {
-        Long cost;
+        types::Long cost;
         std::shared_ptr<DijVertex> pred;
 
         // Servira pour l'ordre dans la priority_queue
@@ -62,13 +62,13 @@ private:
     struct DijVertex : public Vertex {
         typedef std::shared_ptr<DijVertex> Ptr;
 
-        Long d;
+        types::Long d;
         std::size_t nSuccessors;
         std::priority_queue<Successor, std::vector<Successor>, Successor> S;
 
         DijVertex(unsigned int ID, unsigned int player, std::size_t nPlayers);
 
-        void updateKey(Long d) {
+        void updateKey(types::Long d) {
             this->d = d;
         }
     };
@@ -90,5 +90,5 @@ private:
 
 private:
     Player m_min, m_max;
-    DynamicPriorityQueue<DijVertex::Ptr, CompareDijVertex> m_Q; // Q
+    types::DynamicPriorityQueue<DijVertex::Ptr, CompareDijVertex> m_Q; // Q
 };

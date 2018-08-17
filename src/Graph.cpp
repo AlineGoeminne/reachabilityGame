@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace types;
+
 Graph::Graph(std::vector<Vertex::Ptr>& vertices, std::size_t nPlayers) :
     m_vertices(vertices)
     {

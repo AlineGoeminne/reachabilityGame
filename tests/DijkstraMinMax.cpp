@@ -6,6 +6,8 @@
 #include "Vertex.hpp"
 #include "Player.hpp"
 
+using namespace types;
+
 TEST_CASE("DijkstraMinMax", "[dijkstra]") {
     SECTION("Exemple du mémoire") {
         Vertex::Ptr v0 = std::make_shared<Vertex>(0, 1, 2);
@@ -33,33 +35,72 @@ TEST_CASE("DijkstraMinMax", "[dijkstra]") {
         std::vector<Vertex::Ptr> vertices{v0, v1, v2, v3, v4, v5, v6, v7};
         Graph g(vertices, 2);
 
-        std::vector<Player> players;
-        players.emplace_back(0);
-        players[0].addVertex(v1);
-        players[0].addVertex(v3);
-        players[0].addVertex(v4);
-        players[0].addVertex(v6);
-        players[0].addGoal(v0);
+        SECTION("Cible = v0") {
+            std::vector<Player> players;
+            players.emplace_back(0);
+            players[0].addVertex(v1);
+            players[0].addVertex(v3);
+            players[0].addVertex(v4);
+            players[0].addVertex(v6);
+            players[0].addGoal(v0);
 
-        players.emplace_back(1);
-        players[1].addVertex(v2);
-        players[1].addVertex(v5);
-        players[1].addVertex(v7);
+            players.emplace_back(1);
+            players[1].addVertex(v2);
+            players[1].addVertex(v5);
+            players[1].addVertex(v7);
 
-        ReachabilityGame game(g, v0, players);
+            ReachabilityGame game(g, v0, players);
 
-        MinMaxGame minmax = MinMaxGame::convert(game, 0);
+            MinMaxGame minmax = MinMaxGame::convert(game, 0);
 
-        auto values = minmax.getValues(players[0].getGoals());
+            auto values = minmax.getValues(players[0].getGoals());
 
-        REQUIRE(values[0] == 0);
-        REQUIRE(values[1] == 1);
-        REQUIRE(values[2] == 2);
-        REQUIRE(values[3] == 3);
-        REQUIRE(values[4] == 4);
-        REQUIRE(values[5] == Long::infinity);
-        REQUIRE(values[6] == Long::infinity);
-        REQUIRE(values[7] == Long::infinity);
+            REQUIRE(values[0] == 0);
+            REQUIRE(values[1] == 1);
+            REQUIRE(values[2] == 2);
+            REQUIRE(values[3] == 3);
+            REQUIRE(values[4] == 4);
+            REQUIRE(values[5] == Long::infinity);
+            REQUIRE(values[6] == Long::infinity);
+            REQUIRE(values[7] == Long::infinity);
+        }
+
+        SECTION("Cible = v4") {
+            Player min(0, {v1, v3, v4, v6}, {v4});
+            Player max(1, {v0, v2, v5, v7}, {});
+            v4->addTargetFor(0);
+
+            ReachabilityGame game(g, v0, {min, max});
+
+            SECTION("Min vs Max") {
+                MinMaxGame minmax = MinMaxGame::convert(game, 0);
+
+                auto values = minmax.getValues(min.getGoals());
+
+                REQUIRE(values[0] == Long::infinity);
+                REQUIRE(values[1] == Long::infinity);
+                REQUIRE(values[2] == Long::infinity);
+                REQUIRE(values[3] == Long::infinity);
+                REQUIRE(values[4] == 0);
+                REQUIRE(values[5] == Long::infinity);
+                REQUIRE(values[6] == Long::infinity);
+                REQUIRE(values[7] == Long::infinity);
+            }
+            SECTION("Que Min") {
+                MinMaxGame minmax = MinMaxGame::convert(game);
+
+                auto values = minmax.getValues(min.getGoals());
+
+                REQUIRE(values[0] == Long::infinity);
+                REQUIRE(values[1] == Long::infinity);
+                REQUIRE(values[2] == Long::infinity);
+                REQUIRE(values[3] == Long::infinity);
+                REQUIRE(values[4] == 0);
+                REQUIRE(values[5] == 1);
+                REQUIRE(values[6] == Long::infinity);
+                REQUIRE(values[7] == Long::infinity);
+            }
+        }
     }
 
     SECTION("Petite boucle en triangle") {

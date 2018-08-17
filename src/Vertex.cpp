@@ -1,6 +1,8 @@
 #include "Vertex.hpp"
 #include <iostream>
 
+using namespace types;
+
 Vertex::Vertex(unsigned int id, unsigned int player, std::size_t nPlayers) :
     m_nPlayers(nPlayers),
     m_id(id),

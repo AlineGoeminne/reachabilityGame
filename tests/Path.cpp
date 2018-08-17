@@ -41,9 +41,9 @@ TEST_CASE("Est-ce qu'un chemin est un équilibre de Nash", "[path]") {
     SECTION("J1 voit son objectif") {
         Path path(game, {v1, v2, v3, v4, v3, v4, v3, v4}, 2);
 
-        auto res = path.isANashEquilibrium();
+        bool res = path.isANashEquilibrium();
 
-        REQUIRE(res.first);
+        REQUIRE(res);
 
         REQUIRE(path.getCosts()[0].first);
         REQUIRE(path.getCosts()[0].second == 2);
@@ -53,9 +53,9 @@ TEST_CASE("Est-ce qu'un chemin est un équilibre de Nash", "[path]") {
     SECTION("Les deux joueurs voient leur objectif") {
         Path path(game, {v1, v2, v3, v0, v1, v0, v1, v0, v1}, 2);
 
-        auto res = path.isANashEquilibrium();
+        bool res = path.isANashEquilibrium();
 
-        REQUIRE(res.first);
+        REQUIRE(res);
 
         REQUIRE(path.getCosts()[0].first);
         REQUIRE(path.getCosts()[0].second == 2);
@@ -66,9 +66,9 @@ TEST_CASE("Est-ce qu'un chemin est un équilibre de Nash", "[path]") {
     SECTION("Pas un EN") {
         Path path(game, {v1, v2, v4, v2, v4, v2, v4, v2, v4, v2, v4}, 2);
 
-        auto res = path.isANashEquilibrium();
+        bool res = path.isANashEquilibrium();
 
-        REQUIRE_FALSE(res.first);
+        REQUIRE_FALSE(res);
 
         REQUIRE_FALSE(path.getCosts()[0].first);
         REQUIRE_FALSE(path.getCosts()[1].first);

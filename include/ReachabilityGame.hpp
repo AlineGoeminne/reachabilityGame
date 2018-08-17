@@ -8,6 +8,9 @@
 #include "Game.hpp"
 #include "exploration/BestFirstSearch.hpp"
 
+/**
+ * \brief Un jeu d'atteignabilité
+ */
 class ReachabilityGame : public Game {
 public:
     ReachabilityGame(Graph graph, Vertex::Ptr init, const std::vector<Player>& players);
@@ -16,9 +19,15 @@ public:
 
     std::size_t getMaxLength() const;
 
-    Long AStartPositive(const Node::Ptr& node, const std::vector<Long> &epsilon, const Vertex::Ptr vertex, const CostsMap &costsMap);
+    /**
+     * \brief L'heuristique A* positive telle que définie dans le projet/mémoire
+     * \param node Le noeud actuel de l'exploration
+     * \param epsilon Les coûts actuels
+     * \param costsMap Les coûts pour arriver à chaque cible
+     */
+    types::Long AStartPositive(const exploration::Node::Ptr& node, const std::vector<types::Long> &epsilon, const exploration::CostsMap &costsMap);
 
 private:
     std::vector<Player> m_players;
-    std::vector<Long> m_maxWeightsPath;
+    std::vector<types::Long> m_maxWeightsPath;
 };

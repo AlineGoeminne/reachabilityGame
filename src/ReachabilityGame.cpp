@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+using namespace types;
+using namespace exploration;
+
 ReachabilityGame::ReachabilityGame(Graph graph, Vertex::Ptr init, const std::vector<Player>& players) :
     Game(graph, init),
     m_players(players),
@@ -21,7 +24,7 @@ std::size_t ReachabilityGame::getMaxLength() const {
     return (m_players.size() + 1) * getGraph().size();
 }
 
-Long ReachabilityGame::AStartPositive(const Node::Ptr& node, const std::vector<Long> &epsilon, const Vertex::Ptr vertex, const CostsMap &costsMap) {
+Long ReachabilityGame::AStartPositive(const Node::Ptr& node, const std::vector<Long> &epsilon, const CostsMap &costsMap) {
     // g(n) = Coût vers les cibles déjà atteintes + coûts partiels (joueurs qui n'ont pas encore atteints une cible)
     Long g_n = node->state.RP;
     for (unsigned int notReached : node->state.notVisitedPlayers) {

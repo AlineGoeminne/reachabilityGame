@@ -23,7 +23,7 @@ public:
      * \param vertices Les sommets du graphe
      * \param maxWeight Le poids maximal parmi les arcs
      */
-    explicit Graph(std::vector<Vertex::Ptr>& vertices, std::vector<Long> maxWeight);
+    explicit Graph(std::vector<Vertex::Ptr>& vertices, std::vector<types::Long> maxWeight);
 
     virtual ~Graph();
 
@@ -33,13 +33,13 @@ public:
      * \param v L'ID d'un sommet
      * \return Les poids de l'arc si l'arc existe, +infini sinon
      */
-    std::vector<Long> getWeights(unsigned int u, unsigned int v) const;
+    std::vector<types::Long> getWeights(unsigned int u, unsigned int v) const;
 
     /**
      * \brief Donne les poids maximaux
      * \return Pour chaque joueur, le poids maximal
      */
-    const std::vector<Long>& getMaxWeights() const;
+    const std::vector<types::Long>& getMaxWeights() const;
 
     /**
      * \brief Donne le nombre de sommets du graphe
@@ -63,7 +63,7 @@ public:
 
 protected:
     std::vector<Vertex::Ptr> m_vertices;
-    std::vector<Long> m_maxWeights;
+    std::vector<types::Long> m_maxWeights;
 
 private:
     /**

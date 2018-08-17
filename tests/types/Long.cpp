@@ -3,6 +3,8 @@
 #include "types/Long.hpp"
 #include "types/InfinityError.hpp"
 
+using namespace types;
+
 SCENARIO("Long", "[types]") {
     GIVEN("One long is the +infinity") {
         Long l = Long::infinity;

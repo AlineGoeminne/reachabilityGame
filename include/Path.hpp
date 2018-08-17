@@ -27,19 +27,37 @@ public:
  */
 class Path final {
 public:
-    typedef std::unordered_map<unsigned int, std::vector<Long>> Coalitions;
+    typedef std::unordered_map<unsigned int, std::vector<types::Long>> Coalitions;
 
 public:
     Path(const ReachabilityGame& game, Vertex::Ptr start, std::size_t nPlayers);
     Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps, std::size_t nPlayers);
     Path(const Path& path);
 
+    /**
+     * \brief Ajoute un pas au chemin
+     * \param step Le pas
+     */
     void addStep(Vertex::Ptr step);
 
-    const std::vector<std::pair<bool, Long>>& getCosts() const;
+    /**
+     * \brief Pour chaque joueur, indique si le joueur a déjà atteint une cible et son coût actuel
+     * \return Un tableau de paires (bool, Long)
+     */
+    const std::vector<std::pair<bool, types::Long>>& getCosts() const;
 
-    std::pair<bool, Coalitions> isANashEquilibrium(std::unordered_set<unsigned int> playersAlreadyTested = {}) const;
+    /**
+     * \brief Indique si le chemin est un équilibre de Nash.
+     * 
+     * Les joueurs qui sont donnés en entrée sont ignorés.
+     * \param playersAlreadyTested L'ensemble des joueurs à ignorer
+     * \return Vrai ssi le chemin est un équilibre de Nash
+     */
+    bool isANashEquilibrium(std::unordered_set<unsigned int> playersAlreadyTested = {}) const;
 
+    /**
+     * \return La longueur du chemin
+     */
     std::size_t size() const;
 
     const Vertex::Ptr getLast() const;
@@ -49,12 +67,12 @@ public:
     friend std::ostream& operator<<(std::ostream &os, const Path& a);
 
 private:
-    bool respectProperty(const Long& val, const std::vector<Long>& epsilon, unsigned int player) const;
+    bool respectProperty(const types::Long& val, const std::vector<types::Long>& epsilon, unsigned int player) const;
 
 private:
     const ReachabilityGame& m_game;
     std::list<Vertex::Ptr> m_path;
-    std::vector<std::pair<bool, Long>> m_costs;
+    std::vector<std::pair<bool, types::Long>> m_costs;
 };
 
 bool operator==(const Path& a, const Path& b);

@@ -3,6 +3,8 @@
 #define MIN 0
 #define MAX 1
 
+using namespace types;
+
 MinMaxGame::DijVertex::DijVertex(unsigned int ID, unsigned int player, std::size_t nPlayers) :
     Vertex(ID, player, nPlayers),
     d(0),
@@ -153,7 +155,7 @@ void MinMaxGame::initS(const std::unordered_set<Vertex::Ptr>& goals) {
     for (std::size_t i = 0 ; i < vertices.size() ; i++) {
         DijVertex::Ptr v = std::static_pointer_cast<DijVertex>(vertices[i]);
         v->nSuccessors = v->getNumberSuccessors();
-        auto S = std::priority_queue<Successor, std::vector<Successor>, Successor>();
+        v->S = std::priority_queue<Successor, std::vector<Successor>, Successor>();
         Successor node;
         if (goals.find(vertices[i]) != goals.end()) {
             node.cost = 0;

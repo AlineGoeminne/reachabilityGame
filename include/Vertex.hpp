@@ -21,7 +21,7 @@ public:
     /**
      * \brief Représente un arc qui va de ce noeud vers un autre, avec un poids par joueur
      */
-    typedef std::pair<Ptr, std::vector<Long>> Edge;
+    typedef std::pair<Ptr, std::vector<types::Long>> Edge;
 
     /**
      * \brief Type de la map servant à stocker les arcs.
@@ -35,6 +35,7 @@ public:
      * \brief Construit le noeud
      * \param id L'ID du noeud
      * \param player Le joueur qui possède ce noeud
+     * \param nPlayers Le nombre de joueurs
      */
     explicit Vertex(unsigned int id, unsigned int player, std::size_t nPlayers);
     ~Vertex();
@@ -46,7 +47,7 @@ public:
      * \param vertex Le successeur
      * \param weight Le poids de l'arc
      */
-    virtual void addSuccessor(Ptr vertex, Long weight);
+    virtual void addSuccessor(Ptr vertex, types::Long weight);
 
     /**
      * \brief Ajoute un successeur à ce noeud avec un poids par joueur.
@@ -55,7 +56,7 @@ public:
      * \param vertex Le successeur
      * \param weights Les poids de l'arc
      */
-    virtual void addSuccessor(Ptr vertex, std::vector<Long> weights);
+    virtual void addSuccessor(Ptr vertex, std::vector<types::Long> weights);
 
     /**
      * \brief Donne le successeur qui a le même ID et le poids pour y aller.
@@ -80,7 +81,7 @@ public:
      * \param id L'ID du prédecesseur
      * \return Les coûts de l'arc, ou +infini si id n'est pas successeur du sommet
      */
-    std::vector<Long> getWeights(unsigned int id) const;
+    std::vector<types::Long> getWeights(unsigned int id) const;
 
     /**
      * \brief Donne l'ID du noeud
@@ -160,7 +161,7 @@ public:
 
 private:
     // Ajoute un prédecesseur. Similaire à addSuccessor
-    void addPredecessor(Ptr vertex, std::vector<Long> weight);
+    void addPredecessor(Ptr vertex, std::vector<types::Long> weight);
 
 private:
     const std::size_t m_nPlayers;

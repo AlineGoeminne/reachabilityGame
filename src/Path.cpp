@@ -3,6 +3,8 @@
 #include "MinMaxGame.hpp"
 #include "ReachabilityGame.hpp"
 
+using namespace types;
+
 Path::Path(const ReachabilityGame &game, Vertex::Ptr start, std::size_t nPlayers) :
     m_game(game),
     m_path{start},
@@ -56,7 +58,7 @@ const std::vector<std::pair<bool, Long>>& Path::getCosts() const {
     return m_costs;
 }
 
-std::pair<bool, Path::Coalitions> Path::isANashEquilibrium(std::unordered_set<unsigned int> playersAlreadyTested) const {
+bool Path::isANashEquilibrium(std::unordered_set<unsigned int> playersAlreadyTested) const {
     std::size_t nPlayers = m_costs.size();
     std::vector<Long> epsilon(nPlayers, 0); // Poids du chemin jusqu'au noeud courant
     bool nash = true;
@@ -108,7 +110,7 @@ std::pair<bool, Path::Coalitions> Path::isANashEquilibrium(std::unordered_set<un
         }
     }
 
-    return std::make_pair(nash, coalitions);
+    return nash;
 }
 
 std::size_t Path::size() const {
