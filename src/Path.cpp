@@ -1,6 +1,7 @@
 #include "Path.hpp"
 
 #include "MinMaxGame.hpp"
+#include "ReachabilityGame.hpp"
 
 Path::Path(const ReachabilityGame &game, Vertex::Ptr start, std::size_t nPlayers) :
     m_game(game),
@@ -60,7 +61,7 @@ std::pair<bool, Path::Coalitions> Path::isANashEquilibrium(std::unordered_set<un
     std::vector<Long> epsilon(nPlayers, 0); // Poids du chemin jusqu'au noeud courant
     bool nash = true;
 
-    // unordered_...::find a une complexité de O(1) en moyenne
+    // unordered_...::find ont une complexité de O(1) en moyenne
     std::unordered_set<unsigned int> visitedPlayers; // Ensemble des joueurs ayant déjà atteint une de leurs cibles
     std::unordered_map<unsigned int, std::vector<Long>> coalitions; // A un joueur, on associe les valeurs de la coalition contre lui
 
@@ -91,7 +92,7 @@ std::pair<bool, Path::Coalitions> Path::isANashEquilibrium(std::unordered_set<un
                 // On ne connait pas encore les valeurs
                 MinMaxGame minmax = MinMaxGame::convert(m_game, player);
 
-                std::vector<Long> values = minmax.getValues();
+                std::vector<Long> values = minmax.getValues(m_game.getPlayers()[player].getGoals());
                 coalitions[player] = values;
 
                 val = values[current->getID()];
@@ -110,6 +111,43 @@ std::pair<bool, Path::Coalitions> Path::isANashEquilibrium(std::unordered_set<un
     return std::make_pair(nash, coalitions);
 }
 
+std::size_t Path::size() const {
+    return m_path.size();
+}
+
+const Vertex::Ptr Path::getLast() const {
+    return m_path.back();
+}
+
 bool Path::respectProperty(const Long &val, const std::vector<Long>& epsilon, unsigned int player) const {
     return val + epsilon[player] >= m_costs[player].second;
+}
+
+bool operator==(const Path& a, const Path &b) {
+    if (a.size() != b.size()) {
+        // Pas le même nombre de pas
+        return false;
+    }
+
+    auto itrA = a.m_path.begin();
+    auto itrB = b.m_path.begin();
+
+    for (; itrA != a.m_path.end() && itrB != b.m_path.end() ; ++itrA, ++itrB) {
+        const Vertex::Ptr va = *itrA;
+        const Vertex::Ptr vb = *itrB;
+        if (*va != *vb) {
+            // Les chemins ont des pas différents
+            return false;
+        }
+    }
+    // Même longueur et mêmes pas
+    return true;
+}
+
+std::ostream& operator<<(std::ostream &os, const Path &a) {
+    for (const Vertex::Ptr v : a.m_path) {
+        os << *v << "->";
+    }
+    os << "end";
+    return os;
 }

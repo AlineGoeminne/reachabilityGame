@@ -5,6 +5,7 @@
 #include "Player.hpp"
 #include "ReachabilityGame.hpp"
 #include "MinMaxGame.hpp"
+#include "exploration/BestFirstSearch.hpp"
 
 using namespace std;
 
@@ -49,13 +50,12 @@ int main() {
 
     ReachabilityGame game(g, v0, players);
 
-    MinMaxGame minmax = MinMaxGame::convert(game, 0);
+    using namespace std::placeholders;
 
-    auto values = minmax.getValues();
+    heuristicSignature fun = std::bind(&ReachabilityGame::AStartPositive, &game, _1, _2, _3, _4);
 
-    for (std::size_t i = 0 ; i < values.size() ; i++) {
-        std::cout << i << ' ' << values[i] << '\n';
-    }
+    Path p = bestFirstSearch(game, fun);
+    std::cout << p << '\n';
 
     return 0;
 }

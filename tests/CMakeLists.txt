@@ -5,6 +5,8 @@ set(TESTS_SOURCES
 
     types/Long.cpp
     types/DynamicPriorityQueue.cpp
+    
+    exploration/AStarPositive.cpp
 )
 
 set(TESTS_NAME ${TARGET_NAME}-tests)

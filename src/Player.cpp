@@ -32,5 +32,5 @@ void Player::addGoal(Vertex::Ptr goal) {
 }
 
 const std::unordered_set<Vertex::Ptr>& Player::getGoals() const {
-    return m_vertices;
+    return m_goals;
 }

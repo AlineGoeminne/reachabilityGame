@@ -4,24 +4,24 @@
 #include <vector>
 #include <map>
 
-#include "Path.hpp"
-#include "ReachabilityGame.hpp"
 #include "Vertex.hpp"
+#include "Path.hpp"
+
+class ReachabilityGame;
 
 struct State {
     State(std::size_t nPlayers) :
         RP(0),
-        visitedPlayers(nPlayers, false),
-        costsPlayers(nPlayers, 0),
-        nNotYetVisited(nPlayers)
+        costsPlayers(nPlayers, 0)
         {
-
+        for (unsigned int i = 0 ; i < nPlayers ; i++) {
+            notVisitedPlayers.insert(i);
+        }
     }
 
     Long RP; // Somme des coûts
-    std::vector<bool> visitedPlayers; // Est-ce que joueur i a atteint un objectif
     std::vector<Long> costsPlayers; // Coût par joueur jusqu'au sommet courant
-    std::size_t nNotYetVisited; // Nombre de joueurs qui n'a pas encore visité un objectif
+    std::unordered_set<unsigned int> notVisitedPlayers; // Ensemble des joueurs qui n'ont pas encore atteint un objectif
 };
 
 struct Node {
@@ -43,14 +43,23 @@ struct Node {
         {
     }
 
+    Node(Node::Ptr node) :
+        parent(node->parent),
+        state(node->state),
+        pathCost(node->pathCost),
+        path(node->path)
+        {
+
+    }
+
     Ptr parent;
     State state;
     Long pathCost;
     Path path;
 };
 
-typedef std::vector<std::vector<Long>> CostsForATarget;
-typedef std::unordered_map<unsigned int, CostsForATarget> CostsMap;
+typedef std::vector<Long> CostsForATarget;
+typedef std::unordered_map<Vertex::Ptr, CostsForATarget> CostsMap;
 typedef std::function<Long(const Node::Ptr& node, const std::vector<Long>& epsilon, const Vertex::Ptr vertex, const CostsMap& costsMap)> heuristicSignature;
 
 Path bestFirstSearch(const ReachabilityGame& game, const heuristicSignature& heuristic, Long allowedTime = Long::infinity);

@@ -10,11 +10,39 @@
 #include "types/Long.hpp"
 #include "types/DynamicPriorityQueue.hpp"
 
+/**
+ * \brief Représente un jeu Min-Max.
+ * 
+ * Le seul algorithme applicable sur ce jeu est DijkstraMinMax
+ */
 class MinMaxGame : public Game {
 public:
-    std::vector<Long> getValues();
+    /**
+     * \brief Exécute DijkstraMinMax et retourne les valeurs obtenues.
+     * 
+     * Une valeur par sommet.
+     * \return Un tableau avec les résultats de DijkstraMinMax
+     */
+    std::vector<Long> getValues(const std::unordered_set<Vertex::Ptr>& goals);
 
+    /**
+     * \brief Convertit un jeu d'atteignabilité en un jeu Min-Max avec le joueur donné en tant que Min.
+     * 
+     * Les autres joueurs sont réunis en Max.
+     * \param game Le jeu
+     * \param minPlayer Le joueur qui devient le joueur Min.
+     * \return Le jeu Min-Max
+     */
     static MinMaxGame convert(const ReachabilityGame& game, unsigned int minPlayer);
+
+    /**
+     * \brief Convertit un jeu d'atteignabilité en un jeu Min-Max où tous les sommets appartiennent à Min.
+     * 
+     * Permet de pouvoir faire un simple Dijkstra
+     * \param game Le jeu d'atteignabilité
+     * \retrun Le jeu Min-Max
+     */
+    static MinMaxGame convert(const ReachabilityGame& game);
 
 private:
     struct DijVertex;
@@ -54,10 +82,10 @@ private:
 private:
     MinMaxGame(Graph &graph, Vertex::Ptr init, const Player& min, const Player& max);
 
-    void dijkstraMinMax();
+    void dijkstraMinMax(const std::unordered_set<Vertex::Ptr>& goals);
 
-    void initQ();
-    void initS();
+    void initQ(const std::unordered_set<Vertex::Ptr>& goals);
+    void initS(const std::unordered_set<Vertex::Ptr>& goals);
     void relax(DijVertex::Ptr s, const Vertex::Edge &edge);
 
 private:

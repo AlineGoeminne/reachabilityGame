@@ -156,6 +156,7 @@ public:
     void addTargetFor(unsigned int player);
 
     friend bool operator==(const Vertex &a, const Vertex &b);
+    friend std::ostream& operator<<(std::ostream &os, const Vertex &a);
 
 private:
     // Ajoute un prédecesseur. Similaire à addSuccessor
@@ -171,3 +172,22 @@ private:
 };
 
 bool operator==(const Vertex &a, const Vertex &b);
+bool operator!=(const Vertex &a, const Vertex &b);
+std::ostream& operator<<(std::ostream &os, const Vertex &a);
+
+// On va définir hash et equal_to pour Vertex::Ptr afin de pouvoir facilement utiliser les unorderes_set/map
+namespace std {
+    template<>
+    struct hash<Vertex::Ptr> {
+        size_t operator()(const Vertex::Ptr &v) const noexcept {
+            return hash<unsigned int>{}(v->getID());
+        }
+    };
+
+    template<>
+    struct equal_to<Vertex::Ptr> {
+        bool operator()(const Vertex::Ptr &a, const Vertex::Ptr &b) const noexcept {
+            return *a == *b;
+        }
+    };
+}

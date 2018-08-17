@@ -11,8 +11,8 @@ MinMaxGame::DijVertex::DijVertex(unsigned int ID, unsigned int player, std::size
 
 }
 
-std::vector<Long> MinMaxGame::getValues() {
-    dijkstraMinMax();
+std::vector<Long> MinMaxGame::getValues(const std::unordered_set<Vertex::Ptr>& goals) {
+    dijkstraMinMax(goals);
 
     std::vector<Long> values(getGraph().size());
 
@@ -45,12 +45,6 @@ MinMaxGame MinMaxGame::convert(const ReachabilityGame &game, unsigned int minPla
             maxVertices.insert(newV);
         }
 
-        // On "copie" les goals du joueur min (le joueur max n'en a pas besoin dans notre cas)
-        if (vertex->isTargetFor(minPlayer)) {
-            newV->addTargetFor(MIN);
-            minGoals.insert(newV);
-        }
-
         newVertices.push_back(std::move(newV));
     }
 
@@ -72,6 +66,35 @@ MinMaxGame MinMaxGame::convert(const ReachabilityGame &game, unsigned int minPla
     return MinMaxGame(g, game.getInit(), min, max);
 }
 
+MinMaxGame MinMaxGame::convert(const ReachabilityGame &game) {
+    std::vector<Vertex::Ptr> newVertices;
+    std::unordered_set<Vertex::Ptr> minVertices;
+    const Graph &graph = game.getGraph();
+
+    for (auto itr = graph.cbegin() ; itr != graph.cend() ; ++itr) {
+        const Vertex::Ptr vertex = *itr;
+        // Même ID
+        // Tout appartient à Min
+        DijVertex::Ptr newV = std::make_shared<DijVertex>(vertex->getID(), MIN, 2);
+        newVertices.push_back(newV);
+        minVertices.insert(newV);
+    }
+
+    // On copie les successeurs et prédecesseurs
+    for (std::size_t i = 0 ; i < graph.size() ; i++) {
+        for (auto &e : *graph.getVertices()[i]) {
+            // e.first = ID du vertex
+            // e.second.second = poids sur l'arc; on ne garde que le poids pour MIN
+            newVertices[i]->addSuccessor(newVertices[e.first], e.second.second);
+        }
+    }
+
+    Player min(MIN, minVertices, {}), max(MAX, {}, {});
+    Graph g(newVertices, graph.getMaxWeights());
+
+    return MinMaxGame(g, game.getInit(), min, max);
+}
+
 MinMaxGame::MinMaxGame(Graph &graph, Vertex::Ptr init, const Player& min, const Player& max) :
     Game(graph, init),
     m_min(min),
@@ -80,9 +103,9 @@ MinMaxGame::MinMaxGame(Graph &graph, Vertex::Ptr init, const Player& min, const 
 
 }
 
-void MinMaxGame::dijkstraMinMax() {
-    initQ();
-    initS();
+void MinMaxGame::dijkstraMinMax(const std::unordered_set<Vertex::Ptr> &goals) {
+    initQ(goals);
+    initS(goals);
 
     while (!m_Q.empty()) {
         auto s = m_Q.top();
@@ -91,13 +114,16 @@ void MinMaxGame::dijkstraMinMax() {
         if (successor.cost == Long::infinity) {
             m_Q.pop();
         }
-        else if (s->isTarget() || s->getPlayer() == MIN || s->nSuccessors == 1) {
+        else if (goals.find(s) != goals.end() || s->getPlayer() == MIN || s->nSuccessors == 1) {
+            // Si c'est une cible ou si le sommet appartient à Min ou si le nombre de successeurs est 1, on relaxe le sommet
             m_Q.pop();
             for (auto itr = s->beginPredecessors() ; itr != s->endPredecessors() ; itr++) {
                 relax(s, itr->second);
             }
         }
         else {
+            // Le sommet appartient à Max et nSuccessors > 1
+            // On bloque la plus petite valeur
             s->S.pop();
             Successor newSucc = s->S.top();
             m_Q.updateKeyPointer<Long>(s, newSucc.cost);
@@ -106,12 +132,13 @@ void MinMaxGame::dijkstraMinMax() {
     }
 }
 
-void MinMaxGame::initQ() {
+void MinMaxGame::initQ(const std::unordered_set<Vertex::Ptr>& goals) {
     m_Q = DynamicPriorityQueue<DijVertex::Ptr, CompareDijVertex>();
     auto &vertices = getGraph().getVertices();
     for (std::size_t i = 0 ; i < vertices.size() ; i++) {
         DijVertex::Ptr v = std::static_pointer_cast<DijVertex>(vertices[i]);
-        if (v->isTarget()) {
+        if (goals.find(v) != goals.end()) {
+            // v est un goal
             v->d = 0;
         }
         else {
@@ -121,14 +148,14 @@ void MinMaxGame::initQ() {
     }
 }
 
-void MinMaxGame::initS() {
+void MinMaxGame::initS(const std::unordered_set<Vertex::Ptr>& goals) {
     auto &vertices = getGraph().getVertices();
     for (std::size_t i = 0 ; i < vertices.size() ; i++) {
         DijVertex::Ptr v = std::static_pointer_cast<DijVertex>(vertices[i]);
         v->nSuccessors = v->getNumberSuccessors();
         auto S = std::priority_queue<Successor, std::vector<Successor>, Successor>();
         Successor node;
-        if (vertices[i]->isTarget()) {
+        if (goals.find(vertices[i]) != goals.end()) {
             node.cost = 0;
             node.pred = nullptr;
         }

@@ -50,7 +50,7 @@ TEST_CASE("DijkstraMinMax", "[dijkstra]") {
 
         MinMaxGame minmax = MinMaxGame::convert(game, 0);
 
-        auto values = minmax.getValues();
+        auto values = minmax.getValues(players[0].getGoals());
 
         REQUIRE(values[0] == 0);
         REQUIRE(values[1] == 1);
@@ -82,7 +82,7 @@ TEST_CASE("DijkstraMinMax", "[dijkstra]") {
 
         MinMaxGame minmax = MinMaxGame::convert(game, 0);
 
-        auto values = minmax.getValues();
+        auto values = minmax.getValues(min.getGoals());
 
         REQUIRE(values[0] == 0);
         REQUIRE(values[1] == 2);
@@ -108,7 +108,7 @@ TEST_CASE("DijkstraMinMax", "[dijkstra]") {
 
         MinMaxGame minmax = MinMaxGame::convert(game, 0);
 
-        auto values = minmax.getValues();
+        auto values = minmax.getValues(min.getGoals());
 
         REQUIRE(values[0] == 0);
         REQUIRE(values[1] == Long::infinity);
@@ -136,7 +136,7 @@ TEST_CASE("DijkstraMinMax", "[dijkstra]") {
 
         MinMaxGame minmax = MinMaxGame::convert(game, 0);
 
-        auto values = minmax.getValues();
+        auto values = minmax.getValues(min.getGoals());
 
         REQUIRE(values[0] == 0);
         REQUIRE(values[1] == 5);
@@ -193,7 +193,7 @@ TEST_CASE("DijkstraMinMax", "[dijkstra]") {
 
             MinMaxGame minmax = MinMaxGame::convert(game, 0);
 
-            auto values = minmax.getValues();
+            auto values = minmax.getValues(min.getGoals());
 
             REQUIRE(values[0] == 0);
             REQUIRE(values[1] == 0);
@@ -214,7 +214,7 @@ TEST_CASE("DijkstraMinMax", "[dijkstra]") {
 
             MinMaxGame minmax = MinMaxGame::convert(game, 0);
 
-            auto values = minmax.getValues();
+            auto values = minmax.getValues(min.getGoals());
 
             REQUIRE(values[0] == 0);
             REQUIRE(values[1] == Long::infinity);
@@ -252,7 +252,7 @@ TEST_CASE("DijkstraMinMax", "[dijkstra]") {
         ReachabilityGame game(g, v0, {min, max});
 
         MinMaxGame minmax = MinMaxGame::convert(game, 0);
-        auto values = minmax.getValues();
+        auto values = minmax.getValues(min.getGoals());
 
         REQUIRE(values[0] == 0);
         REQUIRE(values[1] == 0);

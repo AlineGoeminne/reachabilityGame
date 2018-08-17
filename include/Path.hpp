@@ -4,7 +4,8 @@
 #include <stdexcept>
 
 #include "Vertex.hpp"
-#include "ReachabilityGame.hpp"
+
+class ReachabilityGame;
 
 /**
  * \brief L'exception à lancer si le chemin construit est invalide.
@@ -39,6 +40,14 @@ public:
 
     std::pair<bool, Coalitions> isANashEquilibrium(std::unordered_set<unsigned int> playersAlreadyTested = {}) const;
 
+    std::size_t size() const;
+
+    const Vertex::Ptr getLast() const;
+
+    friend bool operator==(const Path& a, const Path &b);
+
+    friend std::ostream& operator<<(std::ostream &os, const Path& a);
+
 private:
     bool respectProperty(const Long& val, const std::vector<Long>& epsilon, unsigned int player) const;
 
@@ -47,3 +56,7 @@ private:
     std::list<Vertex::Ptr> m_path;
     std::vector<std::pair<bool, Long>> m_costs;
 };
+
+bool operator==(const Path& a, const Path& b);
+
+std::ostream& operator<<(std::ostream &os, const Path &a);

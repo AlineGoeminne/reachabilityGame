@@ -110,3 +110,12 @@ void Vertex::addPredecessor(Vertex::Ptr vertex, std::vector<Long> weights) {
 bool operator==(const Vertex &a, const Vertex &b) {
     return a.getID() == b.getID();
 }
+
+bool operator!=(const Vertex &a, const Vertex &b) {
+    return !(a == b);
+}
+
+std::ostream& operator<<(std::ostream &os, const Vertex &a) {
+    os << "v" << a.m_id;
+    return os;
+}

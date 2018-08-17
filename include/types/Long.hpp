@@ -1,5 +1,6 @@
 #pragma once
 #include <ostream>
+#include <vector>
 
 /**
  * \brief Une représentation d'un long permettant l'infini

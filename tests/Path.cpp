@@ -73,5 +73,4 @@ TEST_CASE("Est-ce qu'un chemin est un équilibre de Nash", "[path]") {
         REQUIRE_FALSE(path.getCosts()[0].first);
         REQUIRE_FALSE(path.getCosts()[1].first);
     }
-        //self.assertTrue(game.is_a_Nash_equilibrium(path2, {2}))
 }
