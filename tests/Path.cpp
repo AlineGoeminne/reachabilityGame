@@ -39,7 +39,7 @@ TEST_CASE("Est-ce qu'un chemin est un équilibre de Nash", "[path]") {
     ReachabilityGame game(g, init, {p1, p2});
 
     SECTION("J1 voit son objectif") {
-        Path path(game, {v1, v2, v3, v4, v3, v4, v3, v4}, 2);
+        Path path(game, {v1, v2, v3, v4, v3, v4, v3, v4});
 
         bool res = path.isANashEquilibrium();
 
@@ -51,7 +51,7 @@ TEST_CASE("Est-ce qu'un chemin est un équilibre de Nash", "[path]") {
     }
 
     SECTION("Les deux joueurs voient leur objectif") {
-        Path path(game, {v1, v2, v3, v0, v1, v0, v1, v0, v1}, 2);
+        Path path(game, {v1, v2, v3, v0, v1, v0, v1, v0, v1});
 
         bool res = path.isANashEquilibrium();
 
@@ -64,7 +64,7 @@ TEST_CASE("Est-ce qu'un chemin est un équilibre de Nash", "[path]") {
     }
 
     SECTION("Pas un EN") {
-        Path path(game, {v1, v2, v4, v2, v4, v2, v4, v2, v4, v2, v4}, 2);
+        Path path(game, {v1, v2, v4, v2, v4, v2, v4, v2, v4, v2, v4});
 
         bool res = path.isANashEquilibrium();
 

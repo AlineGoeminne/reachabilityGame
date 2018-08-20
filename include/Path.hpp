@@ -30,8 +30,8 @@ public:
     typedef std::unordered_map<unsigned int, std::vector<types::Long>> Coalitions;
 
 public:
-    Path(const ReachabilityGame& game, Vertex::Ptr start, std::size_t nPlayers);
-    Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps, std::size_t nPlayers);
+    Path(const ReachabilityGame& game, Vertex::Ptr start);
+    Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps);
     Path(const Path& path);
 
     /**

@@ -59,7 +59,7 @@ namespace exploration {
         std::vector<Long> epsilon(nPlayers, 0);
 
         // On initialise le premier noeud de l'exploration
-        Path path(game, game.getInit(), nPlayers);
+        Path path(game, game.getInit());
         Node::Ptr init = std::make_shared<Node>(nPlayers, path);
         for (unsigned int player : game.getInit()->getTargetPlayers()) {
             init->state.notVisitedPlayers.erase(player);

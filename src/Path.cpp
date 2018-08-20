@@ -5,18 +5,18 @@
 
 using namespace types;
 
-Path::Path(const ReachabilityGame &game, Vertex::Ptr start, std::size_t nPlayers) :
+Path::Path(const ReachabilityGame &game, Vertex::Ptr start) :
     m_game(game),
     m_path{start},
-    m_costs(nPlayers, std::make_pair(false, 0))
+    m_costs(game.getPlayers().size(), std::make_pair(false, 0))
     {
     for (auto &player : start->getTargetPlayers()) {
         m_costs[player].first = true;
     }
 }
 
-Path::Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps, std::size_t nPlayers) :
-    Path(game, steps[0], nPlayers)
+Path::Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps) :
+    Path(game, steps[0])
     {
     for (std::size_t i = 1 ; i < steps.size() ; i++) {
         addStep(steps[i]);

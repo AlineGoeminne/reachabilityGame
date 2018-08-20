@@ -53,7 +53,7 @@ TEST_CASE("A* positif", "[exploration]") {
         REQUIRE(path.getCosts()[0].second == 2);
         REQUIRE(path.getCosts()[1].first);
         REQUIRE(path.getCosts()[1].second == 3);
-        REQUIRE(path == Path(game, {v1, v2, v3, v0}, 2));
+        REQUIRE(path == Path(game, {v1, v2, v3, v0}));
     }
 
     SECTION("Plus gros exemple") {
@@ -103,7 +103,7 @@ TEST_CASE("A* positif", "[exploration]") {
             REQUIRE(path.getCosts()[1].first);
             REQUIRE(path.getCosts()[1].second == 2);
 
-            REQUIRE(path == Path(game, {v3, v2, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0}, 2));
+            REQUIRE(path == Path(game, {v3, v2, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0}));
         }
 
         SECTION("Goal1={v4, v7}, Goal2={v6}, init=v5") {
@@ -124,7 +124,57 @@ TEST_CASE("A* positif", "[exploration]") {
             REQUIRE(path.getCosts()[1].first);
             REQUIRE(path.getCosts()[1].second == 1);
 
-            REQUIRE(path == Path(game, {v5, v6, v7}, 2));
+            REQUIRE(path == Path(game, {v5, v6, v7}));
         }
+    }
+
+    SECTION("Que pour J2") {
+        // Cet exemple vient d'une erreur dans le code en Python
+        Vertex::Ptr v0 = std::make_shared<Vertex>(0, 1, 2);
+        Vertex::Ptr v1 = std::make_shared<Vertex>(1, 1, 2);
+        Vertex::Ptr v2 = std::make_shared<Vertex>(2, 1, 2);
+        Vertex::Ptr v3 = std::make_shared<Vertex>(3, 1, 2);
+        Vertex::Ptr v4 = std::make_shared<Vertex>(4, 1, 2);
+
+        v0->addSuccessor(v0, 1);
+        v0->addSuccessor(v1, 0);
+        v0->addSuccessor(v3, 1);
+
+        v1->addSuccessor(v2, 1);
+        v1->addSuccessor(v3, 0);
+        v1->addSuccessor(v4, 1);
+
+        v2->addSuccessor(v0, 0);
+        v2->addSuccessor(v1, 0);
+        v2->addSuccessor(v2, 1);
+        v2->addSuccessor(v3, 1);
+        v2->addSuccessor(v4, 1);
+
+        v3->addSuccessor(v0, 0);
+        v3->addSuccessor(v2, 1);
+        v3->addSuccessor(v4, 0);
+
+        v4->addSuccessor(v0, 1);
+
+        std::vector<Vertex::Ptr> vertices{v0, v1, v2, v3, v4};
+
+        Graph g(vertices, 2);
+
+        Player min(0, {}, {v0});
+        Player max(1, {v0, v1, v2, v3, v4}, {v3});
+        v0->addTargetFor(0);
+        v3->addTargetFor(1);
+
+        ReachabilityGame game(g, v4, {min, max});
+
+        Path path = bestFirstSearch(game, HEURISTIC_BIND);
+
+        REQUIRE(path.isANashEquilibrium());
+        REQUIRE(path.getCosts()[0].first);
+        REQUIRE(path.getCosts()[0].second == 1);
+        REQUIRE(path.getCosts()[1].first);
+        REQUIRE(path.getCosts()[1].second == 1);
+
+        REQUIRE(path == Path(game, {v4, v0, v1, v3}));
     }
 }
