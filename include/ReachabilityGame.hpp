@@ -34,6 +34,12 @@ public:
      */
     types::Long AStartPositive(const exploration::Node::Ptr& node, const std::vector<types::Long> &epsilon, const exploration::CostsMap &costsMap);
 
+    /**
+     * \brief Donne le nombre de sommets atteignables à partir du sommet initial
+     * \return Le nombre de sommets atteignables
+     */
+    std::size_t numberOfReachableVertices() const;
+
 private:
     std::vector<Player> m_players;
     std::vector<types::Long> m_maxWeightsPath;

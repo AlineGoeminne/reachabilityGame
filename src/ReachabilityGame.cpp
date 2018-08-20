@@ -1,6 +1,7 @@
 #include "ReachabilityGame.hpp"
 
 #include <iostream>
+#include <queue>
 
 using namespace types;
 using namespace exploration;
@@ -87,4 +88,31 @@ Long ReachabilityGame::AStartPositive(const Node::Ptr& node, const std::vector<L
     }
 
     return g_n + h_n;
+}
+
+std::size_t ReachabilityGame::numberOfReachableVertices() const {
+    std::size_t nReachable = 0;
+    std::queue<Vertex::Ptr> queue;
+    std::unordered_set<Vertex::Ptr> explored;
+
+    queue.push(m_init);
+    explored.insert(m_init);
+
+    while (!queue.empty()) {
+        const Vertex::Ptr v = queue.front();
+        queue.pop();
+        nReachable++;
+
+        for (auto itr : *v) {
+            const Vertex::Ptr u = itr.second.first;
+
+            // Si on n'a pas encore exploré ce noeud
+            if (explored.find(u) == explored.end()) {
+                queue.push(u);
+                explored.insert(u);
+            }
+        }
+    }
+
+    return nReachable;
 }

@@ -183,7 +183,7 @@ bool operator==(const Vertex &a, const Vertex &b);
 bool operator!=(const Vertex &a, const Vertex &b);
 std::ostream& operator<<(std::ostream &os, const Vertex &a);
 
-// On va définir hash et equal_to pour Vertex::Ptr afin de pouvoir facilement utiliser les unorderes_set/map
+// On va définir hash et equal_to pour Vertex::Ptr afin de pouvoir facilement utiliser les unordered_set/map
 namespace std {
     template<>
     struct hash<Vertex::Ptr> {
