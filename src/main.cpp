@@ -61,5 +61,8 @@ int main() {
     Path p = bestFirstSearch(game, fun);
     std::cout << p << '\n';
 
+    std::cout << '\n';
+    game.printDOT();
+
     return 0;
 }

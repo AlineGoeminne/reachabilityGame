@@ -20,6 +20,13 @@ public:
     std::size_t getMaxLength() const;
 
     /**
+     * \brief Affiche dans la console le fichier DOT qui décrit le jeu.
+     * 
+     * Marche uniquement pour les jeux à deux joueurs.
+     */
+    void printDOT() const;
+
+    /**
      * \brief L'heuristique A* positive telle que définie dans le projet/mémoire
      * \param node Le noeud actuel de l'exploration
      * \param epsilon Les coûts actuels
