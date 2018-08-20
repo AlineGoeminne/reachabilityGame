@@ -77,6 +77,13 @@ public:
     Edge getPredecessor(unsigned int id) const;
 
     /**
+     * \brief Détermine si le sommet a un successeur avec l'ID donné.
+     * \param id L'ID du successeur
+     * \return Vrai ssi le sommet a un successeur ID
+     */
+    bool hasSuccessor(unsigned int id) const;
+
+    /**
      * \brief Donne les coûts pour aller du noeud courant à son prédecesseur id.
      * \param id L'ID du prédecesseur
      * \return Les coûts de l'arc, ou +infini si id n'est pas successeur du sommet
