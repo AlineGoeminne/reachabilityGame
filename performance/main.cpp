@@ -3,6 +3,7 @@
 #include <numeric>
 
 #include "generators/RandomGenerator.hpp"
+#include "generators/RandomTreeLikeGenerator.hpp"
 #include "exploration/BestFirstSearch.hpp"
 
 double clock_tToMilliSeconds(std::clock_t value) {
@@ -21,7 +22,8 @@ int main()
         std::vector<std::clock_t> times(nGenerations, 0);
 
         for (std::size_t i = 0 ; i < nGenerations ; i++) {
-            ReachabilityGame game = generators::randomGenerator(size, 1, 5, 2, false);
+            //ReachabilityGame game = generators::randomGenerator(size, 1, 5, 2, false);
+            ReachabilityGame game = generators::randomTreeLikeGenerator(size, 1, 5, 0.5, 0.5, 0.5, false, 2, false);
 
             std::clock_t start = std::clock();
 

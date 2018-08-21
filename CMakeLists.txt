@@ -25,6 +25,7 @@ set(SOURCES
     src/exploration/BestFirstSearch.cpp
 
     src/generators/RandomGenerator.cpp
+    src/generators/RandomTreeLikeGenerator.cpp
 )
 
 add_library(${LIBRARY_NAME} ${SOURCES})
@@ -34,10 +35,14 @@ target_include_directories(${LIBRARY_NAME} PUBLIC include)
 add_executable(${TARGET_NAME} src/main.cpp)
 target_link_libraries(${TARGET_NAME} ${LIBRARY_NAME})
 
-# Générateur aléatoire
+# Générateur aléatoire naïf
 add_executable(random_generator generators/randomGenerator.cpp)
 target_link_libraries(random_generator ${LIBRARY_NAME})
 target_include_directories(random_generator PUBLIC include)
+
+add_executable(tree_like_generator generators/treeLikeGenerator.cpp)
+target_link_libraries(tree_like_generator ${LIBRARY_NAME})
+target_include_directories(tree_like_generator PUBLIC include)
 
 # Documentation
 set(BUILD_DOC FALSE CACHE BOOL "S'il faut construire la documentation ou pas")
