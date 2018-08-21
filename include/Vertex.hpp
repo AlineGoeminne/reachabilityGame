@@ -21,7 +21,7 @@ public:
     /**
      * \brief Représente un arc qui va de ce noeud vers un autre, avec un poids par joueur
      */
-    typedef std::pair<Ptr, std::vector<types::Long>> Edge;
+    typedef std::pair<std::weak_ptr<Vertex>, std::vector<types::Long>> Edge;
 
     /**
      * \brief Type de la map servant à stocker les arcs.

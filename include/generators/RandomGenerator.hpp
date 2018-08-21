@@ -113,7 +113,7 @@ namespace generators {
      * \param upOutgoing Le nombre maximal d'arcs sortants par sommet
      * \param minWeight Le poids minimal
      * \param maxWeight Le poids maximal
-     * \param multipleWeights Est-ce que chaque joueur voit le même poids sur l'arc ?
+     * \param multipleWeights Est-ce que les joueurs voient des poids différents sur un arc ?
      * \param nPlayers Le nombre de joueurs
      * \param sharedTargets Est-ce que plusieurs joueurs peuvent partager la même cible ?
      * \param probaPlayers Un tableau qui indique pour chaque joueur la probabilité qu'un sommet lui appartienne

@@ -104,7 +104,7 @@ namespace exploration {
                 const Vertex::Ptr last = node->path.getLast();
 
                 for (const auto& succEdge : *last) {
-                    const Vertex::Ptr succ = succEdge.second.first;
+                    const Vertex::Ptr succ = succEdge.second.first.lock();
                     const std::vector<Long>& w = succEdge.second.second;
 
                     std::vector<Long> epsilon(nPlayers);

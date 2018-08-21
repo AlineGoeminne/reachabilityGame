@@ -49,7 +49,6 @@ private:
     // Structure pour S
     struct Successor {
         types::Long cost;
-        std::shared_ptr<DijVertex> pred;
 
         // Servira pour l'ordre dans la priority_queue
         bool operator()(const Successor &a, const Successor &b) {

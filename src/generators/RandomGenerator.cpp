@@ -80,7 +80,7 @@ namespace generators {
         }
 
         // On va vérifier que chaque joueur a bien au moins une cible. Si non, on va lui en donner une de force en négligeant sharedTargets
-        for (Player p : players) {
+        for (Player &p : players) {
             if (p.getGoals().size() == 0) {
                 p.addGoal(vertices[neighborDistribution(generator)]);
             }

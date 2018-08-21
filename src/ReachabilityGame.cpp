@@ -52,7 +52,7 @@ void ReachabilityGame::printDOT() const {
     for (auto itr = m_graph.cbegin() ; itr != m_graph.cend() ; ++itr) {
         const Vertex::Ptr v = *itr;
         for (auto edge : *v) {
-            const Vertex::Ptr u = edge.second.first;
+            const Vertex::Ptr u = edge.second.first.lock();
             const std::vector<Long> &weights = edge.second.second;
 
             std::cout << *v << " -> " << *u << "[label=\"(";
@@ -104,7 +104,7 @@ std::size_t ReachabilityGame::numberOfReachableVertices() const {
         nReachable++;
 
         for (auto itr : *v) {
-            const Vertex::Ptr u = itr.second.first;
+            const Vertex::Ptr u = itr.second.first.lock();
 
             // Si on n'a pas encore exploré ce noeud
             if (explored.find(u) == explored.end()) {

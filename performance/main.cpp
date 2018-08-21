@@ -17,11 +17,11 @@ int main()
 
     std::cout << "Taille\tMoyenne\tMédianne\n";
 
-    for (std::size_t size = 5 ; size < 41 ; size++) {
-        std::vector<std::clock_t> times(1000, 0);
+    for (std::size_t size = 5 ; size < 101 ; size++) {
+        std::vector<std::clock_t> times(nGenerations, 0);
 
         for (std::size_t i = 0 ; i < nGenerations ; i++) {
-            ReachabilityGame game = generators::randomGenerator(10, 1, 5, 2, false);
+            ReachabilityGame game = generators::randomGenerator(size, 1, 5, 2, false);
 
             std::clock_t start = std::clock();
 

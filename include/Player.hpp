@@ -14,7 +14,6 @@ public:
 
     /**
      * \brief Ajoute un sommet appartenant au joueur.
-     * Le sommet NE peut PLUS être modifié après l'insertion sous peine de briser l'ensemble. En effet, les éléments sont stockés selon leur hash key et modifier un sommet modifie son hash key.
      * \param vertex Le sommet
      */
     void addVertex(Vertex::Ptr vertex);
@@ -29,7 +28,6 @@ public:
      * \brief Ajoute un goal appartenant au joueur.
      * 
      * Le joueur est également enregistré dans le sommet.
-     * Le sommet NE peut PLUS être modifié après l'insertion sous peine de briser l'ensemble. En effet, les éléments sont stockés selon leur hash key et modifier un sommet modifie son hash key.
      * \param vertex Le goal
      */
     void addGoal(Vertex::Ptr vertex);

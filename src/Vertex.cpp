@@ -28,7 +28,7 @@ void Vertex::addSuccessor(Ptr vertex, std::vector<Long> weights) {
 Vertex::Edge Vertex::getSuccessor(unsigned int id) const {
     auto itr = m_successors.find(id);
     if (itr == m_successors.end()) {
-        return std::make_pair(nullptr, std::vector(m_nPlayers, Long::infinity));
+        return std::make_pair(std::weak_ptr<Vertex>(), std::vector(m_nPlayers, Long::infinity));
     }
     else {
         return itr->second;
@@ -38,7 +38,7 @@ Vertex::Edge Vertex::getSuccessor(unsigned int id) const {
 Vertex::Edge Vertex::getPredecessor(unsigned int id) const {
     auto itr = m_predecessors.find(id);
     if (itr == m_predecessors.end()) {
-        return std::make_pair(nullptr, std::vector(m_nPlayers, Long::infinity));
+        return std::make_pair(std::weak_ptr<Vertex>(), std::vector(m_nPlayers, Long::infinity));
     }
     else {
         return itr->second;
@@ -52,7 +52,8 @@ bool Vertex::hasSuccessor(unsigned int id) const {
 
 std::vector<Long> Vertex::getWeights(unsigned int id) const {
     auto e = getSuccessor(id);
-    if (e.first) {
+    // weak_ptr => on a besoin de "lock" pour savoir si le pointeur est valide
+    if (e.first.lock()) {
         return e.second;
     }
     else {

@@ -35,7 +35,8 @@ void Path::addStep(Vertex::Ptr step) {
     // On vérifie d'abord que l'arc entre last et step existe
     Vertex::Ptr last = m_path.back();
     Vertex::Edge e = last->getSuccessor(step->getID());
-    if (!e.first) {
+    // weak_ptr !
+    if (!e.first.lock()) {
         throw InvalidPath("Il n'existe pas d'arc entre le dernier sommet (" + std::to_string(last->getID()) + ") du chemin et l'étape donnée (" + std::to_string(step->getID()) + ")");
     }
     // S'il existe, on ajoute les coûts sur l'arc aux coûts déjà calculés

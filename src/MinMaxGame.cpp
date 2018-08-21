@@ -159,18 +159,16 @@ void MinMaxGame::initS(const std::unordered_set<Vertex::Ptr>& goals) {
         Successor node;
         if (goals.find(vertices[i]) != goals.end()) {
             node.cost = 0;
-            node.pred = nullptr;
         }
         else {
             node.cost = Long::infinity;
-            node.pred = nullptr;
         }
         v->S.push(node);
     }
 }
 
 void MinMaxGame::relax(DijVertex::Ptr s, const Vertex::Edge& edge) {
-    DijVertex::Ptr p = std::dynamic_pointer_cast<DijVertex>(edge.first);
+    DijVertex::Ptr p = std::dynamic_pointer_cast<DijVertex>(edge.first.lock());
     const Successor &succ = s->S.top();
     Long pVal = edge.second[MIN] + succ.cost;
     const Successor &old = p->S.top();
@@ -180,7 +178,6 @@ void MinMaxGame::relax(DijVertex::Ptr s, const Vertex::Edge& edge) {
         if (p->getPlayer() == MIN) {
             Successor newSucc;
             newSucc.cost = pVal;
-            newSucc.pred = s;
             p->S = std::priority_queue<Successor, std::vector<Successor>, Successor>();
             p->S.push(newSucc);
         }
@@ -189,7 +186,6 @@ void MinMaxGame::relax(DijVertex::Ptr s, const Vertex::Edge& edge) {
     if (p->getPlayer() == MAX) {
         Successor succ;
         succ.cost = pVal;
-        succ.pred = s;
         p->S.push(succ);
     }
 }
