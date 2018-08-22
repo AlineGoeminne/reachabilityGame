@@ -35,8 +35,6 @@ std::size_t generate(TreeVertex::Ptr root, std::size_t firstChildID, std::vector
 
     std::unordered_set<TreeVertex::Ptr> childs;
 
-    //std::cout << *root << " a " << e << " enfants\n";
-
     // On définit d'abord tous les enfants
     for (std::size_t i = 0 ; i < e ; i++) {
         if (firstChildID + i >= size) {
@@ -56,7 +54,7 @@ std::size_t generate(TreeVertex::Ptr root, std::size_t firstChildID, std::vector
     }
 
     // On demande ensuite aux enfants de générer leurs enfants
-    std::size_t firstNextID = firstChildID + e;
+    std::size_t firstNextID = firstChildID + childs.size();
     for (TreeVertex::Ptr v : childs) {
         firstNextID = generate(v, firstNextID, vertices, players, multipleWeights, generator, branchingFactorDistribution, weightDistribution, sameDepthDistribution, skippingDistribution, climbingDistribution);
     }
@@ -97,7 +95,7 @@ std::size_t generate(TreeVertex::Ptr root, std::size_t firstChildID, std::vector
     }
 
     // On retourne l'ID du dernier fils utilisé pour s'assurer que les noeuds ne sont pas réutilisés
-    return firstChildID + e;
+    return firstNextID;
 }
 
 namespace generators {
@@ -135,7 +133,8 @@ namespace generators {
         }
 
         // On crée les générateurs aléatoires qui seront utilisés
-        std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
+        //std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
+        std::default_random_engine generator(5);
         std::discrete_distribution<std::size_t> playersDistribution(probaPlayers.begin(), probaPlayers.end()); // Sommet appartient au joueur i; i est tiré aléatoirement selon probaPlayers
         std::vector<std::bernoulli_distribution> targetsDistributions; // Pour chaque joueur, probabilité qu'un sommet soit une cible
         std::uniform_int_distribution<std::size_t> branchingFactorDistribution(lowBranchingFactor, upBranchingFactor); // Distribution pour le facteur de branchement

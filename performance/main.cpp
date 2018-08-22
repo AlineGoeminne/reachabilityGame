@@ -1,6 +1,7 @@
 #include <ctime>
 #include <iostream>
 #include <numeric>
+#include <fstream>
 
 #include "generators/RandomGenerator.hpp"
 #include "generators/RandomTreeLikeGenerator.hpp"
@@ -15,18 +16,21 @@ int main()
     using namespace std::placeholders;
 
     std::size_t nGenerations = 1000;
+    //std::ofstream output("../plots/naiveShared.data");
+    std::ofstream output("../plots/treeShared.data");
 
-    std::cout << "Taille\tMoyenne\tMédianne\n";
+    std::cout << "SharedTargets\tMoyenne\tMédianne\n";
 
-    for (std::size_t size = 5 ; size < 101 ; size++) {
+    bool shared = false;
+    do {
         std::vector<std::clock_t> times(nGenerations, 0);
 
         for (std::size_t i = 0 ; i < nGenerations ; i++) {
-            //ReachabilityGame game = generators::randomGenerator(size, 1, 5, 2, false);
-            ReachabilityGame game = generators::randomTreeLikeGenerator(size, 1, 5, 0.5, 0.5, 0.5, false, 2, false);
+            //ReachabilityGame game = generators::randomGenerator(20, 1, 5, 5, shared);
+            ReachabilityGame game = generators::randomTreeLikeGenerator(20, 1, 5, 0.5, 0.5, 0.5, false, 5, shared);
 
             std::clock_t start = std::clock();
-
+ 
             exploration::bestFirstSearch(game, std::bind(&ReachabilityGame::AStartPositive, &game, _1, _2, _3));
 
             std::clock_t end = std::clock();
@@ -46,8 +50,12 @@ int main()
             median = clock_tToMilliSeconds(times[times.size()/2]);
         }
 
-        std::cout << size << '\t' << mean << '\t' << median << '\n';
-    }
+        std::cout << shared << '\t' << mean << '\t' << median << '\n';
+        output << shared << '\t' << mean << '\t' << median << '\n';
+        shared = !shared;
+    } while (shared != false);
+
+    output.close();
 
     return 0;
 }
