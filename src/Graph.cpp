@@ -55,14 +55,12 @@ std::size_t Graph::getNumberPlayers() const {
 }
 
 void Graph::computeMaxWeights(std::size_t nPlayers) {
-    m_maxWeights = std::vector<Long>(nPlayers, Long::infinity);
+    m_maxWeights = std::vector<Long>(nPlayers, 0);
 
     for (auto &vertex : m_vertices) {
         for (auto &succ : *vertex) {
             for (std::size_t i = 0 ; i < nPlayers ; i++) {
-                if (succ.second.second[i] < m_maxWeights[i]) {
-                    m_maxWeights[i] = succ.second.second[i];
-                }
+                m_maxWeights[i] = std::max(m_maxWeights[i], succ.second.second[i]);
             }
         }
     }

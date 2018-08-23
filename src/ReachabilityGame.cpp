@@ -69,7 +69,8 @@ void ReachabilityGame::printDOT() const {
     std::cout << "}\n";
 }
 
-Long ReachabilityGame::AStartPositive(const Node::Ptr& node, const std::vector<Long> &epsilon, const CostsMap &costsMap) {
+Long ReachabilityGame::AStartPositive(const Node::Ptr& node, const CostsMap &costsMap) {
+    const std::vector<Long> &epsilon = node->state.epsilon;
     // g(n) = Coût vers les cibles déjà atteintes + coûts partiels (joueurs qui n'ont pas encore atteints une cible)
     Long g_n = node->state.RP;
     for (unsigned int notReached : node->state.notVisitedPlayers) {
@@ -78,19 +79,19 @@ Long ReachabilityGame::AStartPositive(const Node::Ptr& node, const std::vector<L
 
     Long h_n = 0;
     for (unsigned int notReached : node->state.notVisitedPlayers) {
-        Long shortest;
+        Long shortest = Long::infinity;
         for (const Vertex::Ptr goal : m_players[notReached].getGoals()) {
             auto itr = costsMap.find(goal);
             const CostsForATarget& target = itr->second;
-            shortest = std::min(shortest, target[notReached]);
+            shortest = std::min(shortest, target[node->path.getLast()->getID()]);
         }
-        h_n += std::min(shortest, getGraph().getMaxWeights()[notReached] - epsilon[notReached]);
+        h_n += std::min(shortest, m_maxWeightsPath[notReached] - epsilon[notReached]);
     }
 
     return g_n + h_n;
 }
 
-std::size_t ReachabilityGame::numberOfReachableVertices() const {
+std::size_t ReachabilityGame::percentageOfReachableVertices() const {
     std::size_t nReachable = 0;
     std::queue<Vertex::Ptr> queue;
     std::unordered_set<Vertex::Ptr> explored;
@@ -114,5 +115,5 @@ std::size_t ReachabilityGame::numberOfReachableVertices() const {
         }
     }
 
-    return nReachable;
+    return nReachable * 100./getGraph().size();
 }

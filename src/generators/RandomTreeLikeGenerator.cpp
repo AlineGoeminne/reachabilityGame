@@ -3,6 +3,7 @@
 #include <random>
 #include <chrono>
 #include <iostream>
+#include <queue>
 
 using namespace types;
 
@@ -28,97 +29,27 @@ std::vector<Long> generateWeights(std::size_t nPlayers, std::default_random_engi
     return weights;
 }
 
-std::size_t generate(TreeVertex::Ptr root, std::size_t firstChildID, std::vector<TreeVertex::Ptr> &vertices, const std::vector<Player> &players, bool multipleWeights, std::default_random_engine& generator, std::uniform_int_distribution<std::size_t>& branchingFactorDistribution, std::uniform_int_distribution<long> &weightDistribution, std::bernoulli_distribution &sameDepthDistribution, std::bernoulli_distribution& skippingDistribution, std::bernoulli_distribution& climbingDistribution) {
-    std::size_t size = vertices.size();
-
-    std::size_t e = branchingFactorDistribution(generator);
-
-    std::unordered_set<TreeVertex::Ptr> childs;
-
-    // On définit d'abord tous les enfants
-    for (std::size_t i = 0 ; i < e ; i++) {
-        if (firstChildID + i >= size) {
-            // On a atteint la limite sur le nombre de sommets
-            break;
-        }
-
-        TreeVertex::Ptr vertex = vertices[firstChildID + i];
-
-        childs.insert(vertex);
-
-        std::vector<Long> weights = generateWeights(players.size(), generator, weightDistribution, multipleWeights);
-
-        root->addSuccessor(vertex, weights);
-
-        vertex->m_depth = root->m_depth + 1;
-    }
-
-    // On demande ensuite aux enfants de générer leurs enfants
-    std::size_t firstNextID = firstChildID + childs.size();
-    for (TreeVertex::Ptr v : childs) {
-        firstNextID = generate(v, firstNextID, vertices, players, multipleWeights, generator, branchingFactorDistribution, weightDistribution, sameDepthDistribution, skippingDistribution, climbingDistribution);
-    }
-
-    // On va maintenant prendre tous les noeuds et regarder si on peut créer des arcs
-    for (std::size_t i = 0 ; i < size ; i++) {
-        TreeVertex::Ptr vertex = vertices[i];
-
-        if (root->hasSuccessor(vertex->getID())) {
-            // On a déjà un lien => on passe au suivant
-            continue;
-        }
-
-        if (vertex->m_depth < root->m_depth) {
-            // On veut remonter dans l'arbre
-            if (climbingDistribution(generator)) {
-                root->addSuccessor(vertex, generateWeights(players.size(), generator, weightDistribution, multipleWeights));
-            }
-        }
-        else if (vertex->m_depth == root->m_depth) {
-            // Même profondeur (frères/cousins)
-            if (sameDepthDistribution(generator)) {
-                root->addSuccessor(vertex, generateWeights(players.size(), generator, weightDistribution, multipleWeights));
-            }
-        }
-        else {
-            // On veut descendre
-            if (childs.find(vertex) == childs.end() && skippingDistribution(generator)) {
-                // vertex n'est pas un enfant de root
-                root->addSuccessor(vertex, generateWeights(players.size(), generator, weightDistribution, multipleWeights));
-            }
-        }
-    }
-
-    // Si root n'a pas d'arc sortant, on fait une boucle sur lui-même
-    if (root->getNumberSuccessors() == 0) {
-        root->addSuccessor(root, generateWeights(players.size(), generator, weightDistribution, multipleWeights));
-    }
-
-    // On retourne l'ID du dernier fils utilisé pour s'assurer que les noeuds ne sont pas réutilisés
-    return firstNextID;
-}
-
 namespace generators {
-    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSameDepth, double probaSkipping, double probaClimbing, bool multipleWeights, std::size_t nPlayers, bool sharedTargets) {
-        return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSameDepth, probaSkipping, probaClimbing, 1, 1, multipleWeights, nPlayers, sharedTargets);
+    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, bool multipleWeights, std::size_t nPlayers, bool sharedTargets) {
+        return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSelf, probaSameDepth, probaSkipping, probaClimbing, 1, 1, multipleWeights, nPlayers, sharedTargets);
     }
 
-    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets) {
+    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets) {
         std::vector<double> probaPlayers(nPlayers, 1./nPlayers);
-        return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSameDepth, probaSkipping, probaClimbing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers);
+        return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSelf, probaSameDepth, probaSkipping, probaClimbing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers);
     }
 
-    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers) {
+    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers) {
         std::vector<double> probaTargets(nPlayers, 0.1);
-        return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSameDepth, probaSkipping, probaClimbing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets);
+        return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSelf, probaSameDepth, probaSkipping, probaClimbing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets);
     }
 
-    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers, const std::vector<double> &probaTargets) {
+    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers, const std::vector<double> &probaTargets) {
         std::vector<Long> maximumTargets(nPlayers, Long::infinity);
-        return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSameDepth, probaSkipping, probaClimbing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
+        return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSelf, probaSameDepth, probaSkipping, probaClimbing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
     }
 
-    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers, const std::vector<double> &probaTargets, const std::vector<types::Long>& maximumTargets) {
+    ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers, const std::vector<double> &probaTargets, const std::vector<types::Long>& maximumTargets) {
         if (probaPlayers.size() != nPlayers || probaTargets.size() != nPlayers || maximumTargets.size() != nPlayers) {
             throw std::runtime_error("randomGenerator: les tableaux de probabilité doivent arriver une taille identique au nombre de joueurs");
         }
@@ -133,12 +64,12 @@ namespace generators {
         }
 
         // On crée les générateurs aléatoires qui seront utilisés
-        //std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
-        std::default_random_engine generator(5);
+        std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
         std::discrete_distribution<std::size_t> playersDistribution(probaPlayers.begin(), probaPlayers.end()); // Sommet appartient au joueur i; i est tiré aléatoirement selon probaPlayers
         std::vector<std::bernoulli_distribution> targetsDistributions; // Pour chaque joueur, probabilité qu'un sommet soit une cible
         std::uniform_int_distribution<std::size_t> branchingFactorDistribution(lowBranchingFactor, upBranchingFactor); // Distribution pour le facteur de branchement
         std::uniform_int_distribution<long> weightDistribution(minWeight, maxWeight); // Distribution pour les poids des arcs
+        std::bernoulli_distribution selfDistribution(probaSelf); // Distribution pour savoir si on peut générer un arc de v à v
         std::bernoulli_distribution sameDepthDistribution(probaSameDepth); // Distribution pour savoir si on peut générer un arc entre deux sommets à la même profondeur
         std::bernoulli_distribution skippingDistribution(probaSkipping); // Distribution pour savoir si on peut générer un arc entre un sommet et un autre plus profond qui n'est pas son enfant
         std::bernoulli_distribution climbingDistribution(probaClimbing); // Distribution pour savoir si on peut générer un arc qui monte dans l'arbre
@@ -181,9 +112,55 @@ namespace generators {
             }
         }
 
-        // On crée récursivement les arcs
         vertices[0]->m_depth = 0;
-        generate(vertices[0], 1, vertices, players, multipleWeights, generator, branchingFactorDistribution, weightDistribution, sameDepthDistribution, skippingDistribution, climbingDistribution);
+        std::queue<TreeVertex::Ptr> queue;
+        queue.push(vertices[0]);
+        std::size_t nextFreeID = 1;
+
+        while (!queue.empty() && nextFreeID < size) {
+            TreeVertex::Ptr root = queue.front();
+            queue.pop();
+
+            std::size_t e = branchingFactorDistribution(generator);
+            
+            for (std::size_t i = 0 ; i < e && nextFreeID < size ; i++) {
+                TreeVertex::Ptr child = vertices[nextFreeID++];
+                child->m_depth = root->m_depth + 1;
+                root->addSuccessor(child, generateWeights(nPlayers, generator, weightDistribution, multipleWeights));
+
+                queue.push(child);
+            }
+        }
+
+        for (TreeVertex::Ptr v : vertices) {
+            for (TreeVertex::Ptr u : vertices) {
+                if (v->hasSuccessor(u->getID())) {
+                    continue;
+                }
+                if (v->getID() == u->getID() && selfDistribution(generator)) {
+                    // Même sommet
+                    v->addSuccessor(u, generateWeights(nPlayers, generator, weightDistribution, multipleWeights));
+                }
+                else if (u->m_depth > v->m_depth && skippingDistribution(generator)) {
+                    // On veut descendre dans l'arbre
+                    v->addSuccessor(u, generateWeights(nPlayers, generator, weightDistribution, multipleWeights));
+                }
+                else if (u->m_depth == v->m_depth && sameDepthDistribution(generator)) {
+                    // Frères/cousins
+                    v->addSuccessor(u, generateWeights(nPlayers, generator, weightDistribution, multipleWeights));
+                }
+                else if (u->m_depth < v->m_depth && climbingDistribution(generator)) {
+                    // On veut remonter dans l'arbre
+                    v->addSuccessor(u, generateWeights(nPlayers, generator, weightDistribution, multipleWeights));
+                }
+            }
+
+            // On vérifie qu'on n'est pas dans un cul-de-sac
+            if (v->getNumberSuccessors() == 0) {
+                // Sinon, on ajoute un arc de v à v
+                v->addSuccessor(v, generateWeights(nPlayers, generator, weightDistribution, multipleWeights));
+            }
+        }
 
         std::vector<Vertex::Ptr> baseVertices(vertices.begin(), vertices.end());
         Graph graph(baseVertices, nPlayers);

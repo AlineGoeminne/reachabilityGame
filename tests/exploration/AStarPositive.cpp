@@ -10,7 +10,7 @@ using namespace std::placeholders;
 using namespace exploration;
 using namespace types;
 
-#define HEURISTIC_BIND std::bind(&ReachabilityGame::AStartPositive, &game, _1, _2, _3)
+#define HEURISTIC_BIND std::bind(&ReachabilityGame::AStartPositive, &game, _1, _2)
 
 TEST_CASE("A* positif", "[exploration]") {
     SECTION("Petit exemple") {
@@ -46,7 +46,7 @@ TEST_CASE("A* positif", "[exploration]") {
 
         heuristicSignature heuristic = HEURISTIC_BIND;
 
-        Path path = bestFirstSearch(game, heuristic, 1);
+        Path path = bestFirstSearch(game, heuristic);
 
         REQUIRE(path.isANashEquilibrium());
         REQUIRE(path.getCosts()[0].first);

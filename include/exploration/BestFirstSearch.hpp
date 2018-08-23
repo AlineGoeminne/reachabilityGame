@@ -22,15 +22,22 @@ namespace exploration {
     struct State {
         State(std::size_t nPlayers) :
             RP(0),
-            costsPlayers(nPlayers, 0)
+            epsilon(nPlayers, 0)
             {
             for (unsigned int i = 0 ; i < nPlayers ; i++) {
                 notVisitedPlayers.insert(i);
             }
         }
 
+        State(const State &state) :
+            RP(state.RP),
+            epsilon(state.epsilon),
+            notVisitedPlayers(state.notVisitedPlayers) {
+
+        }
+
         types::Long RP; // Somme des coûts
-        std::vector<types::Long> costsPlayers; // Coût par joueur jusqu'au sommet courant
+        std::vector<types::Long> epsilon; // Coût par joueur jusqu'au sommet courant
         std::unordered_set<unsigned int> notVisitedPlayers; // Ensemble des joueurs qui n'ont pas encore atteint un objectif
     };
 
@@ -79,11 +86,10 @@ namespace exploration {
      * \brief La signature qu'une fonction heuristique doit avoir.
      * 
      * \param node Le noeud d'exploration pour lequel on veut calculer la valeur
-     * \param epsilon Les coûts jusqu'au noeud courant
      * \param costsMap Pour chaque cible, contient les coûts minimaux pour y arriver par sommet du graphe
      * \return La valeur de l'heuristique
      */
-    typedef std::function<types::Long(const Node::Ptr& node, const std::vector<types::Long>& epsilon, const CostsMap& costsMap)> heuristicSignature;
+    typedef std::function<types::Long(const Node::Ptr& node, const CostsMap& costsMap)> heuristicSignature;
 
     /**
      * \brief Exécute une exploration de type Best First Search avec l'heuristique donnée

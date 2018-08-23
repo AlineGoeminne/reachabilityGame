@@ -56,18 +56,15 @@ namespace exploration {
 
         CostsMap costsMap = computeAllDijkstra(game);
 
-        std::vector<Long> epsilon(nPlayers, 0);
-
         // On initialise le premier noeud de l'exploration
         Path path(game, game.getInit());
         Node::Ptr init = std::make_shared<Node>(nPlayers, path);
         for (unsigned int player : game.getInit()->getTargetPlayers()) {
             init->state.notVisitedPlayers.erase(player);
         }
-        init->pathCost = heuristic(init, epsilon, costsMap);
+        init->pathCost = heuristic(init, costsMap);
 
         std::priority_queue<Node::Ptr, std::vector<Node::Ptr>, CompareNodes> frontier;
-        std::unordered_set<Node::Ptr> explored;
 
         frontier.push(init);
 
@@ -83,42 +80,40 @@ namespace exploration {
                 throw EmptyFrontier("La frontière est vide");
             }
 
-            Node::Ptr node = frontier.top();
+            Node::Ptr currentNode = frontier.top();
             frontier.pop();
 
-            if (node->state.notVisitedPlayers.size() == 0) {
+            if (currentNode->state.notVisitedPlayers.size() == 0) {
                 // Tout le monde a vu une cible. On a donc un équilibre de Nash (si exploration optimale)
-                return node->path;
+                return currentNode->path;
             }
-            else if (node->path.size() == game.getMaxLength()) {
+            else if (currentNode->path.size() == game.getMaxLength()) {
                 // On a atteint la longueur maximale
                 // Il se peut que ce soit un équilibre de Nash
                 // On va vérifier pour les joueurs qui n'ont pas encore atteint un objectif
 
-                if (node->path.isANashEquilibrium(node->state.notVisitedPlayers)) {
+                if (currentNode->path.isANashEquilibrium(currentNode->state.notVisitedPlayers)) {
                     // On a un EN
-                    return node->path;
+                    return currentNode->path;
                 }
             }
             else {
-                const Vertex::Ptr last = node->path.getLast();
+                const Vertex::Ptr last = currentNode->path.getLast();
 
                 for (const auto& succEdge : *last) {
                     const Vertex::Ptr succ = succEdge.second.first.lock();
                     const std::vector<Long>& w = succEdge.second.second;
 
-                    std::vector<Long> epsilon(nPlayers);
-                    for (std::size_t i = 0 ; i < nPlayers ; i++) {
-                        epsilon[i] = w[i] + node->state.costsPlayers[i];
-                    }
+                    Node::Ptr newNode = std::make_shared<Node>(currentNode);
+                    newNode->path.addStep(succ);
 
-                    Node::Ptr newNode = std::make_shared<Node>(node);
-                    Path &newPath = newNode->path;
-                    newPath.addStep(succ);
+                    for (std::size_t i = 0 ; i < nPlayers ; i++) {
+                        newNode->state.epsilon[i] = w[i] + currentNode->state.epsilon[i];
+                    }
 
                     if (succ->isTarget()) {
                         std::unordered_set<unsigned int> newReached;
-                        for (unsigned int p : node->state.notVisitedPlayers) {
+                        for (unsigned int p : newNode->state.notVisitedPlayers) {
                             if (succ->isTargetFor(p)) {
                                 newReached.insert(p);
                             }
@@ -130,7 +125,7 @@ namespace exploration {
                             // On vérifie si on a un équilibre de Nash pour chaque joueur
                             for (unsigned int p : newReached) {
                                 allPlayers.erase(p);
-                                if (!newPath.isANashEquilibrium(allPlayers)) {
+                                if (!newNode->path.isANashEquilibrium(allPlayers)) {
                                     nash = false;
                                 }
                                 allPlayers.insert(p);
@@ -138,21 +133,20 @@ namespace exploration {
                             // Si oui, on va ajouter un nouveau noeud à la frontière
                             if (nash) {
                                 for (unsigned int p : newReached) {
-                                    newNode->state.costsPlayers[p] = epsilon[p];
                                     newNode->state.notVisitedPlayers.erase(p);
-                                    newNode->state.RP += newNode->state.costsPlayers[p];
+                                    newNode->state.RP += newNode->state.epsilon[p];
                                 }
-                                newNode->pathCost = heuristic(newNode, epsilon, costsMap);
+                                newNode->pathCost = heuristic(newNode, costsMap);
                                 frontier.push(newNode);
                             }
                         }
                         else {
-                            newNode->pathCost = heuristic(newNode, epsilon, costsMap);
+                            newNode->pathCost = heuristic(newNode, costsMap);
                             frontier.push(newNode);
                         }
                     } 
                     else {
-                        newNode->pathCost = heuristic(newNode, epsilon, costsMap);
+                        newNode->pathCost = heuristic(newNode, costsMap);
                         frontier.push(newNode);
                     }
                 }

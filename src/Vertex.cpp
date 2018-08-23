@@ -47,7 +47,7 @@ Vertex::Edge Vertex::getPredecessor(unsigned int id) const {
 
 bool Vertex::hasSuccessor(unsigned int id) const {
     auto itr = m_successors.find(id);
-    return itr != m_predecessors.end();
+    return itr != m_successors.end();
 }
 
 std::vector<Long> Vertex::getWeights(unsigned int id) const {

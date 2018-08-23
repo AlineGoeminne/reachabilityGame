@@ -32,13 +32,13 @@ public:
      * \param epsilon Les coûts actuels
      * \param costsMap Les coûts pour arriver à chaque cible
      */
-    types::Long AStartPositive(const exploration::Node::Ptr& node, const std::vector<types::Long> &epsilon, const exploration::CostsMap &costsMap);
+    types::Long AStartPositive(const exploration::Node::Ptr& node, const exploration::CostsMap &costsMap);
 
     /**
-     * \brief Donne le nombre de sommets atteignables à partir du sommet initial
-     * \return Le nombre de sommets atteignables
+     * \brief Donne le pourcentage de sommets atteignables à partir du sommet initial
+     * \return Le pourcentage de sommets atteignables
      */
-    std::size_t numberOfReachableVertices() const;
+    std::size_t percentageOfReachableVertices() const;
 
 private:
     std::vector<Player> m_players;
