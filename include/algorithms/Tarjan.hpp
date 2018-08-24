@@ -10,9 +10,20 @@
  * \brief Des algorithmes divers
  */
 namespace algorithms {
+    /**
+     * \brief Contient les indices des sommets formants une composante fortement connexe
+     */
     typedef std::set<unsigned int> stronglyConnectedComponent;
+    /**
+     * \brief Contient l'ensemble des composantes fortement connexes
+     */
     typedef std::unordered_set<stronglyConnectedComponent> stronglyConnectedComponents;
 
+    /**
+     * \brief Exécute l'algorithme de Tarjan sur le graphe.
+     * \param Le graphe
+     * \return L'ensemble des composantes fortement connexes du graphe
+     */
     stronglyConnectedComponents tarjan(const Graph& graph);
 }
 
