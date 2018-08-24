@@ -9,7 +9,9 @@ namespace types {
      * \brief Une file de priorité dont les clés peuvent changer.
      * 
      * Le code est grandement inspiré de l'implémentation de std::priority_queue de GCC 8.2.
+     * 
      * Comme dans GCC, les fonctions utilisent std::make_heap, std::push_heap et std::pop_heap pour gérer la file.
+     * 
      * \tparam T Le type de variable à stocker. Il est grandement recommander que T définisse son propre opérateur d'égalité (==)
      * \tparam Compare Le type du comparateur à utiliser. Par défaut, il s'agit de std::less qui fait en sorte que la plus grande valeur se retrouve en top de la file.
      */

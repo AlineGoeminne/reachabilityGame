@@ -15,6 +15,32 @@ class ReachabilityGame;
 namespace exploration {
 
     /**
+     * \brief Erreur à lancer quand la frontière d'exploration est vide
+     */
+    class EmptyFrontier : public std::runtime_error {
+    public:
+        explicit EmptyFrontier(const std::string &what) :
+            std::runtime_error(what) {
+        }
+        explicit EmptyFrontier(const char* what) :
+            std::runtime_error(what) {
+        }
+    };
+
+    /**
+     * \brief Erreur à lancer quand l'exploration atteint la limite de temps
+     */
+    class OutOfTime : public std::runtime_error {
+    public:
+        explicit OutOfTime(const std::string &what) :
+            std::runtime_error(what) {
+        }
+        explicit OutOfTime(const char* what) :
+            std::runtime_error(what) {
+        }
+    };
+
+    /**
      * \brief Un état de l'exploration.
      * 
      * Contient le RP total, les coûts par joueur et l'ensemble des joueurs qui n'ont pas encore atteint une cible

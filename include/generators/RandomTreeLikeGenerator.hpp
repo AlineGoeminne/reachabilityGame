@@ -26,6 +26,7 @@ namespace generators {
      * \param size Le nombre de sommets à générer
      * \param lowBranchingFactor La borne inférieure sur le facteur de branchement
      * \param upBranchingFactor La borne supérieure sur le facteur de branchement
+     * \param probaSelf Le probabilité d'avoir un arc d'un sommet v vers lui-même
      * \param probaSameDepth La probabilité d'avoir un arc entre deux sommets "à la même profondeur"
      * \param probaSkipping La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant)
      * \param probaClimbing La probabilité d'avoir un arc qui remonte dans l'arbre
@@ -55,6 +56,7 @@ namespace generators {
      * \param size Le nombre de sommets à générer
      * \param lowBranchingFactor La borne inférieure sur le facteur de branchement
      * \param upBranchingFactor La borne supérieure sur le facteur de branchement
+     * \param probaSelf Le probabilité d'avoir un arc d'un sommet v vers lui-même
      * \param probaSameDepth La probabilité d'avoir un arc entre deux sommets "à la même profondeur"
      * \param probaSkipping La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant)
      * \param probaClimbing La probabilité d'avoir un arc qui remonte dans l'arbre
@@ -84,6 +86,7 @@ namespace generators {
      * \param size Le nombre de sommets à générer
      * \param lowBranchingFactor La borne inférieure sur le facteur de branchement
      * \param upBranchingFactor La borne supérieure sur le facteur de branchement
+     * \param probaSelf Le probabilité d'avoir un arc d'un sommet v vers lui-même
      * \param probaSameDepth La probabilité d'avoir un arc entre deux sommets "à la même profondeur"
      * \param probaSkipping La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant)
      * \param probaClimbing La probabilité d'avoir un arc qui remonte dans l'arbre
@@ -112,6 +115,7 @@ namespace generators {
      * \param size Le nombre de sommets à générer
      * \param lowBranchingFactor La borne inférieure sur le facteur de branchement
      * \param upBranchingFactor La borne supérieure sur le facteur de branchement
+     * \param probaSelf Le probabilité d'avoir un arc d'un sommet v vers lui-même
      * \param probaSameDepth La probabilité d'avoir un arc entre deux sommets "à la même profondeur"
      * \param probaSkipping La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant)
      * \param probaClimbing La probabilité d'avoir un arc qui remonte dans l'arbre
@@ -138,6 +142,7 @@ namespace generators {
      * \param size Le nombre de sommets à générer
      * \param lowBranchingFactor La borne inférieure sur le facteur de branchement
      * \param upBranchingFactor La borne supérieure sur le facteur de branchement
+     * \param probaSelf Le probabilité d'avoir un arc d'un sommet v vers lui-même
      * \param probaSameDepth La probabilité d'avoir un arc entre deux sommets "à la même profondeur"
      * \param probaSkipping La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant)
      * \param probaClimbing La probabilité d'avoir un arc qui remonte dans l'arbre

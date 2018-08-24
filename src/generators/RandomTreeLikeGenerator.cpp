@@ -7,6 +7,11 @@
 
 using namespace types;
 
+/**
+ * \brief Spécialisation des sommets pour les arbres.
+ * 
+ * Contient la profondeur du sommet
+ */
 class TreeVertex : public Vertex {
 public:
     typedef std::shared_ptr<TreeVertex> Ptr;

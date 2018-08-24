@@ -18,7 +18,7 @@ namespace types {
 
     public: 
         /**
-         * \brief Construit un Long avec comme 0
+         * \brief Construit un Long de valeur 0
          */
         Long();
         /**
@@ -40,7 +40,8 @@ namespace types {
 
         /**
          * \brief Donne la valeur du Long.
-         * N'a de sens que si le Long n'est pas l'infini
+         * 
+         * Si le Long représente l'infini, le signe de la valeur retournée donne le signe de l'infini
          * \return La valeur du long
          */
         long getValue() const;

@@ -11,29 +11,12 @@
 using namespace types;
 
 namespace exploration {
+    /**
+     * \brief Comparaison entre deux noeuds de l'exploration
+     */
     struct CompareNodes {
         bool operator()(const Node::Ptr& a, const Node::Ptr &b) const {
             return a->pathCost > b->pathCost;
-        }
-    };
-
-    class EmptyFrontier : public std::runtime_error {
-    public:
-        explicit EmptyFrontier(const std::string &what) :
-            std::runtime_error(what) {
-        }
-        explicit EmptyFrontier(const char* what) :
-            std::runtime_error(what) {
-        }
-    };
-
-    class OutOfTime : public std::runtime_error {
-    public:
-        explicit OutOfTime(const std::string &what) :
-            std::runtime_error(what) {
-        }
-        explicit OutOfTime(const char* what) :
-            std::runtime_error(what) {
         }
     };
 

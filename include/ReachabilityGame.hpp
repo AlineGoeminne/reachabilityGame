@@ -29,7 +29,6 @@ public:
     /**
      * \brief L'heuristique A* positive telle que définie dans le projet/mémoire
      * \param node Le noeud actuel de l'exploration
-     * \param epsilon Les coûts actuels
      * \param costsMap Les coûts pour arriver à chaque cible
      */
     types::Long AStartPositive(const exploration::Node::Ptr& node, const exploration::CostsMap &costsMap);
