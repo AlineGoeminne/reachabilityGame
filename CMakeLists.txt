@@ -24,6 +24,8 @@ set(SOURCES
 
     src/exploration/BestFirstSearch.cpp
 
+    src/algorithms/Tarjan.cpp
+
     src/generators/RandomGenerator.cpp
     src/generators/RandomTreeLikeGenerator.cpp
 )
