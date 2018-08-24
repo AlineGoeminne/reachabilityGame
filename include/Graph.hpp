@@ -61,6 +61,8 @@ public:
 
     std::size_t getNumberPlayers() const;
 
+    void updateMaxWeights();
+
 protected:
     std::vector<Vertex::Ptr> m_vertices;
     std::vector<types::Long> m_maxWeights;

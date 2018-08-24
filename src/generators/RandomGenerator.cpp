@@ -3,6 +3,8 @@
 #include <random>
 #include <chrono>
 
+#include "generators/GenerateWeights.hpp"
+
 using namespace types;
 
 namespace generators {
@@ -45,7 +47,7 @@ namespace generators {
         std::vector<std::bernoulli_distribution> targetsDistributions; // Pour chaque joueur, probabilité qu'un sommet soit une cible
         std::uniform_int_distribution<std::size_t> numberOfNeighborsDistribution(lowOutgoing, upOutgoing); // Distribution pour le nombre d'arcs sortants
         std::uniform_int_distribution<std::size_t> neighborDistribution(0, size-1); // Distribution pour les sommets des arcs
-        std::uniform_int_distribution<long> weightDistribution(minWeight, maxWeight); // Distribution pour les poids des arcs
+        auto weightDistribution = constructWeightDistribution(minWeight, maxWeight);
 
         // On crée les joueurs
         std::vector<Player> players;
@@ -100,18 +102,8 @@ namespace generators {
                 while (v->hasSuccessor(u->getID())) {
                     u = vertices[neighborDistribution(generator)];
                 }
-                // On génère les poids
-                std::vector<Long> weights;
-                if (multipleWeights) {
-                    for (std::size_t j = 0 ; j < nPlayers ; j++) {
-                        weights.push_back(weightDistribution(generator));
-                    }
-                }
-                else {
-                    weights = std::vector<Long>(nPlayers, weightDistribution(generator));
-                }
 
-                v->addSuccessor(u, weights);
+                v->addSuccessor(u, generateWeights(nPlayers, generator, weightDistribution, multipleWeights));
             }
         }
 

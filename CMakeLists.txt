@@ -26,8 +26,10 @@ set(SOURCES
 
     src/algorithms/Tarjan.cpp
 
+    src/generators/GenerateWeights.cpp
     src/generators/RandomGenerator.cpp
     src/generators/RandomTreeLikeGenerator.cpp
+    src/generators/RandomStronglyConnectedGenerator.cpp
 )
 
 add_library(${LIBRARY_NAME} ${SOURCES})
@@ -42,9 +44,15 @@ add_executable(random_generator generators/randomGenerator.cpp)
 target_link_libraries(random_generator ${LIBRARY_NAME})
 target_include_directories(random_generator PUBLIC include)
 
+# Générateur arbre
 add_executable(tree_like_generator generators/treeLikeGenerator.cpp)
 target_link_libraries(tree_like_generator ${LIBRARY_NAME})
 target_include_directories(tree_like_generator PUBLIC include)
+
+# Générateur fortement connexe
+add_executable(strongly_connected_generator generators/stronglyConnectedGraph.cpp)
+target_link_libraries(strongly_connected_generator ${LIBRARY_NAME})
+target_include_directories(strongly_connected_generator PUBLIC include)
 
 # Documentation
 set(BUILD_DOC FALSE CACHE BOOL "S'il faut construire la documentation ou pas")

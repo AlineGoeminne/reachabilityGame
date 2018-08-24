@@ -54,6 +54,10 @@ std::size_t Graph::getNumberPlayers() const {
     return m_maxWeights.size();
 }
 
+void Graph::updateMaxWeights() {
+    computeMaxWeights(m_maxWeights.size());
+}
+
 void Graph::computeMaxWeights(std::size_t nPlayers) {
     m_maxWeights = std::vector<Long>(nPlayers, 0);
 

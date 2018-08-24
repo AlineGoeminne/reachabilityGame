@@ -5,6 +5,8 @@
 #include <iostream>
 #include <queue>
 
+#include "generators/GenerateWeights.hpp"
+
 using namespace types;
 
 /**
@@ -20,20 +22,6 @@ public:
 
     std::size_t m_depth;
 };
-
-std::vector<Long> generateWeights(std::size_t nPlayers, std::default_random_engine &generator, std::uniform_int_distribution<long> &weightDistribution, bool multipleWeights) {
-    std::vector<Long> weights;
-    if (multipleWeights) {
-        for (std::size_t i = 0 ; i < nPlayers ; i++) {
-            weights.push_back(weightDistribution(generator));
-        }
-    }
-    else {
-        weights = std::vector<Long>(nPlayers, weightDistribution(generator));
-    }
-    return weights;
-}
-
 namespace generators {
     ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, bool multipleWeights, std::size_t nPlayers, bool sharedTargets) {
         return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSelf, probaSameDepth, probaSkipping, probaClimbing, 1, 1, multipleWeights, nPlayers, sharedTargets);
@@ -73,7 +61,7 @@ namespace generators {
         std::discrete_distribution<std::size_t> playersDistribution(probaPlayers.begin(), probaPlayers.end()); // Sommet appartient au joueur i; i est tiré aléatoirement selon probaPlayers
         std::vector<std::bernoulli_distribution> targetsDistributions; // Pour chaque joueur, probabilité qu'un sommet soit une cible
         std::uniform_int_distribution<std::size_t> branchingFactorDistribution(lowBranchingFactor, upBranchingFactor); // Distribution pour le facteur de branchement
-        std::uniform_int_distribution<long> weightDistribution(minWeight, maxWeight); // Distribution pour les poids des arcs
+        auto weightDistribution = constructWeightDistribution(minWeight, maxWeight);
         std::bernoulli_distribution selfDistribution(probaSelf); // Distribution pour savoir si on peut générer un arc de v à v
         std::bernoulli_distribution sameDepthDistribution(probaSameDepth); // Distribution pour savoir si on peut générer un arc entre deux sommets à la même profondeur
         std::bernoulli_distribution skippingDistribution(probaSkipping); // Distribution pour savoir si on peut générer un arc entre un sommet et un autre plus profond qui n'est pas son enfant

@@ -92,6 +92,39 @@ TEST_CASE("Algorithme de Tarjan", "[algorithms]") {
             REQUIRE(components.size() == 2);
             REQUIRE(components.find({0, 1, 2, 3}) != components.end());
             REQUIRE(components.find({4, 5, 6, 7}) != components.end());
+
+            SECTION("On unit les deux composantes") {
+                v6->addSuccessor(v2, 0);
+
+                auto components = algorithms::tarjan(graph);
+
+                REQUIRE(components.size() == 1);
+                REQUIRE(components.find({0, 1, 2, 3, 4, 5, 6, 7}) != components.end());
+            }
         }
+    }
+
+    SECTION("Un noeud seul attaché à une composante") {
+        Vertex::Ptr v0 = std::make_shared<Vertex>(0, 0, 2);
+        Vertex::Ptr v1 = std::make_shared<Vertex>(1, 0, 2);
+        Vertex::Ptr v2 = std::make_shared<Vertex>(2, 0, 2);
+        Vertex::Ptr v3 = std::make_shared<Vertex>(3, 0, 2);
+        Vertex::Ptr v4 = std::make_shared<Vertex>(4, 0, 2);
+
+        v0->addSuccessor(v1, 0);
+        v1->addSuccessor(v2, 0);
+        v2->addSuccessor(v3, 0);
+        v3->addSuccessor(v0, 0);
+        v4->addSuccessor(v0, 0);
+
+        std::vector<Vertex::Ptr> vertices{v0, v1, v2, v3, v4};
+
+        Graph graph(vertices, {0, 0});
+
+        auto components = algorithms::tarjan(graph);
+
+        REQUIRE(components.size() == 2);
+        REQUIRE(components.find({4}) != components.end());
+        REQUIRE(components.find({0, 1, 2, 3}) != components.end());
     }
 }
