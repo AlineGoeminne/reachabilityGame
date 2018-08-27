@@ -17,13 +17,13 @@ public:
      * \param vertices Les sommets du graphe
      * \param nPlayers Le nombre de joueurs
      */
-    explicit Graph(std::vector<Vertex::Ptr>& vertices, std::size_t nPlayers);
+    explicit Graph(const std::vector<Vertex::Ptr>& vertices, std::size_t nPlayers);
     /**
      * \brief Construit le graphe
      * \param vertices Les sommets du graphe
      * \param maxWeight Le poids maximal parmi les arcs
      */
-    explicit Graph(std::vector<Vertex::Ptr>& vertices, std::vector<types::Long> maxWeight);
+    explicit Graph(const std::vector<Vertex::Ptr>& vertices, std::vector<types::Long> maxWeight);
 
     virtual ~Graph();
 

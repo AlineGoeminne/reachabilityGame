@@ -4,13 +4,13 @@
 
 using namespace types;
 
-Graph::Graph(std::vector<Vertex::Ptr>& vertices, std::size_t nPlayers) :
+Graph::Graph(const std::vector<Vertex::Ptr>& vertices, std::size_t nPlayers) :
     m_vertices(vertices)
     {
     computeMaxWeights(nPlayers);
 }
 
-Graph::Graph(std::vector<Vertex::Ptr>& vertices, std::vector<Long> maxWeight) :
+Graph::Graph(const std::vector<Vertex::Ptr>& vertices, std::vector<Long> maxWeight) :
     m_vertices(vertices),
     m_maxWeights(maxWeight)
     {

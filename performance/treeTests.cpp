@@ -15,7 +15,7 @@ using namespace std::placeholders;
 int main()
 {
     std::size_t nGenerations = 1000;
-    std::ofstream tree("../plots/treePlayers.data");
+    std::ofstream tree("../plots/treePlayersSize.data", std::ofstream::app);
 
     std::size_t size = 20;
     long minWeight = 1;
@@ -38,28 +38,30 @@ int main()
         std::vector<double> probaTargets(nPlayers, 0.1);
         std::vector<Long> maximumTargets(nPlayers, Long::infinity);
 
-        std::vector<std::clock_t> timesTree(nGenerations, 0);
-        std::size_t nTimeOut = 0;
+        for (size = 5 ; size < 31 ; size++) {
+            std::vector<std::clock_t> timesTree(nGenerations, 0);
+            std::size_t nTimeOut = 0;
 
-        for (std::size_t i = 0 ; i < nGenerations ; i++) {
-            std::cout << "GENERATION " << i << '\n';
-            ReachabilityGame game = generators::randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSelf, probaSameDepth, probaSkipping, probaClimbing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
-        
-            try {
-                timesTree[i] = execute(game);
+            for (std::size_t i = 0 ; i < nGenerations ; i++) {
+                std::cout << "GENERATION " << i << '\n';
+                ReachabilityGame game = generators::randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSelf, probaSameDepth, probaSkipping, probaClimbing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
+            
+                try {
+                    timesTree[i] = execute(game);
+                }
+                catch(std::runtime_error &e) {
+                    timesTree[i] = 10;
+                    nTimeOut++;
+                }
             }
-            catch(std::runtime_error &e) {
-                timesTree[i] = 10;
-                nTimeOut++;
-            }
+
+            double meanTree, medianTree;
+            std::tie(meanTree, medianTree) = values(timesTree);
+
+            std::cout << nPlayers << ' ' << size << '\n';
+            tree << nPlayers << '\t' << size << '\t' << meanTree << '\t' << medianTree << '\t' << nTimeOut << '\n';
+            tree.flush();
         }
-
-        double meanTree, medianTree;
-        std::tie(meanTree, medianTree) = values(timesTree);
-
-        std::cout << nPlayers << '\n';
-        tree << nPlayers << '\t' << meanTree << '\t' << medianTree << '\t' << nTimeOut << '\n';
-        tree.flush();
     }
 
     tree.close();

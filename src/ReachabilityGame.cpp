@@ -117,3 +117,26 @@ std::size_t ReachabilityGame::percentageOfReachableVertices() const {
 
     return nReachable * 100./getGraph().size();
 }
+
+std::ostream& operator<<(std::ostream &os, const ReachabilityGame &game) {
+    os << "size: " << game.getGraph().size() << ", nPlayers: " << game.getPlayers().size() << '\n';
+    os << "init: " << *game.getInit() << '\n';
+    for (auto v : game.getGraph().getVertices()) {
+        os << *v << " belongs to player " << v->getPlayer() << " and is a target for ";
+        for (unsigned int p : v->getTargetPlayers()) {
+            os << p << ", ";
+        }
+
+        os << "\nedges to: {\n";
+        for (auto edge : *v) {
+            os << '\t' << *edge.second.first.lock() << " (";
+            for (Long p : edge.second.second) {
+                os << p << ", ";
+            }
+            os << ")\n";
+        }
+        os << "}\n";
+    }
+
+    return os;
+}

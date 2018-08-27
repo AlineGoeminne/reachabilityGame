@@ -1,7 +1,7 @@
 # size=20; outgoing in [1, 5]; weights in [1, 1]; mutlipleWeight=false; nPlayers=5; sharedTargets=true; probaPlayers=1/nPlayers; probaTargets=0.1; maximumTargets=infinity
-2	2.771	0.211	8
-3	1.858	0.339	11
-4	8.884	0.481	11
-5	15.878	0.618	17
-6	14.057	0.856	17
-7	56.323	1.249	12
+0	57.922	7.499	2
+1	8.111	0.573	11
+2	14.526	0.604	14
+3	32.024	0.693	11
+4	22.169	0.722	14
+5	31.674	0.762	17

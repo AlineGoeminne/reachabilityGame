@@ -14,7 +14,7 @@ using namespace types;
 int main()
 {
     std::size_t nGenerations = 1000;
-    std::ofstream naive("../plots/naivePlayers.data");
+    std::ofstream naive("../plots/naiveSize.data");
 
     std::size_t size = 20;
     std::size_t lowOutgoing = 1;
@@ -27,7 +27,7 @@ int main()
 
     naive << std::boolalpha << "# size=" << size << "; outgoing in [" << lowOutgoing << ", " << upOutgoing << "]; weights in [" << minWeight << ", " << maxWeight << "]; mutlipleWeight=" << multipleWeights << "; nPlayers=" << nPlayers << "; sharedTargets=" << sharedTargets << "; probaPlayers=1/nPlayers; probaTargets=0.1; maximumTargets=infinity\n";
 
-    for (nPlayers = 2 ; nPlayers < 21 ; nPlayers++) {
+    for (size = 5 ; size <= 50 ; size++) {
         std::vector<double> probaPlayers(nPlayers, 1./nPlayers);
         std::vector<double> probaTargets(nPlayers, 0.1);
         std::vector<Long> maximumTargets(nPlayers, Long::infinity);
@@ -56,8 +56,8 @@ int main()
         double meanNaive, medianNaive;
         std::tie(meanNaive, medianNaive) = values(timesNaive);
 
-        std::cout << nPlayers << '\n';
-        naive << nPlayers << '\t' << meanNaive << '\t' << medianNaive << '\t' << nTimeOut << '\n';
+        std::cout << size << '\n';
+        naive << size << '\t' << meanNaive << '\t' << medianNaive << '\t' << nTimeOut << '\n';
         naive.flush();
     }
 

@@ -107,7 +107,7 @@ namespace generators {
             }
         }
 
-        Graph graph(vertices, 2);
+        Graph graph(vertices, nPlayers);
 
         ReachabilityGame game(graph, vertices[0], players);
 

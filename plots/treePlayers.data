@@ -13,3 +13,9 @@
 13	487.746	45.847	166
 14	548.328	63.152	185
 15	544.008	70.111	194
+# size=20; branchingFactor in [1, 5]; probaSelf=0.5; probaSameDetph=0.5; probaSkipping=0.5; probaClimbing=0.5; weights in [1, 1]; mutlipleWeight=false; nPlayers=5; sharedTargets=true; probaPlayers=1/nPlayers; probaTargets=0.1; maximumTargets=infinity;
+16	644.113	109.134	207
+17	637.589	101.805	224
+18	815.071	148.337	269
+19	934.166	159.803	286
+20	1133.1	245.6	265

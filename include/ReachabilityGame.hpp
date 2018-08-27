@@ -39,7 +39,11 @@ public:
      */
     std::size_t percentageOfReachableVertices() const;
 
+    friend std::ostream& operator<<(std::ostream &os, const ReachabilityGame &game);
+
 private:
     std::vector<Player> m_players;
     std::vector<types::Long> m_maxWeightsPath;
 };
+
+std::ostream& operator<<(std::ostream &os, const ReachabilityGame &game);

@@ -54,6 +54,10 @@ add_executable(strongly_connected_generator generators/stronglyConnectedGraph.cp
 target_link_libraries(strongly_connected_generator ${LIBRARY_NAME})
 target_include_directories(strongly_connected_generator PUBLIC include)
 
+add_executable(find_EN generators/findEN.cpp)
+target_link_libraries(find_EN ${LIBRARY_NAME})
+target_include_directories(find_EN PUBLIC include)
+
 # Documentation
 set(BUILD_DOC FALSE CACHE BOOL "S'il faut construire la documentation ou pas")
 if(BUILD_DOC)
