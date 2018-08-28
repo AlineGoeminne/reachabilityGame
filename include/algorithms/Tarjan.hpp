@@ -21,7 +21,7 @@ namespace algorithms {
 
     /**
      * \brief Exécute l'algorithme de Tarjan sur le graphe.
-     * \param Le graphe
+     * \param graph Le graphe
      * \return L'ensemble des composantes fortement connexes du graphe
      */
     stronglyConnectedComponents tarjan(const Graph& graph);

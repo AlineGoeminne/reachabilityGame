@@ -11,8 +11,10 @@ using namespace algorithms;
 
 namespace generators {
     ReachabilityGame randomStronglyConnectedGenerator(std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers, const std::vector<double>& probaTargets, const std::vector<types::Long>& maximumTargets) {
+        // On commence par générer un jeu
         const ReachabilityGame game = randomGenerator(size, lowOutgoing, upOutgoing, maxWeight, minWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
 
+        // Et on va modifier le graphe
         Graph graph = game.getGraph();
         std::vector<Vertex::Ptr>& vertices = graph.getVertices();
         
@@ -47,12 +49,14 @@ namespace generators {
             std::uniform_int_distribution<std::size_t> vertexASelection(0, a.size() - 1);
             std::uniform_int_distribution<std::size_t> vertexBSelection(0, b.size() - 1);
 
+            // Les indices dans les ensembles A et B
             std::size_t vA = vertexASelection(generator);
             std::size_t uA = vertexASelection(generator);
             std::size_t vB = vertexBSelection(generator);
             std::size_t uB = vertexBSelection(generator);
 
-            unsigned int vAID, uAID, vBID, uBID;
+            // On récupère les ID des sommets correspondants
+            unsigned int vAID = 0, uAID = 0, vBID = 0, uBID = 0;
             k = 0;
             for (unsigned int v : a) {
                 if (k == vA) {
