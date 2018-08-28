@@ -1,8 +1,4 @@
-Page principale {#index}
-=======
-[TOC]
-
-# Présentation {#presentation}
+# Présentation
 Ce projet vise à avoir une idée des graphes intéressants pour la recherche d'équilibres de Nash dans des jeux d'atteignabilité sur graphe.
 
   - Algorithmes implémentés :
@@ -23,7 +19,7 @@ Ce projet vise à avoir une idée des graphes intéressants pour la recherche d'
     - Trouver une meilleure heuristique, si possible
     - Permettre d'avoir des poids négatifs
 
-# Compiler et exécuter {#compiler}
+# Compiler et exécuter
 Il faut un compilateur C++ qui supporte le standard `C++17`, make et CMake. Une fois dans la racine du projet :
   1. Créer un dossier `build`
   2. Rentrer dans le dossier `build`
@@ -55,7 +51,7 @@ Les programmes seront générés dans le dossier `build` et les sous-dossiers `t
 
 Pour exécuter les tests unitaires, il suffit de lancer `ReachabilityGame-tests` dans le dossier `tests`. Pour exécuter les tests de performance, il suffit de lancer, dans le dossier `performance`, `ReachabilityGame-perf-naive` pour le générateur naïf et `ReachabilityGame-perf-tree` pour le générateur d'arbre.
 
-## Résultats de performance {#res_perf}
+## Résultats de performance
 Il faut modifier les fichiers `naiveTests.cpp` et `treeTests.cpp` du dossier `performance` pour changer les paramètres à tester. Une limite de 10 secondes par jeu est fixé.
 
 La sortie produite (dans un fichier) devrait contenir le paramètre testé et les moyennes et médiannes des temps CPU obtenus ainsi que le nombre de fois que les 10 secondes ont été atteintes.
