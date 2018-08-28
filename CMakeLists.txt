@@ -23,6 +23,7 @@ set(SOURCES
     src/types/Long.cpp
 
     src/exploration/BestFirstSearch.cpp
+    src/exploration/RandomPaths.cpp
 
     src/algorithms/Tarjan.cpp
 
