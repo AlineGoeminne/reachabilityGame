@@ -121,11 +121,15 @@ public:
      */
     StoreEdge::iterator begin();
 
+    StoreEdge::const_iterator cbegin() const;
+
     /**
      * \brief Retourne un itérateur sur la fin des successeurs
      * \return Un itérateur sur la fin des successeurs
      */
     StoreEdge::iterator end();
+
+    StoreEdge::const_iterator cend() const;
 
     /**
      * \brief Retourne un itérateur sur le début des prédecesseurs

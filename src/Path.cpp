@@ -5,7 +5,7 @@
 
 using namespace types;
 
-Path::Path(const ReachabilityGame &game, Vertex::Ptr start) :
+Path::Path(const ReachabilityGame &game, std::shared_ptr<const Vertex> start) :
     m_game(game),
     m_path{start},
     m_costs(game.getPlayers().size(), std::make_pair(false, 0))
@@ -15,7 +15,7 @@ Path::Path(const ReachabilityGame &game, Vertex::Ptr start) :
     }
 }
 
-Path::Path(const ReachabilityGame& game, std::vector<Vertex::Ptr> steps) :
+Path::Path(const ReachabilityGame& game, std::vector<std::shared_ptr<const Vertex>> steps) :
     Path(game, steps[0])
     {
     for (std::size_t i = 1 ; i < steps.size() ; i++) {
@@ -31,9 +31,9 @@ Path::Path(const Path &path) :
 
 }
 
-void Path::addStep(Vertex::Ptr step) {
+void Path::addStep(std::shared_ptr<const Vertex> step) {
     // On vérifie d'abord que l'arc entre last et step existe
-    Vertex::Ptr last = m_path.back();
+    std::shared_ptr<const Vertex> last = m_path.back();
     Vertex::Edge e = last->getSuccessor(step->getID());
     // weak_ptr !
     if (!e.first.lock()) {
@@ -69,14 +69,14 @@ bool Path::isANashEquilibrium(std::unordered_set<unsigned int> playersAlreadyTes
     std::unordered_map<unsigned int, std::vector<Long>> coalitions; // A un joueur, on associe les valeurs de la coalition contre lui
 
     for (auto itr = m_path.begin() ; nash && itr != m_path.end() ; ++itr) {
-        const Vertex::Ptr current = *itr;
+        const std::shared_ptr<const Vertex> current = *itr;
 
         auto& players = current->getTargetPlayers();
         visitedPlayers.insert(players.begin(), players.end()); // Equivalent de l'union
 
         if (itr != m_path.begin()) {
             // Si on n'est pas au premier sommet, on incrémente epsilon
-            const Vertex::Ptr prev = *std::prev(itr); // On récupère le vertex précédent
+            const std::shared_ptr<const Vertex> prev = *std::prev(itr); // On récupère le vertex précédent
             std::vector<Long> weights = prev->getWeights(current->getID());
 
             for (std::size_t i = 0 ; i < epsilon.size() ; i++) {
@@ -118,7 +118,7 @@ std::size_t Path::size() const {
     return m_path.size();
 }
 
-const Vertex::Ptr Path::getLast() const {
+const std::shared_ptr<const Vertex> Path::getLast() const {
     return m_path.back();
 }
 
@@ -136,8 +136,8 @@ bool operator==(const Path& a, const Path &b) {
     auto itrB = b.m_path.begin();
 
     for (; itrA != a.m_path.end() && itrB != b.m_path.end() ; ++itrA, ++itrB) {
-        const Vertex::Ptr va = *itrA;
-        const Vertex::Ptr vb = *itrB;
+        const std::shared_ptr<const Vertex> va = *itrA;
+        const std::shared_ptr<const Vertex> vb = *itrB;
         if (*va != *vb) {
             // Les chemins ont des pas différents
             return false;
@@ -148,7 +148,7 @@ bool operator==(const Path& a, const Path &b) {
 }
 
 std::ostream& operator<<(std::ostream &os, const Path &a) {
-    for (const Vertex::Ptr v : a.m_path) {
+    for (const std::shared_ptr<const Vertex> v : a.m_path) {
         os << *v << "->";
     }
     os << "end";

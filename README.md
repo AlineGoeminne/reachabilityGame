@@ -9,15 +9,16 @@ Ce projet vise à avoir une idée des graphes intéressants pour la recherche d'
     - Un générateur "arbre" qui génère au départ un arbre et qui le modifie selon les paramètres et les contraintes des jeux d'atteignabilité;
     - Un générateur de graphes fortement connexes.
   - Limites :
-    - Les poids sur les arcs doivent être positifs
-    - L'exploration peut consommer beaucoup de mémoire
+    - Les poids sur les arcs doivent être positifs.
+    - L'exploration peut consommer beaucoup de mémoire.
     - Il n'y a pas de résultats sur le générateur de graphes fortement connexes.
+    - Vertex::Ptr permet touhours de modifier le sommet même dans des cas où la modification devrait être empếchée (manque de const-correctness).
   - Améliorations possibles :
-    - Réussir à diminuer la consommation de mémoire
-      - Eviter de stocker les poids dans les successeurs et les prédecesseurs
-      - Réduire la consommation de mémoire de l'exploration, si possible
-    - Trouver une meilleure heuristique, si possible
-    - Permettre d'avoir des poids négatifs
+    - Réussir à diminuer la consommation de mémoire.
+      - Eviter de stocker les poids dans les successeurs et les prédecesseurs.
+      - Réduire la consommation de mémoire de l'exploration, si possible.
+    - Trouver une meilleure heuristique, si possible.
+    - Permettre d'avoir des poids négatifs.
 
 # Compiler et exécuter
 Il faut un compilateur C++ qui supporte le standard `C++17`, make et CMake. Une fois dans la racine du projet :

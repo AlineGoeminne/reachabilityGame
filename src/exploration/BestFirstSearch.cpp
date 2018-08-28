@@ -81,11 +81,11 @@ namespace exploration {
                 }
             }
             else {
-                const Vertex::Ptr last = currentNode->path.getLast();
+                const std::shared_ptr<const Vertex> last = currentNode->path.getLast();
 
-                for (const auto& succEdge : *last) {
-                    const Vertex::Ptr succ = succEdge.second.first.lock();
-                    const std::vector<Long>& w = succEdge.second.second;
+                for (auto succEdge = last->cbegin() ; succEdge != last->cend() ; succEdge++) {
+                    const Vertex::Ptr succ = succEdge->second.first.lock();
+                    const std::vector<Long>& w = succEdge->second.second;
 
                     Node::Ptr newNode = std::make_shared<Node>(currentNode);
                     newNode->path.addStep(succ);

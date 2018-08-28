@@ -81,8 +81,16 @@ Vertex::StoreEdge::iterator Vertex::begin() {
     return m_successors.begin();
 }
 
+Vertex::StoreEdge::const_iterator Vertex::cbegin() const {
+    return m_successors.cbegin();
+}
+
 Vertex::StoreEdge::iterator Vertex::end() {
     return m_successors.end();
+}
+
+Vertex::StoreEdge::const_iterator Vertex::cend() const {
+    return m_successors.cend();
 }
 
 Vertex::StoreEdge::iterator Vertex::beginPredecessors() {
