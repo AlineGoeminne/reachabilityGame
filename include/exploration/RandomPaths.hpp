@@ -5,6 +5,19 @@
 
 namespace exploration {
     /**
+     * \brief Erreur à lancer quand aucun équilibre de nash n'a été généré
+     */
+    class NoENGenerated : public std::runtime_error {
+    public:
+        explicit NoENGenerated(const std::string &what) :
+            std::runtime_error(what) {
+        }
+        explicit NoENGenerated(const char* what) :
+            std::runtime_error(what) {
+        }
+    };
+
+    /**
      * \brief Génère un certain nombre de chemins aléatoires et garde le meilleur équilibre de Nash.
      * 
      * \param game Le jeu

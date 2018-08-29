@@ -10,6 +10,13 @@
 using namespace algorithms;
 
 namespace generators {
+    ReachabilityGame randomStronglyConnectedGenerator(std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, std::size_t nPlayers, bool sharedTargets) {
+        std::vector<double> probaPlayers(nPlayers, 1./nPlayers);
+        std::vector<double> probaTargets(nPlayers, 0.1);
+        std::vector<types::Long> maximumTargets(nPlayers, types::Long::infinity);
+        return randomStronglyConnectedGenerator(size, lowOutgoing, upOutgoing, 1, 1, false, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
+    }
+
     ReachabilityGame randomStronglyConnectedGenerator(std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers, const std::vector<double>& probaTargets, const std::vector<types::Long>& maximumTargets) {
         // On commence par générer un jeu
         const ReachabilityGame game = randomGenerator(size, lowOutgoing, upOutgoing, maxWeight, minWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);

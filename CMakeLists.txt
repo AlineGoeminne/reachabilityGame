@@ -55,6 +55,7 @@ add_executable(strongly_connected_generator generators/stronglyConnectedGraph.cp
 target_link_libraries(strongly_connected_generator ${LIBRARY_NAME})
 target_include_directories(strongly_connected_generator PUBLIC include)
 
+# Pour essayer de trouver un EN tel que pas tout le monde voit une cible sur un graphe fortement connexe
 add_executable(find_EN generators/findEN.cpp)
 target_link_libraries(find_EN ${LIBRARY_NAME})
 target_include_directories(find_EN PUBLIC include)

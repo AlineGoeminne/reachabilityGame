@@ -94,6 +94,10 @@ namespace exploration {
             }
         }
 
+        if (paths.size() == 0) {
+            throw NoENGenerated("Pas d'équilibre de Nash généré");
+        }
+
         return filterBest(paths, game.getMaxLength());
     }
 }
