@@ -6,6 +6,16 @@
 
 // Les algorithmes sont inspirés du pseudo-code de la page Wikipédia (https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm)
 
+/**
+ * \brief Le coeur de Tarjan
+ * \param v L'ID du sommet actuel
+ * \param index L'index (selon le pseudo-code)
+ * \param indices Le tableau des index
+ * \param lowLink Le tableau des lowLink (selon le pseudo-code)
+ * \param stack La pile
+ * \param onStack Un tableau de booléen indiquant si tel sommet est sur la pile ou non
+ * \param vertices L'ensemble des sommets
+ */
 algorithms::stronglyConnectedComponents strongConnect(unsigned int v, std::size_t &index, std::vector<std::size_t> &indices, std::vector<std::size_t> &lowLink, std::stack<unsigned int> &stack, std::vector<bool> &onStack, const std::vector<Vertex::Ptr>& vertices) {
     indices[v] = index;
     lowLink[v] = index;

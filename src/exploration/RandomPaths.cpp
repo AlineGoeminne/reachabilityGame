@@ -4,6 +4,11 @@
 #include <chrono>
 #include <vector>
 
+/**
+ * \brief Génère aléatoirement un chemin de longueur donné
+ * \param game Le jeu
+ * \param length La longueur du chemin
+ */
 Path generatePath(const ReachabilityGame &game, std::size_t length) {
     std::shared_ptr<const Vertex> current = game.getInit();
     std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
@@ -11,6 +16,7 @@ Path generatePath(const ReachabilityGame &game, std::size_t length) {
     Path path(game, current);
 
     while(length--) {
+        // On va tirer le successeur au hasard
         std::uniform_int_distribution<std::size_t> successorChoice(0, current->getNumberSuccessors() - 1);
 
         std::size_t succIndex = successorChoice(generator);
@@ -31,6 +37,11 @@ Path generatePath(const ReachabilityGame &game, std::size_t length) {
     return path;
 }
 
+/**
+ * \brief Retourne le meilleur EN parmi ceux donnés
+ * \param paths L'ensemble des EN
+ * \param nPlayers Le nombre de joueurs
+ */
 const Path& filterBest(const std::vector<Path> &paths, std::size_t nPlayers) {
     std::size_t bestCostIndex = 0;
     std::size_t bestReachedIndex = 0;
@@ -43,8 +54,9 @@ const Path& filterBest(const std::vector<Path> &paths, std::size_t nPlayers) {
         const Path &p = paths[i];
         const auto &costs = p.getCosts();
 
-        types::Long sumCost = 0, partialCost = 0;
-        std::size_t nReached = 0;
+        types::Long sumCost = 0; // Les coûts totaux
+        types::Long partialCost = 0; // La somme de coûts pour les joueurs qui ont vu leur cible
+        std::size_t nReached = 0; // Le nombre de joueurs qui ont vu une cible
         for (const auto &cost : costs) {
             if (cost.first) {
                 nReached++;
@@ -54,7 +66,7 @@ const Path& filterBest(const std::vector<Path> &paths, std::size_t nPlayers) {
         }
 
         if (nReached != nPlayers && valueBestCost > sumCost) {
-            // Tout le monde n'a pas vu une cible mais c'est le meilleur EN dans ce cas
+            // Tout le monde n'a pas vu une cible mais on a un coût inférieur à celui trouvé précédemment
             bestCostIndex = i;
             valueBestCost = sumCost;
         }

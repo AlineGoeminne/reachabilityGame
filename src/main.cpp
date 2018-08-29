@@ -21,7 +21,7 @@ int main() {
     std::vector<Long> valuesJ1 = MinMaxGame::convert(game, 0).getValues(game.getPlayers()[0].getGoals());
     std::vector<Long> valuesJ2 = MinMaxGame::convert(game, 1).getValues(game.getPlayers()[1].getGoals());
 
-    while (valuesJ1[0] != types::Long::infinity || valuesJ2[0] != types::Long::infinity) {
+    while (valuesJ1[0] == types::Long::infinity || valuesJ2[0] == types::Long::infinity || valuesJ1[0] == 0 || valuesJ2[0] == 0) {
         game = generators::randomStronglyConnectedGenerator(10, 1, 5, 2, false);
 
         valuesJ1 = MinMaxGame::convert(game, 0).getValues(game.getPlayers()[0].getGoals());

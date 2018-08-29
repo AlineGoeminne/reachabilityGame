@@ -62,9 +62,12 @@ namespace exploration {
 
         }
 
-        types::Long RP; // Somme des coûts
-        std::vector<types::Long> epsilon; // Coût par joueur jusqu'au sommet courant
-        std::unordered_set<unsigned int> notVisitedPlayers; // Ensemble des joueurs qui n'ont pas encore atteint un objectif
+        /** \brief Somme de coûts */
+        types::Long RP;
+        /** \brief Coût par joueur jusqu'au sommet actuel */
+        std::vector<types::Long> epsilon;
+        /** \brief Ensemble des joueurs qui n'ont pas encore atteint leur objectif */
+        std::unordered_set<unsigned int> notVisitedPlayers;
     };
 
     /**
@@ -95,8 +98,11 @@ namespace exploration {
 
         }
 
+        /** \brief L'état de l'exploration */
         State state;
+        /** \brief Le coût pour arriver jusqu'à ce noeud de l'exploration */
         types::Long pathCost;
+        /** \brief Le chemin emprunté */
         Path path;
     };
 

@@ -15,11 +15,19 @@ namespace exploration {
      * \brief Comparaison entre deux noeuds de l'exploration
      */
     struct CompareNodes {
+        /** \brief Compare deux Node::Ptr */
         bool operator()(const Node::Ptr& a, const Node::Ptr &b) const {
             return a->pathCost > b->pathCost;
         }
     };
 
+    /**
+     * \brief Calcule tous les coûts par Dijkstra.
+     * 
+     * Pour chacune des cibles du jeu, calcule les coûts pour y arriver à partir de chaque sommet
+     * \param game Le jeu
+     * \return Une map qui associe à chaque cible un tableau de coût (une valeur par sommet)
+     */
     CostsMap computeAllDijkstra(const ReachabilityGame &game) {
         CostsMap res;
         std::unordered_set<Vertex::Ptr> goals;
@@ -47,8 +55,8 @@ namespace exploration {
         }
         init->pathCost = heuristic(init, costsMap);
 
+        // On construit la frontière avec le noeud créé
         std::priority_queue<Node::Ptr, std::vector<Node::Ptr>, CompareNodes> frontier;
-
         frontier.push(init);
 
         std::unordered_set<unsigned int> allPlayers;
@@ -83,13 +91,16 @@ namespace exploration {
             else {
                 const std::shared_ptr<const Vertex> last = currentNode->path.getLast();
 
+                // On va itérer sur chaque successeur du dernier sommet du chemin
                 for (auto succEdge = last->cbegin() ; succEdge != last->cend() ; succEdge++) {
                     const Vertex::Ptr succ = succEdge->second.first.lock();
                     const std::vector<Long>& w = succEdge->second.second;
 
+                    // On copie le noeud et on ajoute un pas
                     Node::Ptr newNode = std::make_shared<Node>(currentNode);
                     newNode->path.addStep(succ);
 
+                    // On met à jour les coûts en ajoutant le coût de l'arc emprunté
                     for (std::size_t i = 0 ; i < nPlayers ; i++) {
                         newNode->state.epsilon[i] = w[i] + currentNode->state.epsilon[i];
                     }
