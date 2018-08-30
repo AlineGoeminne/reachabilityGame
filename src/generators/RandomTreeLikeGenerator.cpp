@@ -86,7 +86,7 @@ namespace generators {
 
             // On décide si le sommet est une cible 
             for (std::size_t j = 0 ; j < nPlayers ; j++) {
-                if (players[player].getGoals().size() < maximumTargets[j] && targetsDistributions[j](generator)) {
+                if (players[j].getGoals().size() < maximumTargets[j] && targetsDistributions[j](generator)) {
                     players[j].addGoal(vertices[i]);
                     vertices[i]->addTargetFor(j);
 
