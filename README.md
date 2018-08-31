@@ -12,7 +12,7 @@ Ce projet vise à avoir une idée des graphes intéressants pour la recherche d'
     - Les poids sur les arcs doivent être positifs.
     - L'exploration peut consommer beaucoup de mémoire.
     - Il n'y a pas de résultats sur le générateur de graphes fortement connexes.
-    - Vertex::Ptr permet touhours de modifier le sommet même dans des cas où la modification devrait être empếchée (manque de const-correctness).
+    - Vertex::Ptr permet touhours de modifier le sommet même dans des cas où la modification devrait être empếchée (manque de const-correctness). Il faut donc éviter d'employer les fonctions qui modifient les sommets !
   - Améliorations possibles :
     - Réussir à diminuer la consommation de mémoire.
       - Eviter de stocker les poids dans les successeurs et les prédecesseurs.

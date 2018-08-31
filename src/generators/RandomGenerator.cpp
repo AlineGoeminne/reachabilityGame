@@ -40,6 +40,9 @@ namespace generators {
         if (lowOutgoing > size || upOutgoing > size) {
             throw std::runtime_error("randomGenerator: les bornes sur le nombre de noeuds sortants ne peuvent pas dépasser le nombre de noeuds");
         }
+        if (minWeight > maxWeight) {
+            throw std::runtime_error("randomGenerator: le poids minimal doit être inférieur ou égal au poids maximal");
+        }
 
         // On crée les générateurs aléatoires qui seront utilisés
         std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());

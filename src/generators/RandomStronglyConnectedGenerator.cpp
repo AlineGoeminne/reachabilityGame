@@ -19,7 +19,7 @@ namespace generators {
 
     ReachabilityGame randomStronglyConnectedGenerator(std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers, const std::vector<double>& probaTargets, const std::vector<types::Long>& maximumTargets) {
         // On commence par générer un jeu
-        const ReachabilityGame game = randomGenerator(size, lowOutgoing, upOutgoing, maxWeight, minWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
+        const ReachabilityGame game = randomGenerator(size, lowOutgoing, upOutgoing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
 
         // Et on va modifier le graphe
         Graph graph = game.getGraph();
