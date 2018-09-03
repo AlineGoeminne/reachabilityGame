@@ -61,6 +61,9 @@ public:
 
     std::size_t getNumberPlayers() const;
 
+    /**
+     * \brief Recalcule les poids maximaux
+     */
     void updateMaxWeights();
 
 protected:

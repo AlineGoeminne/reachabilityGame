@@ -11,14 +11,15 @@ Ce projet vise à avoir une idée des graphes intéressants pour la recherche d'
   - Limites :
     - Les poids sur les arcs doivent être positifs.
     - L'exploration peut consommer beaucoup de mémoire.
-    - Il n'y a pas de résultats sur le générateur de graphes fortement connexes.
-    - Vertex::Ptr permet touhours de modifier le sommet même dans des cas où la modification devrait être empếchée (manque de const-correctness). Il faut donc éviter d'employer les fonctions qui modifient les sommets !
+    - Il n'y a pas d'exécutable pour les tests de performance sur le générateur de graphes fortement connexes.
+    - Vertex::Ptr permet toujours de modifier le sommet même dans des cas où la modification devrait être empêchée (manque de const-correctness). Il faut donc éviter d'employer les fonctions qui modifient les sommets !
   - Améliorations possibles :
     - Réussir à diminuer la consommation de mémoire.
       - Eviter de stocker les poids dans les successeurs et les prédecesseurs.
       - Réduire la consommation de mémoire de l'exploration, si possible.
     - Trouver une meilleure heuristique, si possible.
     - Permettre d'avoir des poids négatifs.
+    - Permettre de charger un jeu à partir d'un fichier afin d'éviter d'avoir à recompiler à chaque nouveau graphe.
 
 # Compiler et exécuter
 Il faut un compilateur C++ qui supporte le standard `C++17`, make et CMake. Une fois dans la racine du projet :
@@ -56,3 +57,10 @@ Pour exécuter les tests unitaires, il suffit de lancer `ReachabilityGame-tests`
 Il faut modifier les fichiers `naiveTests.cpp` et `treeTests.cpp` du dossier `performance` pour changer les paramètres à tester. Une limite de 10 secondes par jeu est fixé.
 
 La sortie produite (dans un fichier) devrait contenir le paramètre testé et les moyennes et médiannes des temps CPU obtenus ainsi que le nombre de fois que les 10 secondes ont été atteintes.
+
+# Crédits
+- Aline Goeminne
+- Gaëtan Staquet
+
+# License
+???
