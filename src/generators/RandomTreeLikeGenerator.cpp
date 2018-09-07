@@ -22,6 +22,15 @@ public:
 
     std::size_t m_depth;
 };
+
+bool equal(double a, double b) {
+    return std::abs(a - b) <= 1E-15;
+}
+
+bool lowerOrEqual(double a, double b) {
+    return a < b || equal(a, b);
+}
+
 namespace generators {
     ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, bool multipleWeights, std::size_t nPlayers, bool sharedTargets) {
         return randomTreeLikeGenerator(size, lowBranchingFactor, upBranchingFactor, probaSelf, probaSameDepth, probaSkipping, probaClimbing, 1, 1, multipleWeights, nPlayers, sharedTargets);
@@ -44,16 +53,39 @@ namespace generators {
 
     ReachabilityGame randomTreeLikeGenerator(std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector<double>& probaPlayers, const std::vector<double> &probaTargets, const std::vector<types::Long>& maximumTargets) {
         if (probaPlayers.size() != nPlayers || probaTargets.size() != nPlayers || maximumTargets.size() != nPlayers) {
-            throw std::runtime_error("randomGenerator: les tableaux de probabilité doivent arriver une taille identique au nombre de joueurs");
+            throw std::runtime_error("randomTreeLikeGenerator: les tableaux de probabilité doivent arriver une taille identique au nombre de joueurs");
         }
         if (lowBranchingFactor == 0 || lowBranchingFactor == 0) {
             throw std::runtime_error("randomTreeLikeGenerator: les bornes sur le facteur de branchement doivent être > 0");
         }
         if (lowBranchingFactor > upBranchingFactor) {
-            throw std::runtime_error("randomGenerator: la borne inférieure sur le facteur de branchement ne peut pas être supérieur à la borne supérieure");
+            throw std::runtime_error("randomTreeLikeGenerator: la borne inférieure sur le facteur de branchement ne peut pas être supérieur à la borne supérieure");
         }
         if (lowBranchingFactor > size || upBranchingFactor > size) {
-            throw std::runtime_error("randomGenerator: les bornes sur le facteur de branchement ne peuvent pas dépasser le nombre de noeuds");
+            throw std::runtime_error("randomTreeLikeGenerator: les bornes sur le facteur de branchement ne peuvent pas dépasser le nombre de noeuds");
+        }
+        if (minWeight > maxWeight) {
+            throw std::runtime_error("randomTreeLikeGenerator: le poids minimal doit être inférieur ou égal au poids maximal");
+        }
+        if (!equal(std::accumulate(probaPlayers.begin(), probaPlayers.end(), 0.), 1.)) {
+            throw std::runtime_error("randomTreeLikeGenerator: la somme des valeurs de probaPlayers doit être 1");
+        }
+        if (!(lowerOrEqual(0, probaSelf) && lowerOrEqual(probaSelf, 1))) {
+            throw std::runtime_error("randomTreeLikeGenerator: probaSelf doit être dans [0, 1]");
+        }
+        if (!(lowerOrEqual(0, probaSkipping) && lowerOrEqual(probaSkipping, 1))) {
+            throw std::runtime_error("randomTreeLikeGenerator: probaSkipping doit être dans [0, 1]");
+        }
+        if (!(lowerOrEqual(0, probaClimbing) && lowerOrEqual(probaClimbing, 1))) {
+            throw std::runtime_error("randomTreeLikeGenerator: probaClimbing doit être dans [0, 1]");
+        }
+        if (!(lowerOrEqual(0, probaSameDepth) && lowerOrEqual(probaSameDepth, 1))) {
+            throw std::runtime_error("randomTreeLikeGenerator: probaSameDepth doit être dans [0, 1]");
+        }
+        for (double d : probaTargets) {
+            if (!(lowerOrEqual(0, d) && lowerOrEqual(d, 1))) {
+                throw std::runtime_error("randomTreeLikeGenerator: les probabilités dans probaTargets doivent être dans [0, 1]");
+            }
         }
 
         // On crée les générateurs aléatoires qui seront utilisés

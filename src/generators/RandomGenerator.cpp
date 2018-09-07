@@ -2,6 +2,7 @@
 
 #include <random>
 #include <chrono>
+#include <cmath>
 
 #include "generators/GenerateWeights.hpp"
 
@@ -42,6 +43,9 @@ namespace generators {
         }
         if (minWeight > maxWeight) {
             throw std::runtime_error("randomGenerator: le poids minimal doit être inférieur ou égal au poids maximal");
+        }
+        if (std::abs(std::accumulate(probaPlayers.begin(), probaPlayers.end(), 0.) - 1.) > 1E-15) {
+            throw std::runtime_error("randomGenerator: la somme des valeurs de probaPlayers doit être 1.");
         }
 
         // On crée les générateurs aléatoires qui seront utilisés

@@ -28,7 +28,11 @@ namespace generators {
     /**
      * \brief Génère aléatoirement un jeu d'atteignabilité sur graphe fortement connexe.
      * 
+     * La précision sur les contraintes sur les paramètres est 1E-15.
+     * 
      * Le noeud initial est toujours v0.
+     * 
+     * Les poids peuvent être négatifs.
      * 
      * S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.
      * 

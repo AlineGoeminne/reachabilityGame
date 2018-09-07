@@ -22,7 +22,7 @@ Ce projet vise à avoir une idée des graphes intéressants pour la recherche d'
     - Permettre de charger un jeu à partir d'un fichier afin d'éviter d'avoir à recompiler à chaque nouveau graphe.
 
 # Compiler et exécuter
-Il faut un compilateur C++ qui supporte le standard `C++17`, make et CMake. Une fois dans la racine du projet :
+Il faut CMake et un compilateur C++ qui supporte le standard `C++17`. Selon le compilateur, `make` peut être nécessaire. Une fois dans la racine du projet :
   1. Créer un dossier `build`
   2. Rentrer dans le dossier `build`
   3. Lancer CMake
@@ -44,8 +44,8 @@ Il faut un compilateur C++ qui supporte le standard `C++17`, make et CMake. Une 
       - En ligne de commandes : `cmake -DBUILD_DOC=TRUE ..`
       - En cochant la case dans l'interface graphique
       - Via votre IDE favori
-  5. Exécuter make
-    - En ligne de commandes : `make`
+  5. Compiler le code
+    - En ligne de commandes (sous Linux) : `make`
     - Via votre IDE favori
   6. Pour générer la documentation : `make documentation`
 

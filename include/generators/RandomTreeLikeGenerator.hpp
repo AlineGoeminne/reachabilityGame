@@ -11,6 +11,8 @@ namespace generators {
      * 
      * Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.
      * 
+     * La précision sur les contraintes sur les paramètres est 1E-15.
+     * 
      * Le noeud initial est toujours v0.
      * 
      * Les poids des arcs sont toujours 1.
@@ -43,7 +45,11 @@ namespace generators {
      * 
      * Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.
      * 
+     * La précision sur les contraintes sur les paramètres est 1E-15.
+     * 
      * Le noeud initial est toujours v0.
+     * 
+     * Les poids peuvent être négatifs.
      * 
      * S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.
      * 
@@ -73,9 +79,13 @@ namespace generators {
      * 
      * Sur une idée originale de Thomas Brihaye.
      * 
+     * La précision sur les contraintes sur les paramètres est 1E-15.
+     * 
      * Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.
      * 
      * Le noeud initial est toujours v0.
+     * 
+     * Les poids peuvent être négatifs.
      * 
      * S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.
      * 
@@ -104,9 +114,13 @@ namespace generators {
      * 
      * Sur une idée originale de Thomas Brihaye.
      * 
+     * La précision sur les contraintes sur les paramètres est 1E-15.
+     * 
      * Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.
      * 
      * Le noeud initial est toujours v0.
+     * 
+     * Les poids peuvent être négatifs.
      * 
      * S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.
      * 
@@ -133,9 +147,13 @@ namespace generators {
      * 
      * Sur une idée originale de Thomas Brihaye.
      * 
+     * La précision sur les contraintes sur les paramètres est 1E-15.
+     * 
      * Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.
      * 
      * Le noeud initial est toujours v0.
+     * 
+     * Les poids peuvent être négatifs.
      * 
      * S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.
      * 

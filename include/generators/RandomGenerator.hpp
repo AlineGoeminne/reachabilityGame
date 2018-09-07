@@ -37,6 +37,8 @@ namespace generators {
      * 
      * Le noeud initial est toujours v0.
      * 
+     * Les poids peuvent être négatifs.
+     * 
      * Pour chaque joueur, la probabilité qu'un sommet lui appartienne est 1/nPlayers.
      * 
      * Pour chaque joueur, la probabilité qu'un sommet soit une cible pour lui est 0.1.
@@ -59,7 +61,11 @@ namespace generators {
     /**
      * \brief Génère aléatoirement un jeu d'atteignabilité.
      * 
+     * La précision sur les contraintes sur les paramètres est 1E-15.
+     * 
      * Le noeud initial est toujours v0.
+     * 
+     * Les poids peuvent être négatifs.
      * 
      * Pour chaque joueur, la probabilité qu'un sommet soit une cible pour lui est 0.1.
      * 
@@ -82,7 +88,11 @@ namespace generators {
     /**
      * \brief Génère aléatoirement un jeu d'atteignabilité.
      * 
+     * La précision sur les contraintes sur les paramètres est 1E-15.
+     * 
      * Le noeud initial est toujours v0.
+     * 
+     * Les poids peuvent être négatifs.
      * 
      * Il n'y a pas de limites sur le nombre de cibles par joueur.
      * 
@@ -104,7 +114,11 @@ namespace generators {
     /**
      * \brief Génère aléatoirement un jeu d'atteignabilité.
      * 
+     * La précision sur les contraintes sur les paramètres est 1E-20.
+     * 
      * Le noeud initial est toujours v0.
+     * 
+     * Les poids peuvent être négatifs.
      * 
      * S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.
      * 
