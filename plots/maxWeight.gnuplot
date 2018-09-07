@@ -15,12 +15,9 @@ set y2label "pourcentage de timeouts"
 
 set style data linespoints
 
-f(x) = x
-
-plot 'naiveMaxWeights.data' using 1:2 title "Moyennes des temps d'exécution - C++ - générateur naïf" axes x1y1,\
+plot 'naiveMaxWeight.data' using 1:2 title "Moyennes des temps d'exécution - C++ - générateur naïf" axes x1y1,\
     "" using 1:3 title "Médiannes des temps d'exécution - C++ - générateur naïf" axes x1y1,\
     "" using 1:($4/10) title "Pourcentage de timeouts - C++ - générateur naïf" axes x1y2 with points pointsize 2,\
     "treeMaxWeight.data" using 1:2 title "Moyenne des temps d'exécution - C++ - générateur arbre" axes x1y1,\
     "" using 1:3 title "Médiannes des temps d'exécution - C++ - générateur arbre" axes x1y1,\
-    "" using 1:($4/10) title "Pourcentage de timeouts - C++ - générateur arbre" axes x1y2 with points pointsize 2,
-    f(x)
+    "" using 1:($4/10) title "Pourcentage de timeouts - C++ - générateur arbre" axes x1y2 with points pointsize 2

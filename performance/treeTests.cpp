@@ -15,7 +15,7 @@ using namespace std::placeholders;
 int main()
 {
     std::size_t nGenerations = 1000;
-    std::ofstream tree("../plots/treePlayersSize.data", std::ofstream::app);
+    std::ofstream tree("../plots/treePlayersSize.data");
 
     std::size_t size = 20;
     long minWeight = 1;
@@ -33,12 +33,12 @@ int main()
 
     tree << std::boolalpha << "# size=" << size << "; branchingFactor in [" << lowBranchingFactor << ", " << upBranchingFactor << "]; probaSelf=" << probaSelf << "; probaSameDetph=" << probaSameDepth << "; probaSkipping=" << probaSkipping << "; probaClimbing=" << probaClimbing << "; weights in [" << minWeight << ", " << maxWeight << "]; mutlipleWeight=" << multipleWeights << "; nPlayers=" << nPlayers << "; sharedTargets=" << sharedTargets << "; probaPlayers=1/nPlayers; probaTargets=0.1; maximumTargets=infinity;\n";
 
-    for (nPlayers = 2 ; nPlayers < 21 ; nPlayers++) {
-        std::vector<double> probaPlayers(nPlayers, 1./nPlayers);
-        std::vector<double> probaTargets(nPlayers, 0.1);
-        std::vector<Long> maximumTargets(nPlayers, Long::infinity);
+    for (nPlayers = 2 ; nPlayers <= 10 ; nPlayers++) {
+        for (size = 5 ; size <= 30 ; size++) {
+            std::vector<double> probaPlayers(nPlayers, 1./nPlayers);
+            std::vector<double> probaTargets(nPlayers, 0.1);
+            std::vector<Long> maximumTargets(nPlayers, Long::infinity);
 
-        for (size = 5 ; size < 31 ; size++) {
             std::vector<std::clock_t> timesTree(nGenerations, 0);
             std::size_t nTimeOut = 0;
 

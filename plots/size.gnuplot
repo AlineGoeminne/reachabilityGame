@@ -15,8 +15,6 @@ set y2label "pourcentage de timeouts"
 
 set style data linespoints
 
-f(x) = x
-
 plot 'naiveSize.data' using 1:2 title "Moyennes des temps d'exécution - C++ - générateur naïf" axes x1y1,\
     "" using 1:3 title "Médiannes des temps d'exécution - C++ - générateur naïf" axes x1y1,\
     "" using 1:($4/10) title "Pourcentage de timeouts - C++ - générateur naïf" axes x1y2 with points pointsize 2,\
@@ -24,6 +22,4 @@ plot 'naiveSize.data' using 1:2 title "Moyennes des temps d'exécution - C++ - g
     "" using 1:3 title "Médiannes des temps d'exécution - C++ - générateur arbre" axes x1y1,\
     "" using 1:($4/10) title "Pourcentage de timeouts - C++ - générateur arbre" axes x1y2 with points pointsize 2,\
     "sizePython.data" using 1:($2*1000) title "Moyenne des temps d'exécution - Python" axes x1y1,\
-    "" using 1:($3*1000) title "Médiannes des temps d'exécution - Python" axes x1y1,\
-    f(x) title "Fonction linéaire",\
-    log(x) title "Fonction log"
+    "" using 1:($3*1000) title "Médiannes des temps d'exécution - Python" axes x1y1

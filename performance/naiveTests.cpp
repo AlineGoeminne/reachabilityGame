@@ -14,7 +14,7 @@ using namespace types;
 int main()
 {
     std::size_t nGenerations = 1000;
-    std::ofstream naive("../plots/naiveSize.data");
+    std::ofstream naive("../plots/naivePlayersSize.data");
 
     std::size_t size = 20;
     std::size_t lowOutgoing = 1;
@@ -27,38 +27,40 @@ int main()
 
     naive << std::boolalpha << "# size=" << size << "; outgoing in [" << lowOutgoing << ", " << upOutgoing << "]; weights in [" << minWeight << ", " << maxWeight << "]; mutlipleWeight=" << multipleWeights << "; nPlayers=" << nPlayers << "; sharedTargets=" << sharedTargets << "; probaPlayers=1/nPlayers; probaTargets=0.1; maximumTargets=infinity\n";
 
-    for (size = 5 ; size <= 50 ; size++) {
-        std::vector<double> probaPlayers(nPlayers, 1./nPlayers);
-        std::vector<double> probaTargets(nPlayers, 0.1);
-        std::vector<Long> maximumTargets(nPlayers, Long::infinity);
+    for (nPlayers = 2 ; nPlayers <= 10 ; nPlayers++) {
+        for (size = 5 ; size <= 30 ; size++) {
+            std::vector<double> probaPlayers(nPlayers, 1./nPlayers);
+            std::vector<double> probaTargets(nPlayers, 0.1);
+            std::vector<Long> maximumTargets(nPlayers, Long::infinity);
 
-        std::vector<std::clock_t> timesNaive(nGenerations, 0);
+            std::vector<std::clock_t> timesNaive(nGenerations, 0);
 
-        std::size_t nTimeOut = 0;
+            std::size_t nTimeOut = 0;
 
-        for (std::size_t i = 0 ; i < nGenerations ; i++) {
-            std::cout << "GENERATION " << i << '\n';
-            ReachabilityGame game = generators::randomGenerator(size, lowOutgoing, upOutgoing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
+            for (std::size_t i = 0 ; i < nGenerations ; i++) {
+                std::cout << "GENERATION " << i << '\n';
+                ReachabilityGame game = generators::randomGenerator(size, lowOutgoing, upOutgoing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
 
-            while (game.percentageOfReachableVertices() < 70) {
-                game = generators::randomGenerator(size, lowOutgoing, upOutgoing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
+                while (game.percentageOfReachableVertices() < 70) {
+                    game = generators::randomGenerator(size, lowOutgoing, upOutgoing, minWeight, maxWeight, multipleWeights, nPlayers, sharedTargets, probaPlayers, probaTargets, maximumTargets);
+                }
+
+                try {
+                    timesNaive[i] = execute(game);
+                }
+                catch(std::runtime_error &e) {
+                    timesNaive[i] = 10;
+                    nTimeOut++;
+                }
             }
 
-            try {
-                timesNaive[i] = execute(game);
-            }
-            catch(std::runtime_error &e) {
-                timesNaive[i] = 10;
-                nTimeOut++;
-            }
+            double meanNaive, medianNaive;
+            std::tie(meanNaive, medianNaive) = values(timesNaive);
+
+            std::cout << nPlayers << ' ' << size << '\n';
+            naive << nPlayers << '\t' << size << '\t' << meanNaive << '\t' << medianNaive << '\t' << nTimeOut << '\n';
+            naive.flush();
         }
-
-        double meanNaive, medianNaive;
-        std::tie(meanNaive, medianNaive) = values(timesNaive);
-
-        std::cout << size << '\n';
-        naive << size << '\t' << meanNaive << '\t' << medianNaive << '\t' << nTimeOut << '\n';
-        naive.flush();
     }
 
     naive.close();
