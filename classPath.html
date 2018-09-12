@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Reachability Game: Référence de la classe Path</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Reachability Game
+   </div>
+   <div id="projectbrief">Calcule l&#39;équilibre de Nash le plus pertinent pour un jeu d&#39;atteignabilité quantitatif</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Types publics</a> &#124;
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#friends">Amis</a> &#124;
+<a href="classPath-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la classe Path<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Représente un chemin dans le graphe (ou une histoire dans un jeu)  
+ <a href="classPath.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Path_8hpp_source.html">Path.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Types publics</h2></td></tr>
+<tr class="memitem:afd4dbe6c2d225375bcef63149566d4be"><td class="memItemLeft" align="right" valign="top">typedef std::unordered_map&lt; unsigned int, std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#afd4dbe6c2d225375bcef63149566d4be">Coalitions</a></td></tr>
+<tr class="separator:afd4dbe6c2d225375bcef63149566d4be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a9b6af368dbfee8c907426d9d29f14505"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#a9b6af368dbfee8c907426d9d29f14505">Path</a> (const <a class="el" href="classReachabilityGame.html">ReachabilityGame</a> &amp;game, std::shared_ptr&lt; const <a class="el" href="classVertex.html">Vertex</a> &gt; start)</td></tr>
+<tr class="separator:a9b6af368dbfee8c907426d9d29f14505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad23565e44abd78707469298a713062b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#ad23565e44abd78707469298a713062b5">Path</a> (const <a class="el" href="classReachabilityGame.html">ReachabilityGame</a> &amp;game, std::vector&lt; std::shared_ptr&lt; const <a class="el" href="classVertex.html">Vertex</a> &gt;&gt; steps)</td></tr>
+<tr class="separator:ad23565e44abd78707469298a713062b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeece1c6b81013ab37e2e7ae2d5f991ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#aeece1c6b81013ab37e2e7ae2d5f991ed">Path</a> (const <a class="el" href="classPath.html">Path</a> &amp;path)</td></tr>
+<tr class="separator:aeece1c6b81013ab37e2e7ae2d5f991ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0df2a36dce2aaab78570c88feae2b9eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#a0df2a36dce2aaab78570c88feae2b9eb">addStep</a> (std::shared_ptr&lt; const <a class="el" href="classVertex.html">Vertex</a> &gt; step)</td></tr>
+<tr class="memdesc:a0df2a36dce2aaab78570c88feae2b9eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un pas au chemin.  <a href="#a0df2a36dce2aaab78570c88feae2b9eb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0df2a36dce2aaab78570c88feae2b9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a677d0d7aa5dc0f95b6d6a8254ed45898"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::pair&lt; bool, <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#a677d0d7aa5dc0f95b6d6a8254ed45898">getCosts</a> () const</td></tr>
+<tr class="memdesc:a677d0d7aa5dc0f95b6d6a8254ed45898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pour chaque joueur, indique si le joueur a déjà atteint une cible et son coût actuel.  <a href="#a677d0d7aa5dc0f95b6d6a8254ed45898">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a677d0d7aa5dc0f95b6d6a8254ed45898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afef7ad017875b86b13d221126c4e10f1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#afef7ad017875b86b13d221126c4e10f1">isANashEquilibrium</a> (std::unordered_set&lt; unsigned int &gt; playersAlreadyTested={}) const</td></tr>
+<tr class="memdesc:afef7ad017875b86b13d221126c4e10f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indique si le chemin est un équilibre de Nash.  <a href="#afef7ad017875b86b13d221126c4e10f1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:afef7ad017875b86b13d221126c4e10f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4fd9141cc660f0b703ed0f4bd90e805"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#ad4fd9141cc660f0b703ed0f4bd90e805">size</a> () const</td></tr>
+<tr class="separator:ad4fd9141cc660f0b703ed0f4bd90e805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab03a3a2cb2a88d92df679d54d240e7ee"><td class="memItemLeft" align="right" valign="top">const std::shared_ptr&lt; const <a class="el" href="classVertex.html">Vertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#ab03a3a2cb2a88d92df679d54d240e7ee">getLast</a> () const</td></tr>
+<tr class="separator:ab03a3a2cb2a88d92df679d54d240e7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Amis</h2></td></tr>
+<tr class="memitem:a30c93fb5000eed1d3da891f5a7dcb519"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#a30c93fb5000eed1d3da891f5a7dcb519">operator==</a> (const <a class="el" href="classPath.html">Path</a> &amp;a, const <a class="el" href="classPath.html">Path</a> &amp;b)</td></tr>
+<tr class="separator:a30c93fb5000eed1d3da891f5a7dcb519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03b5a6336f37b6fdbb6619f07c888c75"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPath.html#a03b5a6336f37b6fdbb6619f07c888c75">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classPath.html">Path</a> &amp;a)</td></tr>
+<tr class="separator:a03b5a6336f37b6fdbb6619f07c888c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Représente un chemin dans le graphe (ou une histoire dans un jeu) </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8hpp_source.html#l00046">46</a> du fichier <a class="el" href="Path_8hpp_source.html">Path.hpp</a>.</p>
+</div><h2 class="groupheader">Documentation des définitions de type membres</h2>
+<a id="afd4dbe6c2d225375bcef63149566d4be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd4dbe6c2d225375bcef63149566d4be">&#9670;&nbsp;</a></span>Coalitions</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::unordered_map&lt;unsigned int, std::vector&lt;<a class="el" href="classtypes_1_1Long.html">types::Long</a>&gt; &gt; <a class="el" href="classPath.html#afd4dbe6c2d225375bcef63149566d4be">Path::Coalitions</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8hpp_source.html#l00048">48</a> du fichier <a class="el" href="Path_8hpp_source.html">Path.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="a9b6af368dbfee8c907426d9d29f14505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b6af368dbfee8c907426d9d29f14505">&#9670;&nbsp;</a></span>Path() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Path::Path </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classReachabilityGame.html">ReachabilityGame</a> &amp;&#160;</td>
+          <td class="paramname"><em>game</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; const <a class="el" href="classVertex.html">Vertex</a> &gt;&#160;</td>
+          <td class="paramname"><em>start</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00026">26</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad23565e44abd78707469298a713062b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad23565e44abd78707469298a713062b5">&#9670;&nbsp;</a></span>Path() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Path::Path </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classReachabilityGame.html">ReachabilityGame</a> &amp;&#160;</td>
+          <td class="paramname"><em>game</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::shared_ptr&lt; const <a class="el" href="classVertex.html">Vertex</a> &gt;&gt;&#160;</td>
+          <td class="paramname"><em>steps</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00036">36</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aeece1c6b81013ab37e2e7ae2d5f991ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeece1c6b81013ab37e2e7ae2d5f991ed">&#9670;&nbsp;</a></span>Path() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Path::Path </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPath.html">Path</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00044">44</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a0df2a36dce2aaab78570c88feae2b9eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0df2a36dce2aaab78570c88feae2b9eb">&#9670;&nbsp;</a></span>addStep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Path::addStep </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; const <a class="el" href="classVertex.html">Vertex</a> &gt;&#160;</td>
+          <td class="paramname"><em>step</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ajoute un pas au chemin. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">step</td><td>Le pas </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00052">52</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a677d0d7aa5dc0f95b6d6a8254ed45898"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a677d0d7aa5dc0f95b6d6a8254ed45898">&#9670;&nbsp;</a></span>getCosts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; std::pair&lt; bool, <a class="el" href="classtypes_1_1Long.html">Long</a> &gt; &gt; &amp; Path::getCosts </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pour chaque joueur, indique si le joueur a déjà atteint une cible et son coût actuel. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Un tableau de paires (bool, Long) </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00076">76</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab03a3a2cb2a88d92df679d54d240e7ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab03a3a2cb2a88d92df679d54d240e7ee">&#9670;&nbsp;</a></span>getLast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::shared_ptr&lt; const <a class="el" href="classVertex.html">Vertex</a> &gt; Path::getLast </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00139">139</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<a id="afef7ad017875b86b13d221126c4e10f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afef7ad017875b86b13d221126c4e10f1">&#9670;&nbsp;</a></span>isANashEquilibrium()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Path::isANashEquilibrium </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_set&lt; unsigned int &gt;&#160;</td>
+          <td class="paramname"><em>playersAlreadyTested</em> = <code>{}</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indique si le chemin est un équilibre de Nash. </p>
+<p>Les joueurs qui sont donnés en entrée sont ignorés. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playersAlreadyTested</td><td>L'ensemble des joueurs à ignorer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Vrai ssi le chemin est un équilibre de Nash </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00080">80</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad4fd9141cc660f0b703ed0f4bd90e805"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4fd9141cc660f0b703ed0f4bd90e805">&#9670;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t Path::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Renvoie</dt><dd>La longueur du chemin </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00135">135</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions amies et associées</h2>
+<a id="a03b5a6336f37b6fdbb6619f07c888c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03b5a6336f37b6fdbb6619f07c888c75">&#9670;&nbsp;</a></span>operator<<</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classPath.html">Path</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00168">168</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a30c93fb5000eed1d3da891f5a7dcb519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30c93fb5000eed1d3da891f5a7dcb519">&#9670;&nbsp;</a></span>operator==</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPath.html">Path</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classPath.html">Path</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="Path_8cpp_source.html#l00147">147</a> du fichier <a class="el" href="Path_8cpp_source.html">Path.cpp</a>.</p>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
+<li>include/<a class="el" href="Path_8hpp_source.html">Path.hpp</a></li>
+<li>src/<a class="el" href="Path_8cpp_source.html">Path.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

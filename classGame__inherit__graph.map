@@ -1,0 +1,4 @@
+<map id="Game" name="Game">
+<area shape="rect" id="node2" href="$classMinMaxGame.html" title="Représente un jeu Min&#45;Max. " alt="" coords="5,80,108,107"/>
+<area shape="rect" id="node3" href="$classReachabilityGame.html" title="Un jeu d&#39;atteignabilité " alt="" coords="132,80,261,107"/>
+</map>

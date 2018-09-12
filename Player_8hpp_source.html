@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Reachability Game:  Fichier source de include/Player.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Reachability Game
+   </div>
+   <div id="projectbrief">Calcule l&#39;équilibre de Nash le plus pertinent pour un jeu d&#39;atteignabilité quantitatif</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Player.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Player_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * ReachabilityGame - a program to compute the best Nash equilibrium in reachability games</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Copyright (C) 2018 Gaëtan Staquet and Aline Goeminne</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This program is free software: you can redistribute it and/or modify</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * it under the terms of the GNU General Public License as published by</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * the Free Software Foundation, either version 3 of the License, or</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * (at your option) any later version.</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * </span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * This program is distributed in the hope that it will be useful,</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * GNU General Public License for more details.</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * </span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*/</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;unordered_set&gt;</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Vertex_8hpp.html">Vertex.hpp</a>&quot;</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classPlayer.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPlayer.html">Player</a> {</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="classPlayer.html#a5f2eefe8b13f2617d6a0f2b0ab5fddbe">Player</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classPlayer.html#a5f2eefe8b13f2617d6a0f2b0ab5fddbe">Player</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keyword">const</span> std::unordered_set&lt;Vertex::Ptr&gt;&amp; vertices, <span class="keyword">const</span> std::unordered_set&lt;Vertex::Ptr&gt;&amp; goals);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classPlayer.html#a749d2c00e1fe0f5c2746f7505a58c062">~Player</a>();</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPlayer.html#af875f797dfa50b4e1ff0220f179c9d61">addVertex</a>(<a class="code" href="classVertex.html#af4f195f30fcd428a8990ef73f2fb94ca">Vertex::Ptr</a> vertex);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">const</span> std::unordered_set&lt;Vertex::Ptr&gt;&amp; <a class="code" href="classPlayer.html#a5624dbfe96aa14fcd52e70af990ebc7d">getVertices</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPlayer.html#a44e0390777ef73f06938d65e72882d34">addGoal</a>(<a class="code" href="classVertex.html#af4f195f30fcd428a8990ef73f2fb94ca">Vertex::Ptr</a> vertex);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">const</span> std::unordered_set&lt;Vertex::Ptr&gt;&amp; <a class="code" href="classPlayer.html#a953d9809d130a7dba2130fd2a4ea8a22">getGoals</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_id;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::unordered_set&lt;Vertex::Ptr&gt; m_vertices;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::unordered_set&lt;Vertex::Ptr&gt; m_goals;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div><div class="ttc" id="classVertex_html_af4f195f30fcd428a8990ef73f2fb94ca"><div class="ttname"><a href="classVertex.html#af4f195f30fcd428a8990ef73f2fb94ca">Vertex::Ptr</a></div><div class="ttdeci">std::shared_ptr&lt; Vertex &gt; Ptr</div><div class="ttdoc">Le pointeur à utiliser sur un noeud. </div><div class="ttdef"><b>Definition:</b> <a href="Vertex_8hpp_source.html#l00039">Vertex.hpp:39</a></div></div>
+<div class="ttc" id="classPlayer_html_a5624dbfe96aa14fcd52e70af990ebc7d"><div class="ttname"><a href="classPlayer.html#a5624dbfe96aa14fcd52e70af990ebc7d">Player::getVertices</a></div><div class="ttdeci">const std::unordered_set&lt; Vertex::Ptr &gt; &amp; getVertices() const</div><div class="ttdoc">Donne l&amp;#39;ensemble des sommets appartenant à ce joueur. </div><div class="ttdef"><b>Definition:</b> <a href="Player_8cpp_source.html#l00043">Player.cpp:43</a></div></div>
+<div class="ttc" id="Vertex_8hpp_html"><div class="ttname"><a href="Vertex_8hpp.html">Vertex.hpp</a></div></div>
+<div class="ttc" id="classPlayer_html_a953d9809d130a7dba2130fd2a4ea8a22"><div class="ttname"><a href="classPlayer.html#a953d9809d130a7dba2130fd2a4ea8a22">Player::getGoals</a></div><div class="ttdeci">const std::unordered_set&lt; Vertex::Ptr &gt; &amp; getGoals() const</div><div class="ttdoc">Donne l&amp;#39;ensemble des cibles appartenant à ce joueur. </div><div class="ttdef"><b>Definition:</b> <a href="Player_8cpp_source.html#l00052">Player.cpp:52</a></div></div>
+<div class="ttc" id="classPlayer_html_a5f2eefe8b13f2617d6a0f2b0ab5fddbe"><div class="ttname"><a href="classPlayer.html#a5f2eefe8b13f2617d6a0f2b0ab5fddbe">Player::Player</a></div><div class="ttdeci">Player(unsigned int id)</div><div class="ttdef"><b>Definition:</b> <a href="Player_8cpp_source.html#l00021">Player.cpp:21</a></div></div>
+<div class="ttc" id="classPlayer_html_af875f797dfa50b4e1ff0220f179c9d61"><div class="ttname"><a href="classPlayer.html#af875f797dfa50b4e1ff0220f179c9d61">Player::addVertex</a></div><div class="ttdeci">void addVertex(Vertex::Ptr vertex)</div><div class="ttdoc">Ajoute un sommet appartenant au joueur. </div><div class="ttdef"><b>Definition:</b> <a href="Player_8cpp_source.html#l00039">Player.cpp:39</a></div></div>
+<div class="ttc" id="classPlayer_html_a44e0390777ef73f06938d65e72882d34"><div class="ttname"><a href="classPlayer.html#a44e0390777ef73f06938d65e72882d34">Player::addGoal</a></div><div class="ttdeci">void addGoal(Vertex::Ptr vertex)</div><div class="ttdoc">Ajoute un goal appartenant au joueur. </div><div class="ttdef"><b>Definition:</b> <a href="Player_8cpp_source.html#l00047">Player.cpp:47</a></div></div>
+<div class="ttc" id="classPlayer_html_a749d2c00e1fe0f5c2746f7505a58c062"><div class="ttname"><a href="classPlayer.html#a749d2c00e1fe0f5c2746f7505a58c062">Player::~Player</a></div><div class="ttdeci">~Player()</div><div class="ttdef"><b>Definition:</b> <a href="Player_8cpp_source.html#l00035">Player.cpp:35</a></div></div>
+<div class="ttc" id="classPlayer_html"><div class="ttname"><a href="classPlayer.html">Player</a></div><div class="ttdoc">Décrit un joueur. </div><div class="ttdef"><b>Definition:</b> <a href="Player_8hpp_source.html#l00027">Player.hpp:27</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

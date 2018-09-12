@@ -1,0 +1,5 @@
+<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
+<area shape="rect" id="node1" href="$classGame.html" title="La base des jeux. " alt="" coords="5,31,63,57"/>
+<area shape="rect" id="node2" href="$classMinMaxGame.html" title="Représente un jeu Min&#45;Max. " alt="" coords="124,5,227,32"/>
+<area shape="rect" id="node3" href="$classReachabilityGame.html" title="Un jeu d&#39;atteignabilité " alt="" coords="111,56,240,83"/>
+</map>

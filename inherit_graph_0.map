@@ -1,0 +1,7 @@
+<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
+<area shape="rect" id="node2" href="$classexploration_1_1EmptyFrontier.html" title="Erreur à lancer quand la frontière d&#39;exploration est vide. " alt="" coords="159,5,334,32"/>
+<area shape="rect" id="node3" href="$classexploration_1_1NoENGenerated.html" title="Erreur à lancer quand aucun équilibre de nash n&#39;a été généré " alt="" coords="152,56,341,83"/>
+<area shape="rect" id="node4" href="$classexploration_1_1OutOfTime.html" title="Erreur à lancer quand l&#39;exploration atteint la limite de temps. " alt="" coords="168,107,325,133"/>
+<area shape="rect" id="node5" href="$classInvalidPath.html" title="L&#39;exception à lancer si le chemin construit est invalide. " alt="" coords="203,157,290,184"/>
+<area shape="rect" id="node6" href="$classtypes_1_1InfinityError.html" title="Erreur à lancer quand un calcul avec les infinis n&#39;est pas possible. " alt="" coords="182,208,311,235"/>
+</map>

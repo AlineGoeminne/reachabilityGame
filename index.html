@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Reachability Game: Présentation</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Reachability Game
+   </div>
+   <div id="projectbrief">Calcule l&#39;équilibre de Nash le plus pertinent pour un jeu d&#39;atteignabilité quantitatif</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Présentation </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Ce projet vise à avoir une idée des graphes intéressants pour la recherche d'équilibres de Nash dans des jeux d'atteignabilité sur graphe.</p>
+<ul>
+<li>Algorithmes implémentés :<ul>
+<li>DijkstraMinMax</li>
+<li>Exploration avec A*</li>
+</ul>
+</li>
+<li>Générateurs aléatoires implémentés :<ul>
+<li>Un générateur "naïf" qui génère des graphes sans contraintes sur la forme;</li>
+<li>Un générateur "arbre" qui génère au départ un arbre et qui le modifie selon les paramètres et les contraintes des jeux d'atteignabilité;</li>
+<li>Un générateur de graphes fortement connexes.</li>
+</ul>
+</li>
+<li>Limites :<ul>
+<li>Les poids sur les arcs doivent être positifs.</li>
+<li>L'exploration peut consommer beaucoup de mémoire.</li>
+<li>Il n'y a pas d'exécutable pour les tests de performance sur le générateur de graphes fortement connexes.</li>
+<li><a class="el" href="classVertex.html#af4f195f30fcd428a8990ef73f2fb94ca" title="Le pointeur à utiliser sur un noeud. ">Vertex::Ptr</a> permet toujours de modifier le sommet même dans des cas où la modification devrait être empêchée (manque de const-correctness). Il faut donc éviter d'employer les fonctions qui modifient les sommets !</li>
+</ul>
+</li>
+<li>Améliorations possibles :<ul>
+<li>Réussir à diminuer la consommation de mémoire.<ul>
+<li>Eviter de stocker les poids dans les successeurs et les prédecesseurs.</li>
+<li>Réduire la consommation de mémoire de l'exploration, si possible.</li>
+</ul>
+</li>
+<li>Trouver une meilleure heuristique, si possible.</li>
+<li>Permettre d'avoir des poids négatifs.</li>
+<li>Permettre de charger un jeu à partir d'un fichier afin d'éviter d'avoir à recompiler à chaque nouveau graphe.</li>
+</ul>
+</li>
+</ul>
+<h1>Compiler et exécuter</h1>
+<p>Il faut CMake et un compilateur C++ qui supporte le standard <code>C++17</code>. Selon le compilateur, <code>make</code> peut être nécessaire. Une fois dans la racine du projet :</p><ol type="1">
+<li>Créer un dossier <code>build</code></li>
+<li>Rentrer dans le dossier <code>build</code></li>
+<li>Lancer CMake<ul>
+<li>En ligne de commandes : <code>cmake ..</code></li>
+<li>Via CMake-gui et remplissez les champs :<ul>
+<li>"Where is the source code" : le chemin vers la racine du projet</li>
+<li>"Where to build the binaries" : le chemin vers le fichier <code>build</code></li>
+</ul>
+</li>
+<li>Via votre IDE favori</li>
+</ul>
+</li>
+<li>Configurer CMake<ul>
+<li>Pour constuire les tests unitaires, activez <code>BUILD_TESTS</code><ul>
+<li>En ligne de commandes : <code>cmake -DBUILD_TESTS=TRUE ..</code></li>
+<li>En cochant la case dans l'interface graphique</li>
+<li>Via votre IDE favori</li>
+</ul>
+</li>
+<li>Pour construire les tests de performance, activez <code>BUILD_PERFORMANCE</code><ul>
+<li>En ligne de commandes : <code>cmake -DBUILD_PERFORMANCE=TRUE ..</code></li>
+<li>En cochant la case dans l'interface graphique</li>
+<li>Via votre IDE favori</li>
+</ul>
+</li>
+<li>Pour construire la documentation, activez <code>BUILD_DOC</code><ul>
+<li>En ligne de commandes : <code>cmake -DBUILD_DOC=TRUE ..</code></li>
+<li>En cochant la case dans l'interface graphique</li>
+<li>Via votre IDE favori</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Compiler le code<ul>
+<li>En ligne de commandes (sous Linux) : <code>make</code></li>
+<li>Via votre IDE favori</li>
+</ul>
+</li>
+<li>Pour générer la documentation : <code>make documentation</code></li>
+</ol>
+<p>Les programmes seront générés dans le dossier <code>build</code> et les sous-dossiers <code>tests</code> et <code>performance</code> tandis que la documentation sera générée dans le dossier <code>documentation</code> à la racine du projet.</p>
+<p>Pour exécuter les tests unitaires, il suffit de lancer <code>ReachabilityGame-tests</code> dans le dossier <code>tests</code>. Pour exécuter les tests de performance, il suffit de lancer, dans le dossier <code>performance</code>, <code>ReachabilityGame-perf-naive</code> pour le générateur naïf et <code>ReachabilityGame-perf-tree</code> pour le générateur d'arbre.</p>
+<h2>Résultats de performance</h2>
+<p>Il faut modifier les fichiers <code>naiveTests.cpp</code> et <code>treeTests.cpp</code> du dossier <code>performance</code> pour changer les paramètres à tester. Une limite de 10 secondes par jeu est fixé.</p>
+<p>La sortie produite (dans un fichier) devrait contenir le paramètre testé et les moyennes et médiannes des temps CPU obtenus ainsi que le nombre de fois que les 10 secondes ont été atteintes.</p>
+<h1>Dépendance</h1>
+<p>La seule dépendance externe du projet est <code>Catch</code>. La version header-only (<code>catch.hpp</code>) est incluse dans le code.</p>
+<h1>Crédits</h1>
+<ul>
+<li>Aline Goeminne</li>
+<li>Gaëtan Staquet</li>
+</ul>
+<p>Je (Gaëtan Staquet) remercie aussi Mme Véronique Bruyère, M Thomas Brihaye et M Hadrien Mélot de l'UMONS.</p>
+<h1>License</h1>
+<p><a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></p>
+<p>You can contact me at <a href="#" onclick="location.href='mai'+'lto:'+'gae'+'ta'+'n.s'+'ta'+'que'+'t@'+'stu'+'de'+'nt.'+'um'+'ons'+'.a'+'c.b'+'e'; return false;">gaeta<span style="display: none;">.nosp@m.</span>n.st<span style="display: none;">.nosp@m.</span>aquet<span style="display: none;">.nosp@m.</span>@stu<span style="display: none;">.nosp@m.</span>dent.<span style="display: none;">.nosp@m.</span>umon<span style="display: none;">.nosp@m.</span>s.ac.<span style="display: none;">.nosp@m.</span>be</a> </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

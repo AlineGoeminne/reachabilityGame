@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Reachability Game: Référence du fichier src/algorithms/Tarjan.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Reachability Game
+   </div>
+   <div id="projectbrief">Calcule l&#39;équilibre de Nash le plus pertinent pour un jeu d&#39;atteignabilité quantitatif</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_e6df591b0639d4c4807ef64d058833e2.html">algorithms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Espaces de nommage</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier Tarjan.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="Tarjan_8hpp_source.html">algorithms/Tarjan.hpp</a>&quot;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;stack&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de Tarjan.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="Tarjan_8cpp__incl.png" border="0" usemap="#src_2algorithms_2Tarjan_8cpp" alt=""/></div>
+<map name="src_2algorithms_2Tarjan_8cpp" id="src_2algorithms_2Tarjan_8cpp">
+<area shape="rect" id="node2" href="Tarjan_8hpp.html" title="algorithms/Tarjan.hpp" alt="" coords="424,80,571,107"/>
+<area shape="rect" id="node5" href="Vertex_8hpp.html" title="Vertex.hpp" alt="" coords="339,229,424,256"/>
+<area shape="rect" id="node12" href="Graph_8hpp.html" title="Graph.hpp" alt="" coords="456,155,539,181"/>
+<area shape="rect" id="node10" href="Long_8hpp.html" title="types/Long.hpp" alt="" coords="510,304,621,331"/>
+</map>
+</div>
+</div>
+<p><a href="Tarjan_8cpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Espaces de nommage</h2></td></tr>
+<tr class="memitem:namespacealgorithms"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacealgorithms.html">algorithms</a></td></tr>
+<tr class="memdesc:namespacealgorithms"><td class="mdescLeft">&#160;</td><td class="mdescRight">Des algorithmes divers. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a1862a333c4aa6ec6e5cc1709618aa8f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacealgorithms.html#adc324066120ac2a0da11befea76d82c4">algorithms::stronglyConnectedComponents</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Tarjan_8cpp.html#a1862a333c4aa6ec6e5cc1709618aa8f1">strongConnect</a> (unsigned int v, std::size_t &amp;index, std::vector&lt; std::size_t &gt; &amp;indices, std::vector&lt; std::size_t &gt; &amp;lowLink, std::stack&lt; unsigned int &gt; &amp;stack, std::vector&lt; bool &gt; &amp;onStack, const std::vector&lt; <a class="el" href="classVertex.html#af4f195f30fcd428a8990ef73f2fb94ca">Vertex::Ptr</a> &gt; &amp;vertices)</td></tr>
+<tr class="memdesc:a1862a333c4aa6ec6e5cc1709618aa8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le coeur de Tarjan.  <a href="#a1862a333c4aa6ec6e5cc1709618aa8f1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1862a333c4aa6ec6e5cc1709618aa8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab48da902e4b43a91669e439d26bbb43d"><td class="memItemLeft" align="right" valign="top">stronglyConnectedComponents&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacealgorithms.html#ab48da902e4b43a91669e439d26bbb43d">algorithms::tarjan</a> (const <a class="el" href="classGraph.html">Graph</a> &amp;graph)</td></tr>
+<tr class="memdesc:ab48da902e4b43a91669e439d26bbb43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exécute l'algorithme de Tarjan sur le graphe.  <a href="namespacealgorithms.html#ab48da902e4b43a91669e439d26bbb43d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab48da902e4b43a91669e439d26bbb43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a1862a333c4aa6ec6e5cc1709618aa8f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1862a333c4aa6ec6e5cc1709618aa8f1">&#9670;&nbsp;</a></span>strongConnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacealgorithms.html#adc324066120ac2a0da11befea76d82c4">algorithms::stronglyConnectedComponents</a> strongConnect </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t &amp;&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::size_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>indices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::size_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lowLink</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::stack&lt; unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>stack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; bool &gt; &amp;&#160;</td>
+          <td class="paramname"><em>onStack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classVertex.html#af4f195f30fcd428a8990ef73f2fb94ca">Vertex::Ptr</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vertices</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Le coeur de Tarjan. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>L'ID du sommet actuel </td></tr>
+    <tr><td class="paramname">index</td><td>L'index (selon le pseudo-code) </td></tr>
+    <tr><td class="paramname">indices</td><td>Le tableau des index </td></tr>
+    <tr><td class="paramname">lowLink</td><td>Le tableau des lowLink (selon le pseudo-code) </td></tr>
+    <tr><td class="paramname">stack</td><td>La pile </td></tr>
+    <tr><td class="paramname">onStack</td><td>Un tableau de booléen indiquant si tel sommet est sur la pile ou non </td></tr>
+    <tr><td class="paramname">vertices</td><td>L'ensemble des sommets </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="Tarjan_8cpp_source.html#l00037">37</a> du fichier <a class="el" href="Tarjan_8cpp_source.html">Tarjan.cpp</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

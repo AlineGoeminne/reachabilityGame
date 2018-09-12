@@ -1,0 +1,4 @@
+<map id="ReachabilityGame" name="ReachabilityGame">
+<area shape="rect" id="node2" href="$classGame.html" title="La base des jeux. " alt="" coords="41,95,99,121"/>
+<area shape="rect" id="node3" href="$classGraph.html" title="Un graphe. " alt="" coords="41,5,99,32"/>
+</map>

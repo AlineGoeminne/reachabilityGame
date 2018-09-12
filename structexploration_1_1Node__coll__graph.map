@@ -1,0 +1,5 @@
+<map id="exploration::Node" name="exploration::Node">
+<area shape="rect" id="node2" href="$classPath.html" title="Représente un chemin dans le graphe (ou une histoire dans un jeu) " alt="" coords="5,95,55,121"/>
+<area shape="rect" id="node3" href="$structexploration_1_1State.html" title="Un état de l&#39;exploration. " alt="" coords="185,95,309,121"/>
+<area shape="rect" id="node4" href="$classtypes_1_1Long.html" title="Une représentation d&#39;un long permettant l&#39;infini. " alt="" coords="79,5,170,32"/>
+</map>

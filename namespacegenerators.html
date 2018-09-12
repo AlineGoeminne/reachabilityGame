@@ -1,0 +1,1636 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Reachability Game: Référence de l&#39;espace de nommage generators</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Reachability Game
+   </div>
+   <div id="projectbrief">Calcule l&#39;équilibre de Nash le plus pertinent pour un jeu d&#39;atteignabilité quantitatif</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de l'espace de nommage generators</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Les générateurs aléatoires.  
+<a href="#details">Plus de détails...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ab3f022d827586f5c3208f0325b4db9bc"><td class="memItemLeft" align="right" valign="top">std::uniform_int_distribution&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ab3f022d827586f5c3208f0325b4db9bc">constructWeightDistribution</a> (long minWeight, long maxWeight)</td></tr>
+<tr class="memdesc:ab3f022d827586f5c3208f0325b4db9bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construit la distribution uniforme sur les poids.  <a href="#ab3f022d827586f5c3208f0325b4db9bc">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab3f022d827586f5c3208f0325b4db9bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9cb512660b6c57960a29d640b618894"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ad9cb512660b6c57960a29d640b618894">generateWeights</a> (std::size_t nPlayers, std::default_random_engine &amp;generator, std::uniform_int_distribution&lt; long &gt; &amp;weightDistribution, bool multipleWeights)</td></tr>
+<tr class="memdesc:ad9cb512660b6c57960a29d640b618894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère le tableau de poids (un poids par joueur).  <a href="#ad9cb512660b6c57960a29d640b618894">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad9cb512660b6c57960a29d640b618894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a055226c40358658c5d8d6307a888a7ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#a055226c40358658c5d8d6307a888a7ba">randomGenerator</a> (std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, std::size_t nPlayers, bool sharedTargets)</td></tr>
+<tr class="memdesc:a055226c40358658c5d8d6307a888a7ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un jeu d'atteignabilité.  <a href="#a055226c40358658c5d8d6307a888a7ba">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a055226c40358658c5d8d6307a888a7ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf78e83e16a552395c2cd3be548c7bba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#adf78e83e16a552395c2cd3be548c7bba">randomGenerator</a> (std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets)</td></tr>
+<tr class="memdesc:adf78e83e16a552395c2cd3be548c7bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un jeu d'atteignabilité.  <a href="#adf78e83e16a552395c2cd3be548c7bba">Plus de détails...</a><br /></td></tr>
+<tr class="separator:adf78e83e16a552395c2cd3be548c7bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a749f1c535ca378be011f706fcaaa9f5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#a749f1c535ca378be011f706fcaaa9f5a">randomGenerator</a> (std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector&lt; double &gt; &amp;probaPlayers)</td></tr>
+<tr class="memdesc:a749f1c535ca378be011f706fcaaa9f5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un jeu d'atteignabilité.  <a href="#a749f1c535ca378be011f706fcaaa9f5a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a749f1c535ca378be011f706fcaaa9f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47ee9b0ae01af6fb53191cdb438d3070"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#a47ee9b0ae01af6fb53191cdb438d3070">randomGenerator</a> (std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector&lt; double &gt; &amp;probaPlayers, const std::vector&lt; double &gt; &amp;probaTargets)</td></tr>
+<tr class="memdesc:a47ee9b0ae01af6fb53191cdb438d3070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un jeu d'atteignabilité.  <a href="#a47ee9b0ae01af6fb53191cdb438d3070">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a47ee9b0ae01af6fb53191cdb438d3070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7e7446c7f7ee4bff193b7597ccea893"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ad7e7446c7f7ee4bff193b7597ccea893">randomGenerator</a> (std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector&lt; double &gt; &amp;probaPlayers, const std::vector&lt; double &gt; &amp;probaTargets, const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;maximumTargets)</td></tr>
+<tr class="memdesc:ad7e7446c7f7ee4bff193b7597ccea893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un jeu d'atteignabilité.  <a href="#ad7e7446c7f7ee4bff193b7597ccea893">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad7e7446c7f7ee4bff193b7597ccea893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae36a86098d15764b74de111b79cff644"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ae36a86098d15764b74de111b79cff644">randomStronglyConnectedGenerator</a> (std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, std::size_t nPlayers, bool sharedTargets)</td></tr>
+<tr class="memdesc:ae36a86098d15764b74de111b79cff644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un jeu d'atteignabilité sur graphe fortement connexe.  <a href="#ae36a86098d15764b74de111b79cff644">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ae36a86098d15764b74de111b79cff644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8aaf71c874d90ab1fe8e99e44b034d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#af8aaf71c874d90ab1fe8e99e44b034d4">randomStronglyConnectedGenerator</a> (std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector&lt; double &gt; &amp;probaPlayers, const std::vector&lt; double &gt; &amp;probaTargets, const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;maximumTargets)</td></tr>
+<tr class="memdesc:af8aaf71c874d90ab1fe8e99e44b034d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un jeu d'atteignabilité sur graphe fortement connexe.  <a href="#af8aaf71c874d90ab1fe8e99e44b034d4">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af8aaf71c874d90ab1fe8e99e44b034d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4642a9b97dae7107580b1fe482fba88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ad4642a9b97dae7107580b1fe482fba88">randomTreeLikeGenerator</a> (std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, bool multipleWeights, std::size_t nPlayers, bool sharedTargets)</td></tr>
+<tr class="memdesc:ad4642a9b97dae7107580b1fe482fba88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère un graphe aléatoire inspiré d'un arbre.  <a href="#ad4642a9b97dae7107580b1fe482fba88">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad4642a9b97dae7107580b1fe482fba88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a548a19382e91df9fe119f02d24ba8e4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#a548a19382e91df9fe119f02d24ba8e4f">randomTreeLikeGenerator</a> (std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets)</td></tr>
+<tr class="memdesc:a548a19382e91df9fe119f02d24ba8e4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère un graphe aléatoire inspiré d'un arbre.  <a href="#a548a19382e91df9fe119f02d24ba8e4f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a548a19382e91df9fe119f02d24ba8e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2105771326b3ef98d667a9c6fd7bd1e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#a2105771326b3ef98d667a9c6fd7bd1e1">randomTreeLikeGenerator</a> (std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector&lt; double &gt; &amp;probaPlayers)</td></tr>
+<tr class="memdesc:a2105771326b3ef98d667a9c6fd7bd1e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère un graphe aléatoire inspiré d'un arbre.  <a href="#a2105771326b3ef98d667a9c6fd7bd1e1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2105771326b3ef98d667a9c6fd7bd1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad67665bd9ed20baf9e75e89b4782880a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ad67665bd9ed20baf9e75e89b4782880a">randomTreeLikeGenerator</a> (std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector&lt; double &gt; &amp;probaPlayers, const std::vector&lt; double &gt; &amp;probaTargets)</td></tr>
+<tr class="memdesc:ad67665bd9ed20baf9e75e89b4782880a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère un graphe aléatoire inspiré d'un arbre.  <a href="#ad67665bd9ed20baf9e75e89b4782880a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad67665bd9ed20baf9e75e89b4782880a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac55daf2a6e33a900dcbe6d826edbf7fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ac55daf2a6e33a900dcbe6d826edbf7fc">randomTreeLikeGenerator</a> (std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector&lt; double &gt; &amp;probaPlayers, const std::vector&lt; double &gt; &amp;probaTargets, const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;maximumTargets)</td></tr>
+<tr class="memdesc:ac55daf2a6e33a900dcbe6d826edbf7fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère un graphe aléatoire inspiré d'un arbre.  <a href="#ac55daf2a6e33a900dcbe6d826edbf7fc">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac55daf2a6e33a900dcbe6d826edbf7fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7e7446c7f7ee4bff193b7597ccea893"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ad7e7446c7f7ee4bff193b7597ccea893">randomGenerator</a> (std::size_t size, std::size_t lowOutgoing, std::size_t upOutgoing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector&lt; double &gt; &amp;probaPlayers, const std::vector&lt; double &gt; &amp;probaTargets, const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;maximumTargets)</td></tr>
+<tr class="separator:ad7e7446c7f7ee4bff193b7597ccea893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac55daf2a6e33a900dcbe6d826edbf7fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ac55daf2a6e33a900dcbe6d826edbf7fc">randomTreeLikeGenerator</a> (std::size_t size, std::size_t lowBranchingFactor, std::size_t upBranchingFactor, double probaSelf, double probaSameDepth, double probaSkipping, double probaClimbing, long minWeight, long maxWeight, bool multipleWeights, std::size_t nPlayers, bool sharedTargets, const std::vector&lt; double &gt; &amp;probaPlayers, const std::vector&lt; double &gt; &amp;probaTargets, const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;maximumTargets)</td></tr>
+<tr class="separator:ac55daf2a6e33a900dcbe6d826edbf7fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Les générateurs aléatoires. </p>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="ab3f022d827586f5c3208f0325b4db9bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3f022d827586f5c3208f0325b4db9bc">&#9670;&nbsp;</a></span>constructWeightDistribution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uniform_int_distribution&lt; long &gt; generators::constructWeightDistribution </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construit la distribution uniforme sur les poids. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>La distribution uniforme sur les poids </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="GenerateWeights_8cpp_source.html#l00022">22</a> du fichier <a class="el" href="GenerateWeights_8cpp_source.html">GenerateWeights.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad9cb512660b6c57960a29d640b618894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9cb512660b6c57960a29d640b618894">&#9670;&nbsp;</a></span>generateWeights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; generators::generateWeights </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::default_random_engine &amp;&#160;</td>
+          <td class="paramname"><em>generator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uniform_int_distribution&lt; long &gt; &amp;&#160;</td>
+          <td class="paramname"><em>weightDistribution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère le tableau de poids (un poids par joueur). </p>
+<p>Si multipleWeights est vrai, un nouveau poids est tiré pour chaque joueur. Sinon, le même poids est donné à tout le monde.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Le tableau de poids </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="GenerateWeights_8cpp_source.html#l00026">26</a> du fichier <a class="el" href="GenerateWeights_8cpp_source.html">GenerateWeights.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad7e7446c7f7ee4bff193b7597ccea893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7e7446c7f7ee4bff193b7597ccea893">&#9670;&nbsp;</a></span>randomGenerator() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>maximumTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomGenerator_8cpp_source.html#l00049">49</a> du fichier <a class="el" href="RandomGenerator_8cpp_source.html">RandomGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a055226c40358658c5d8d6307a888a7ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a055226c40358658c5d8d6307a888a7ba">&#9670;&nbsp;</a></span>randomGenerator() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un jeu d'atteignabilité. </p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids des arcs sont toujours 1.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet lui appartienne est 1/nPlayers.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet soit une cible pour lui est 0.1.</p>
+<p>Il n'y a pas de limites sur le nombre de cibles par joueur.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets </td></tr>
+    <tr><td class="paramname">lowOutgoing</td><td>Le nombre minimal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">upOutgoing</td><td>Le nombre maximal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomGenerator_8cpp_source.html#l00030">30</a> du fichier <a class="el" href="RandomGenerator_8cpp_source.html">RandomGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="adf78e83e16a552395c2cd3be548c7bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf78e83e16a552395c2cd3be548c7bba">&#9670;&nbsp;</a></span>randomGenerator() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un jeu d'atteignabilité. </p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids peuvent être négatifs.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet lui appartienne est 1/nPlayers.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet soit une cible pour lui est 0.1.</p>
+<p>Il n'y a pas de limites sur le nombre de cibles par joueur.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets </td></tr>
+    <tr><td class="paramname">lowOutgoing</td><td>Le nombre minimal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">upOutgoing</td><td>Le nombre maximal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">minWeight</td><td>Le poids minimal </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Le poids maximal </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que chaque joueur voit le même poids sur l'arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomGenerator_8cpp_source.html#l00034">34</a> du fichier <a class="el" href="RandomGenerator_8cpp_source.html">RandomGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a749f1c535ca378be011f706fcaaa9f5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a749f1c535ca378be011f706fcaaa9f5a">&#9670;&nbsp;</a></span>randomGenerator() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaPlayers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un jeu d'atteignabilité. </p>
+<p>La précision sur les contraintes sur les paramètres est 1E-15.</p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids peuvent être négatifs.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet soit une cible pour lui est 0.1.</p>
+<p>Il n'y a pas de limites sur le nombre de cibles par joueur.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets </td></tr>
+    <tr><td class="paramname">lowOutgoing</td><td>Le nombre minimal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">upOutgoing</td><td>Le nombre maximal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">minWeight</td><td>Le poids minimal </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Le poids maximal </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que chaque joueur voit le même poids sur l'arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+    <tr><td class="paramname">probaPlayers</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet lui appartienne </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomGenerator_8cpp_source.html#l00039">39</a> du fichier <a class="el" href="RandomGenerator_8cpp_source.html">RandomGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a47ee9b0ae01af6fb53191cdb438d3070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47ee9b0ae01af6fb53191cdb438d3070">&#9670;&nbsp;</a></span>randomGenerator() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un jeu d'atteignabilité. </p>
+<p>La précision sur les contraintes sur les paramètres est 1E-15.</p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids peuvent être négatifs.</p>
+<p>Il n'y a pas de limites sur le nombre de cibles par joueur.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets </td></tr>
+    <tr><td class="paramname">lowOutgoing</td><td>Le nombre minimal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">upOutgoing</td><td>Le nombre maximal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">minWeight</td><td>Le poids minimal </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Le poids maximal </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que chaque joueur voit le même poids sur l'arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+    <tr><td class="paramname">probaPlayers</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet lui appartienne </td></tr>
+    <tr><td class="paramname">probaTargets</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet soit une cible pour lui </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomGenerator_8cpp_source.html#l00044">44</a> du fichier <a class="el" href="RandomGenerator_8cpp_source.html">RandomGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad7e7446c7f7ee4bff193b7597ccea893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7e7446c7f7ee4bff193b7597ccea893">&#9670;&nbsp;</a></span>randomGenerator() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>maximumTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un jeu d'atteignabilité. </p>
+<p>La précision sur les contraintes sur les paramètres est 1E-20.</p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids peuvent être négatifs.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets </td></tr>
+    <tr><td class="paramname">lowOutgoing</td><td>Le nombre minimal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">upOutgoing</td><td>Le nombre maximal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">minWeight</td><td>Le poids minimal </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Le poids maximal </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que les joueurs voient des poids différents sur un arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+    <tr><td class="paramname">probaPlayers</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet lui appartienne </td></tr>
+    <tr><td class="paramname">probaTargets</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet soit une cible pour lui </td></tr>
+    <tr><td class="paramname">maximumTargets</td><td>Un tableau qui indique pour chaque joueur le nombre maximal de cibles qu'il peut avoir </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae36a86098d15764b74de111b79cff644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae36a86098d15764b74de111b79cff644">&#9670;&nbsp;</a></span>randomStronglyConnectedGenerator() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomStronglyConnectedGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un jeu d'atteignabilité sur graphe fortement connexe. </p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids des arcs sont toujours 1.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet lui appartienne est 1/nPlayers.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet soit une cible pour lui est 0.1.</p>
+<p>Il n'y a pas de limites sur le nombre de cibles par joueur.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets </td></tr>
+    <tr><td class="paramname">lowOutgoing</td><td>Le nombre minimal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">upOutgoing</td><td>Le nombre maximal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomStronglyConnectedGenerator_8cpp_source.html#l00031">31</a> du fichier <a class="el" href="RandomStronglyConnectedGenerator_8cpp_source.html">RandomStronglyConnectedGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af8aaf71c874d90ab1fe8e99e44b034d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8aaf71c874d90ab1fe8e99e44b034d4">&#9670;&nbsp;</a></span>randomStronglyConnectedGenerator() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomStronglyConnectedGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>maximumTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un jeu d'atteignabilité sur graphe fortement connexe. </p>
+<p>La précision sur les contraintes sur les paramètres est 1E-15.</p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids peuvent être négatifs.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets </td></tr>
+    <tr><td class="paramname">lowOutgoing</td><td>Le nombre minimal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">upOutgoing</td><td>Le nombre maximal d'arcs sortants par sommet </td></tr>
+    <tr><td class="paramname">minWeight</td><td>Le poids minimal </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Le poids maximal </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que les joueurs voient des poids différents sur un arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+    <tr><td class="paramname">probaPlayers</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet lui appartienne </td></tr>
+    <tr><td class="paramname">probaTargets</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet soit une cible pour lui </td></tr>
+    <tr><td class="paramname">maximumTargets</td><td>Un tableau qui indique pour chaque joueur le nombre maximal de cibles qu'il peut avoir </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomStronglyConnectedGenerator_8cpp_source.html#l00038">38</a> du fichier <a class="el" href="RandomStronglyConnectedGenerator_8cpp_source.html">RandomStronglyConnectedGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad4642a9b97dae7107580b1fe482fba88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4642a9b97dae7107580b1fe482fba88">&#9670;&nbsp;</a></span>randomTreeLikeGenerator() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomTreeLikeGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSelf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSameDepth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSkipping</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaClimbing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère un graphe aléatoire inspiré d'un arbre. </p>
+<p>Sur une idée originale de Thomas Brihaye.</p>
+<p>Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.</p>
+<p>La précision sur les contraintes sur les paramètres est 1E-15.</p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids des arcs sont toujours 1.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet lui appartienne est 1/nPlayers.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet soit une cible pour lui est 0.1.</p>
+<p>Les joueurs n'ont pas de limite sur le nombre de cibles</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets à générer </td></tr>
+    <tr><td class="paramname">lowBranchingFactor</td><td>La borne inférieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">upBranchingFactor</td><td>La borne supérieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">probaSelf</td><td>Le probabilité d'avoir un arc d'un sommet v vers lui-même </td></tr>
+    <tr><td class="paramname">probaSameDepth</td><td>La probabilité d'avoir un arc entre deux sommets "à la même profondeur" </td></tr>
+    <tr><td class="paramname">probaSkipping</td><td>La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant) </td></tr>
+    <tr><td class="paramname">probaClimbing</td><td>La probabilité d'avoir un arc qui remonte dans l'arbre </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que les joueurs voient des poids différents sur un arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html#l00053">53</a> du fichier <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html">RandomTreeLikeGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ac55daf2a6e33a900dcbe6d826edbf7fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac55daf2a6e33a900dcbe6d826edbf7fc">&#9670;&nbsp;</a></span>randomTreeLikeGenerator() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomTreeLikeGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSelf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSameDepth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSkipping</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaClimbing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>maximumTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html#l00072">72</a> du fichier <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html">RandomTreeLikeGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a548a19382e91df9fe119f02d24ba8e4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a548a19382e91df9fe119f02d24ba8e4f">&#9670;&nbsp;</a></span>randomTreeLikeGenerator() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomTreeLikeGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSelf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSameDepth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSkipping</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaClimbing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère un graphe aléatoire inspiré d'un arbre. </p>
+<p>Sur une idée originale de Thomas Brihaye.</p>
+<p>Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.</p>
+<p>La précision sur les contraintes sur les paramètres est 1E-15.</p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids peuvent être négatifs.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet lui appartienne est 1/nPlayers.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet soit une cible pour lui est 0.1.</p>
+<p>Les joueurs n'ont pas de limite sur le nombre de cibles</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets à générer </td></tr>
+    <tr><td class="paramname">lowBranchingFactor</td><td>La borne inférieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">upBranchingFactor</td><td>La borne supérieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">probaSelf</td><td>Le probabilité d'avoir un arc d'un sommet v vers lui-même </td></tr>
+    <tr><td class="paramname">probaSameDepth</td><td>La probabilité d'avoir un arc entre deux sommets "à la même profondeur" </td></tr>
+    <tr><td class="paramname">probaSkipping</td><td>La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant) </td></tr>
+    <tr><td class="paramname">probaClimbing</td><td>La probabilité d'avoir un arc qui remonte dans l'arbre </td></tr>
+    <tr><td class="paramname">minWeight</td><td>Le poids minimal </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Le poids maximal </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que les joueurs voient des poids différents sur un arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html#l00057">57</a> du fichier <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html">RandomTreeLikeGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a2105771326b3ef98d667a9c6fd7bd1e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2105771326b3ef98d667a9c6fd7bd1e1">&#9670;&nbsp;</a></span>randomTreeLikeGenerator() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomTreeLikeGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSelf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSameDepth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSkipping</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaClimbing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaPlayers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère un graphe aléatoire inspiré d'un arbre. </p>
+<p>Sur une idée originale de Thomas Brihaye.</p>
+<p>La précision sur les contraintes sur les paramètres est 1E-15.</p>
+<p>Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.</p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids peuvent être négatifs.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<p>Pour chaque joueur, la probabilité qu'un sommet soit une cible pour lui est 0.1.</p>
+<p>Les joueurs n'ont pas de limite sur le nombre de cibles</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets à générer </td></tr>
+    <tr><td class="paramname">lowBranchingFactor</td><td>La borne inférieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">upBranchingFactor</td><td>La borne supérieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">probaSelf</td><td>Le probabilité d'avoir un arc d'un sommet v vers lui-même </td></tr>
+    <tr><td class="paramname">probaSameDepth</td><td>La probabilité d'avoir un arc entre deux sommets "à la même profondeur" </td></tr>
+    <tr><td class="paramname">probaSkipping</td><td>La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant) </td></tr>
+    <tr><td class="paramname">probaClimbing</td><td>La probabilité d'avoir un arc qui remonte dans l'arbre </td></tr>
+    <tr><td class="paramname">minWeight</td><td>Le poids minimal </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Le poids maximal </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que les joueurs voient des poids différents sur un arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+    <tr><td class="paramname">probaPlayers</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet lui appartienne </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html#l00062">62</a> du fichier <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html">RandomTreeLikeGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad67665bd9ed20baf9e75e89b4782880a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad67665bd9ed20baf9e75e89b4782880a">&#9670;&nbsp;</a></span>randomTreeLikeGenerator() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomTreeLikeGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSelf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSameDepth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSkipping</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaClimbing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère un graphe aléatoire inspiré d'un arbre. </p>
+<p>Sur une idée originale de Thomas Brihaye.</p>
+<p>La précision sur les contraintes sur les paramètres est 1E-15.</p>
+<p>Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.</p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids peuvent être négatifs.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<p>Les joueurs n'ont pas de limite sur le nombre de cibles</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets à générer </td></tr>
+    <tr><td class="paramname">lowBranchingFactor</td><td>La borne inférieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">upBranchingFactor</td><td>La borne supérieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">probaSelf</td><td>Le probabilité d'avoir un arc d'un sommet v vers lui-même </td></tr>
+    <tr><td class="paramname">probaSameDepth</td><td>La probabilité d'avoir un arc entre deux sommets "à la même profondeur" </td></tr>
+    <tr><td class="paramname">probaSkipping</td><td>La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant) </td></tr>
+    <tr><td class="paramname">probaClimbing</td><td>La probabilité d'avoir un arc qui remonte dans l'arbre </td></tr>
+    <tr><td class="paramname">minWeight</td><td>Le poids minimal </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Le poids maximal </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que les joueurs voient des poids différents sur un arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+    <tr><td class="paramname">probaPlayers</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet lui appartienne </td></tr>
+    <tr><td class="paramname">probaTargets</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet soit une cible pour lui </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html#l00067">67</a> du fichier <a class="el" href="RandomTreeLikeGenerator_8cpp_source.html">RandomTreeLikeGenerator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ac55daf2a6e33a900dcbe6d826edbf7fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac55daf2a6e33a900dcbe6d826edbf7fc">&#9670;&nbsp;</a></span>randomTreeLikeGenerator() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReachabilityGame.html">ReachabilityGame</a> generators::randomTreeLikeGenerator </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>lowBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>upBranchingFactor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSelf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSameDepth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaSkipping</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>probaClimbing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>minWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>maxWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>multipleWeights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sharedTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probaTargets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classtypes_1_1Long.html">types::Long</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>maximumTargets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère un graphe aléatoire inspiré d'un arbre. </p>
+<p>Sur une idée originale de Thomas Brihaye.</p>
+<p>La précision sur les contraintes sur les paramètres est 1E-15.</p>
+<p>Le graphe est généré couche par couche en commençant par v0. Pour chaque noeud, on détermine aléatoirement le nombre d'enfants dans l'intervalle [lowBranchingFactor, upBranchingFactor] et s'il peut avoir des liens vers des sommets à la même "profondeur", vers des sommets "plus haut dans l'arbre" et vers des sommets "plus bas dans l'abre" (vers des sommets qui ne sont pas ses enfants). On répète ceci pour chaque enfant jusqu'à atteindre le nombre de sommets désiré.</p>
+<p>Le noeud initial est toujours v0.</p>
+<p>Les poids peuvent être négatifs.</p>
+<p>S'il arrive qu'un joueur n'a pas de cible, le paramètre sharedTargets est ignoré pour ce joueur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Le nombre de sommets à générer </td></tr>
+    <tr><td class="paramname">lowBranchingFactor</td><td>La borne inférieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">upBranchingFactor</td><td>La borne supérieure sur le facteur de branchement </td></tr>
+    <tr><td class="paramname">probaSelf</td><td>Le probabilité d'avoir un arc d'un sommet v vers lui-même </td></tr>
+    <tr><td class="paramname">probaSameDepth</td><td>La probabilité d'avoir un arc entre deux sommets "à la même profondeur" </td></tr>
+    <tr><td class="paramname">probaSkipping</td><td>La probabilité d'avoir un arc allant d'un sommet à un autre à une "profondeur" inférieure (et qui n'est pas son enfant) </td></tr>
+    <tr><td class="paramname">probaClimbing</td><td>La probabilité d'avoir un arc qui remonte dans l'arbre </td></tr>
+    <tr><td class="paramname">minWeight</td><td>Le poids minimal </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Le poids maximal </td></tr>
+    <tr><td class="paramname">multipleWeights</td><td>Est-ce que les joueurs voient des poids différents sur un arc ? </td></tr>
+    <tr><td class="paramname">nPlayers</td><td>Le nombre de joueurs </td></tr>
+    <tr><td class="paramname">sharedTargets</td><td>Est-ce que plusieurs joueurs peuvent partager la même cible ? </td></tr>
+    <tr><td class="paramname">probaPlayers</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet lui appartienne </td></tr>
+    <tr><td class="paramname">probaTargets</td><td>Un tableau qui indique pour chaque joueur la probabilité qu'un sommet soit une cible pour lui </td></tr>
+    <tr><td class="paramname">maximumTargets</td><td>Un tableau qui indique pour chaque joueur le nombre maximal de cibles qu'il peut avoir </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

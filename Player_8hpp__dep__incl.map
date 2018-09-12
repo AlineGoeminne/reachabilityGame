@@ -1,0 +1,18 @@
+<map id="include/Player.hpp" name="include/Player.hpp">
+<area shape="rect" id="node2" href="$MinMaxGame_8hpp.html" title="include/MinMaxGame.hpp" alt="" coords="1264,162,1437,189"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="643,251,741,278"/>
+<area shape="rect" id="node7" href="$ReachabilityGame_8hpp.html" title="include/ReachabilityGame.hpp" alt="" coords="827,80,1026,107"/>
+<area shape="rect" id="node17" href="$Player_8cpp.html" title="src/Player.cpp" alt="" coords="1100,80,1207,107"/>
+<area shape="rect" id="node3" href="$BestFirstSearch_8cpp.html" title="src/exploration/BestFirst\lSearch.cpp" alt="" coords="1511,244,1675,285"/>
+<area shape="rect" id="node5" href="$MinMaxGame_8cpp.html" title="src/MinMaxGame.cpp" alt="" coords="1337,251,1487,278"/>
+<area shape="rect" id="node6" href="$Path_8cpp.html" title="src/Path.cpp" alt="" coords="1216,251,1312,278"/>
+<area shape="rect" id="node8" href="$RandomPaths_8hpp.html" title="include/exploration\l/RandomPaths.hpp" alt="" coords="1054,155,1189,196"/>
+<area shape="rect" id="node10" href="$RandomGenerator_8hpp.html" title="include/generators\l/RandomGenerator.hpp" alt="" coords="47,155,204,196"/>
+<area shape="rect" id="node13" href="$RandomStronglyConnectedGenerator_8hpp.html" title="include/generators\l/RandomStronglyConnectedGenerator.hpp" alt="" coords="279,155,547,196"/>
+<area shape="rect" id="node14" href="$RandomTreeLikeGenerator_8hpp.html" title="include/generators\l/RandomTreeLikeGenerator.hpp" alt="" coords="823,155,1030,196"/>
+<area shape="rect" id="node16" href="$ReachabilityGame_8cpp.html" title="src/ReachabilityGame.cpp" alt="" coords="572,162,748,189"/>
+<area shape="rect" id="node9" href="$RandomPaths_8cpp.html" title="src/exploration/RandomPaths.cpp" alt="" coords="973,251,1192,278"/>
+<area shape="rect" id="node11" href="$RandomGenerator_8cpp.html" title="src/generators/RandomGenerator.cpp" alt="" coords="5,251,245,278"/>
+<area shape="rect" id="node12" href="$RandomStronglyConnectedGenerator_8cpp.html" title="src/generators/RandomStrongly\lConnectedGenerator.cpp" alt="" coords="290,244,497,285"/>
+<area shape="rect" id="node15" href="$RandomTreeLikeGenerator_8cpp.html" title="src/generators/RandomTree\lLikeGenerator.cpp" alt="" coords="765,244,949,285"/>
+</map>
