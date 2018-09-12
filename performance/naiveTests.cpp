@@ -49,7 +49,7 @@ int main()
                     timesNaive[i] = execute(game);
                 }
                 catch(std::runtime_error &e) {
-                    timesNaive[i] = 10;
+                    timesNaive[i] = 10 * CLOCKS_PER_SEC; // Pour avoir 10 secondes
                     nTimeOut++;
                 }
             }

@@ -27,7 +27,11 @@ std::clock_t execute(ReachabilityGame &game) {
 }
 
 std::tuple<double, double> values(std::vector<std::clock_t> &tab) {
-    double mean = clock_tToMilliSeconds(std::accumulate(tab.begin(), tab.end(), 0) / tab.size());
+    double mean = 0;
+    for (auto &a : tab) {
+        mean += clock_tToMilliSeconds(a);
+    }
+    mean /= tab.size();
 
     // On va calculer la médianne
     double median;

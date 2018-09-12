@@ -9,11 +9,13 @@ set logscale y
 set y2tics
 unset logscale y2
 
-set xlabel "poids maximal"
+set xlabel "poids maximal\n"
 set ylabel "temps en ms"
 set y2label "pourcentage de timeouts"
 
 set style data linespoints
+
+set key horizontal bmargin center
 
 plot 'naiveMaxWeight.data' using 1:2 title "Moyennes des temps d'exécution - C++ - générateur naïf" axes x1y1,\
     "" using 1:3 title "Médiannes des temps d'exécution - C++ - générateur naïf" axes x1y1,\

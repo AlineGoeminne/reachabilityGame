@@ -9,7 +9,7 @@ set logscale y
 set y2tics
 unset logscale y2
 
-set xlabel "taille"
+set xlabel "taille\n"
 set ylabel "temps en ms"
 set y2label "pourcentage de timeouts"
 

@@ -15,7 +15,7 @@ using namespace std::placeholders;
 int main()
 {
     std::size_t nGenerations = 1000;
-    std::ofstream tree("../plots/treePlayersSize.data");
+    std::ofstream tree("../plots/treePlayersSize.data", std::ios_base::app);
 
     std::size_t size = 20;
     long minWeight = 1;
@@ -33,8 +33,8 @@ int main()
 
     tree << std::boolalpha << "# size=" << size << "; branchingFactor in [" << lowBranchingFactor << ", " << upBranchingFactor << "]; probaSelf=" << probaSelf << "; probaSameDetph=" << probaSameDepth << "; probaSkipping=" << probaSkipping << "; probaClimbing=" << probaClimbing << "; weights in [" << minWeight << ", " << maxWeight << "]; mutlipleWeight=" << multipleWeights << "; nPlayers=" << nPlayers << "; sharedTargets=" << sharedTargets << "; probaPlayers=1/nPlayers; probaTargets=0.1; maximumTargets=infinity;\n";
 
-    for (nPlayers = 2 ; nPlayers <= 10 ; nPlayers++) {
-        for (size = 5 ; size <= 30 ; size++) {
+    for (nPlayers = 8 ; nPlayers <= 8 ; nPlayers++) {
+        for (size = 18 ; size <= 30 ; size++) {
             std::vector<double> probaPlayers(nPlayers, 1./nPlayers);
             std::vector<double> probaTargets(nPlayers, 0.1);
             std::vector<Long> maximumTargets(nPlayers, Long::infinity);
@@ -50,7 +50,7 @@ int main()
                     timesTree[i] = execute(game);
                 }
                 catch(std::runtime_error &e) {
-                    timesTree[i] = 10;
+                    timesTree[i] = 10 * CLOCKS_PER_SEC; // Pour avoir 10 secondes
                     nTimeOut++;
                 }
             }
