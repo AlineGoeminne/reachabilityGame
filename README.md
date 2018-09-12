@@ -58,9 +58,16 @@ Il faut modifier les fichiers `naiveTests.cpp` et `treeTests.cpp` du dossier `pe
 
 La sortie produite (dans un fichier) devrait contenir le paramètre testé et les moyennes et médiannes des temps CPU obtenus ainsi que le nombre de fois que les 10 secondes ont été atteintes.
 
+# Dépendance
+La seule dépendance externe du projet est `Catch`. La version header-only (`catch.hpp`) est incluse dans le code.
+
 # Crédits
 - Aline Goeminne
 - Gaëtan Staquet
 
+Je (Gaëtan Staquet) remercie aussi Mme Véronique Bruyère, M Thomas Brihaye et M Hadrien Mélot de l'UMONS.
+
 # License
-???
+[GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.txt)
+
+You can contact me at gaetan.staquet@student.umons.ac.be
